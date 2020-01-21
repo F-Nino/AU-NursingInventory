@@ -4,8 +4,11 @@ class Login extends Component {
   render() {
     return (
       <form>
-        <input placeholder="username" />
-        <input placeholder="password" />
+        <h1>Login</h1>
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="username" />
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="password" />
         <button>Sign In</button>
       </form>
     );
