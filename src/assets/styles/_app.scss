@@ -1,0 +1,53 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-body;
+  color: $black;
+  background: $body-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-header;
+  margin-bottom: 0.5em;
+  color: $grey;
+}
+
+.logo {
+  letter-spacing: 0.1em;
+  font-size: 1.5em;
+  color: white;
+  position: relative;
+  top: -3px;
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.view-container {
+  padding: $container-padding;
+}
+
+.small-text {
+  font-size: 14px;
+}
+
+.delete-icon {
+  width: 16px;
+}
+
+.back-icon-container {
+  width: 25px;
+  cursor: pointer;
+}

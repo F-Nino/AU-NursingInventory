@@ -1,0 +1,48 @@
+input,
+select,
+textarea {
+  /* styles go here */
+  padding: 10px 12px;
+  font-size: 16px;
+  font-family: $font-body;
+  display: block;
+  width: 100%;
+  border: none;
+  border: 1px solid $color-secondary;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  // border-radius: 0.3em;
+  //-webkit-appearance: none;
+}
+
+.button {
+  background-color: $color-main;
+  border: none;
+  color: white;
+  width: 100%;
+  font-family: $font-body;
+  transition: 1s;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16x;
+  border-radius: 0.3em;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background: $grey;
+  transition: 1s;
+}
+
+.ts-input,
+.ts-button {
+  margin-bottom: 0.5em;
+}
+
+.registration-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 25vh;
+}
