@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 //import logo from "../../assets/images/logo.png";
 import { connect } from "react-redux";
-import { logoutUser } from "../../redux/actions/user.js";
+import { userLogOut } from "../../redux/actions/user.js";
 
 const Logo = () => (
   <div className="logo">
@@ -16,7 +16,7 @@ const Navigation = ({ currentUser }) => {
   return currentUser ? <NavigationAuth /> : <NavigationNonAuth />;
 };
 
-const NavigationAuth = ({ currentUser }) => (
+const NavigationAuth = () => (
   <nav className="navigation nav-auth">
     <div className="logo-wrapper">
       <Logo />
@@ -38,9 +38,7 @@ const NavigationAuth = ({ currentUser }) => (
         <Link to={ROUTES.TREND_REPORT}> Trend Report</Link>
       </li>
       <li>
-        <Link to={ROUTES.LOGIN} onclick={() => this.props.logoutUser}>
-          Logout
-        </Link>
+        <Link to={ROUTES.LOGIN}>Logout</Link>
       </li>
     </ul>
   </nav>
@@ -58,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(logoutUser())
+  userLogOut: () => dispatch(userLogOut())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

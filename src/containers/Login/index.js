@@ -22,7 +22,6 @@ class Login extends Component {
 
   handleSubmit = event => {
     const { username, password } = this.state;
-    localStorage.setItem("token", null);
     event.preventDefault();
     console.log(username, password);
     console.log("button pressed");
