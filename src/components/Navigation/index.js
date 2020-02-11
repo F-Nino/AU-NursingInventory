@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 //import logo from "../../assets/images/logo.png";
 import { connect } from "react-redux";
-import { userLogOut } from "../../redux/actions/user.js";
+import { userLogOut } from "../../redux/actions/user";
 
 const Logo = () => (
   <div className="logo">
@@ -38,7 +38,9 @@ const NavigationAuth = () => (
         <Link to={ROUTES.TREND_REPORT}> Trend Report</Link>
       </li>
       <li>
-        <Link to={ROUTES.LOGIN}>Logout</Link>
+        <Link to={ROUTES.LOGIN} onClick={() => this.props.userLogOut}>
+          Logout
+        </Link>
       </li>
     </ul>
   </nav>

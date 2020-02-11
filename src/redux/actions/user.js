@@ -24,8 +24,9 @@ export const userLoginFetch = (username, password) => {
 
 export const userLogOut = () => {
   return dispatch => {
+    console.log("loggingOut called");
     localStorage.removeItem("token");
-    dispatch(logoutUser());
+    return dispatch(logoutUser());
   };
 };
 
@@ -34,6 +35,6 @@ const loginUser = userObj => ({
   payload: userObj
 });
 
-const logoutUser = () => {
-  return { type: LOGOUT_USER };
-};
+const logoutUser = () => ({
+  type: LOGOUT_USER
+});
