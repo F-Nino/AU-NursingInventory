@@ -47,6 +47,11 @@ textarea {
   padding-top: 25vh;
 }
 
+.message {
+  font-size: 20px;
+  font-family: $font-header;
+}
+
 .error-message {
   color: $error-color;
   font-size: 20px;
@@ -111,4 +116,8 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.create-buttons {
+  float: right;
 }
