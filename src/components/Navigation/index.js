@@ -5,18 +5,29 @@ import * as ROUTES from "../../constants/routes";
 import { connect } from "react-redux";
 import { userLogOut } from "../../redux/actions/user";
 
+class Navigation extends React.Component {
+  render() {
+    const { currentUser, userLogOut } = this.props;
+
+    return (
+      <div>
+        {currentUser ? (
+          <NavigationAuth logout={userLogOut} />
+        ) : (
+          <NavigationNonAuth />
+        )}
+      </div>
+    );
+  }
+}
+
 const Logo = () => (
   <div className="logo">
     <span>FNBJ</span>
   </div>
 );
 
-const Navigation = ({ currentUser }) => {
-  console.log("currentUser", currentUser);
-  return currentUser ? <NavigationAuth /> : <NavigationNonAuth />;
-};
-
-const NavigationAuth = () => (
+const NavigationAuth = props => (
   <nav className="navigation nav-auth">
     <div className="logo-wrapper">
       <Logo />
@@ -38,7 +49,7 @@ const NavigationAuth = () => (
         <Link to={ROUTES.TREND_REPORT}> Trend Report</Link>
       </li>
       <li>
-        <Link to={ROUTES.LOGIN} onClick={() => this.props.userLogOut}>
+        <Link to={ROUTES.LOGIN} onClick={props.logout}>
           Logout
         </Link>
       </li>

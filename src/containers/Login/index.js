@@ -37,7 +37,7 @@ class Login extends Component {
     const { currentUser } = this.props;
     const isInvalid = password === "" || username === "";
     console.log("current", currentUser);
-    if (currentUser) {
+    if (currentUser != null) {
       return <Redirect to="/Home" />;
     }
     return (

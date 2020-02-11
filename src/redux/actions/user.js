@@ -26,7 +26,7 @@ export const userLogOut = () => {
   return dispatch => {
     console.log("loggingOut called");
     localStorage.removeItem("token");
-    return dispatch(logoutUser());
+    dispatch(logoutUser());
   };
 };
 
