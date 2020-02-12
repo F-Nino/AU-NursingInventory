@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import LastFiveScanned from "../../components/Last5Scanned";
+import Report from "../../components/HomeReport";
 
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <LastFiveScanned />
+        <Report />
       </div>
     );
   }

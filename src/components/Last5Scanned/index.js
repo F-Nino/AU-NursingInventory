@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "./item";
+import Item from "../TableItem";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -11,24 +11,18 @@ class LastFiveScanned extends React.Component {
     };
   }
 
-  getLastFive() {
+  componentDidMount() {
     axios
       .get("http://localhost:3000/api/v1/get_last_five")
       .then(response => {
-        console.log(response);
         this.setState({ lastFive: response.data.data });
-        console.log(this.state.lastFive);
       })
       .catch(error => console.log(error));
   }
 
-  componentDidMount() {
-    this.getLastFive();
-  }
-
   render() {
     return (
-      <div className="container">
+      <div>
         <h1 className="mt-4 text-center">last 5 items scanned</h1>
         <table className="table table-bordered table-hover">
           <thead>
