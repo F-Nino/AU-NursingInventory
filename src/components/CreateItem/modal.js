@@ -53,7 +53,7 @@ class modal extends Component {
           </div>
         </div>
         <div className="modal-buttons text-center" id="barcode-save">
-          <Barcode value={this.props.itemName} />
+          <Barcode value={this.props.itemName} width={1} />
         </div>
       </div>
     );

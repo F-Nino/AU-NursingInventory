@@ -42,6 +42,11 @@ class CreateBarcode extends Component {
     this.setState({ showModal: false });
     document.getElementById("modal-bg").style.display = "none";
     document.body.style.overflowY = "visible";
+    let itemName = this.state.itemName;
+    let itemDescription = this.state.itemDescription;
+    itemName = "";
+    itemDescription = "";
+    this.setState({ itemName, itemDescription });
   };
 
   handleChange = event => {
