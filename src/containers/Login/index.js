@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userLoginFetch } from "../../redux/actions/user";
 import * as ROUTES from "../../constants/routes";
+import { Redirect } from "react-router";
 
 class Login extends Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class Login extends Component {
 
   handleSubmit = event => {
     const { username, password } = this.state;
-    localStorage.setItem("token", null);
     event.preventDefault();
     console.log(username, password);
     console.log("button pressed");
@@ -34,7 +34,12 @@ class Login extends Component {
 
   render() {
     const { error, username, password } = this.state;
+    const { currentUser } = this.props;
     const isInvalid = password === "" || username === "";
+    console.log("current", currentUser);
+    if (currentUser != null) {
+      return <Redirect to="/Home" />;
+    }
     return (
       <div className="registration-wrapper">
         <form onSubmit={this.handleSubmit}>
@@ -73,9 +78,13 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: state.authState.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   userLoginFetch: (username, password) =>
     dispatch(userLoginFetch(username, password))
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
