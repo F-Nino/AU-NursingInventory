@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Item from "../../components/CreateItem";
 import Category from "../../components/CreateCategory";
-import "bootstrap/dist/css/bootstrap.css";
 
 class CreateBarcode extends Component {
   constructor() {

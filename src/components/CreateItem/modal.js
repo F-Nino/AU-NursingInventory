@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Barcode from "react-barcode";
-import "bootstrap/dist/css/bootstrap.css";
 
 class modal extends Component {
   state = {};

@@ -75,6 +75,21 @@ class Scan extends Component {
     console.log("add button state", this.state.addButton);
   };
 
+  // callDelete = event => {
+  //   event.preventDefault();
+  //   console.log("delete clicked");
+  //   this.setState({ deleteButton: true }, () => {
+  //     console.log(this.state.deleteButton);
+  //   });
+  // };
+
+  // callDetails = event => {
+  //   event.preventDefault();
+  //   console.log("details clicked");
+  //   this.setState({ detailsButton: !this.state.detailsButton });
+  //   console.log("details button state", this.state.detailsButton);
+  // };
+
   render() {
     const { barcode } = this.state;
     const isInvalid = barcode === "";
@@ -92,7 +107,7 @@ class Scan extends Component {
               className=""
               name="delete-button"
               checked="true"
-              onClick={this.callAdd}
+              onClick={this.callDelete}
             >
               Delete
             </button>
@@ -100,7 +115,7 @@ class Scan extends Component {
             <button
               className=""
               name="seeDetails-button"
-              onClick={this.callAdd}
+              onClick={this.callDetails}
             >
               Details
             </button>
