@@ -1,47 +1,27 @@
-.scan-container{
-  background-color: $color-main;
-  padding: $container-padding;
-  font-family: $font-header;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.container {
+  display: inline-block;
 }
 
-.scan-submit-button{
-  background-color: $color-main;
-  padding: $container-padding;
-  font-family: $font-header;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  float: none;
-  margin: 0 auto;
+.scan-wrapper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-.scan-input{
-  padding: 10;
+.scan-submit-button {
+  background-color: yellow;
   font-family: $font-header;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  float: none;
-  margin: 0 auto;
-  width: 50%;
+  height: 30px;
+  width: 100px;
 }
 
-.show-text{
+.scan-input {
+  width: 100%;
+}
+
+.show-text {
   margin: auto;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
 }
-
-//<p
-  //itemScanned={this.props.itemFetch(barcode).name}
-  //itemDescription={this.props.itemFetch(barcode).description}
-  //countAdded="1"
-  //totalCount={this.props.itemFetch(barcode).count}
-  //onChange={this.handleChange}
-  //className="scan-results"
-///>
-//{error && <p>{error.message}</p>}
