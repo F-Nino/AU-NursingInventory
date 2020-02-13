@@ -1,0 +1,27 @@
+.container {
+  display: inline-block;
+}
+
+.scan-wrapper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.scan-submit-button {
+  background-color: yellow;
+  font-family: $font-header;
+  height: 30px;
+  width: 100px;
+}
+
+.scan-input {
+  width: 100%;
+}
+
+.show-text {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
