@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userLoginFetch } from "../../redux/actions/user";
 import * as ROUTES from "../../constants/routes";
-import { Redirect } from "react-router";
+import { Redirect, Route } from "react-router";
 
 class Login extends Component {
   constructor(props) {
@@ -21,15 +21,13 @@ class Login extends Component {
     console.log(this.state);
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     const { username, password } = this.state;
     event.preventDefault();
     console.log(username, password);
-    console.log("button pressed");
-    this.props.userLoginFetch(username, password).then(() => {
-      console.log(localStorage.getItem("token"));
-      this.props.history.push(ROUTES.HOME);
-    });
+    console.log("button pressed", this.props.userLoginFetch);
+    this.props.userLoginFetch(username, password);
+    this.props.history.push(ROUTES.HOME);
   };
 
   render() {
@@ -37,9 +35,12 @@ class Login extends Component {
     const { currentUser } = this.props;
     const isInvalid = password === "" || username === "";
     console.log("current", currentUser);
+
     if (currentUser != null) {
-      return <Redirect to="/Home" />;
+      console.log("user should be in ther store");
+      return <Redirect to="/home" />;
     }
+
     return (
       <div className="registration-wrapper">
         <form onSubmit={this.handleSubmit}>

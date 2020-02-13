@@ -3,7 +3,6 @@ import { LOGIN_USER, LOGOUT_USER } from "./actionTypes";
 
 export const userLoginFetch = (username, password) => {
   return dispatch => {
-    console.log(username, password);
     return axios
       .post("http://localhost:3000/api/v1/login", {
         id: username,
