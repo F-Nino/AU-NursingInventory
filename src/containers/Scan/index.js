@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import ItemData from "../../components/ItemData";
+
 class Scan extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,7 @@ class Scan extends Component {
       deleteButton: false,
       detailsButton: false,
       showData: false,
-      itemData: {}
+      itemData: null
     };
   }
 
@@ -49,7 +51,7 @@ class Scan extends Component {
             window.alert("Item not in db");
           }
           //if resp.data.status == SUCCESS
-          console.log("the resp", resp);
+          console.log("the resp", resp.data.data);
           this.setState({ itemData: resp.data.data, showData: true });
         })
         .catch(error => {
@@ -115,7 +117,16 @@ class Scan extends Component {
             <button className="scan-submit-button">Find Barcode</button>
           </form>
           {this.state.showData ? (
-            <div>{JSON.stringify(this.state.itemData)}</div>
+            <ItemData
+              barcode={this.state.itemData.barcode}
+              category={this.state.itemData.category_id}
+              count={this.state.itemData.count}
+              created={this.state.itemData.created_at}
+              description={this.state.itemData.description}
+              id={this.state.itemData.id}
+              name={this.state.itemData.name}
+              updated={this.state.itemData.updated_at}
+            />
           ) : null}
         </div>
       </div>
