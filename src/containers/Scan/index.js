@@ -98,13 +98,13 @@ class Scan extends Component {
         <div className="container">
           <h1 className="text-center">Scan An Item</h1>
 
-          <div classname="form-buttons text-center">
-            <button className="" name="add-button" onClick={this.callAdd}>
+          <div className="scan-form-buttons">
+            <button className="button scan-add-button" name="add-button" onClick={this.callAdd}>
               Add
             </button>
 
             <button
-              className=""
+              className="button scan-delete-button"
               name="delete-button"
               checked="true"
               onClick={this.callDelete}
@@ -113,23 +113,25 @@ class Scan extends Component {
             </button>
 
             <button
-              className=""
+              className="button scan-seeDetails-button"
               name="seeDetails-button"
               onClick={this.callDetails}
             >
               Details
             </button>
           </div>
-          <form onSubmit={this.onButtonClickHandler}>
+
+
+          <form className="scan-form" onSubmit={this.onButtonClickHandler}>
             <input
               name="barcode"
               placeholder=""
               value={barcode}
               onChange={this.handleChange}
-              className="scan-input"
+              className="input scan-input"
             />
 
-            <button className="scan-submit-button">Find Barcode</button>
+            <button className="button scan-submit-button">Find Barcode</button>
           </form>
           {this.state.showData ? (
             <ItemData

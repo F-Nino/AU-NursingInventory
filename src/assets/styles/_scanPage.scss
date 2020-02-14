@@ -1,19 +1,35 @@
-.scan-wrapper {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
 
-.scan-submit-button {
-  background-color: yellow;
-  font-family: $font-header;
-  height: 30px;
-  width: 100px;
+.scan-wrapper {
+  max-width:500px;
+  margin: 0 auto;
+  padding-top: 10vh;
+
 }
 
 .scan-input {
-  width: 100%;
+  margin-top: 1em;
 }
+
+.scan-submit-button{
+  margin-top: 2em;
+  width: 50%;
+}
+
+.scan-form{
+  text-align: center;
+
+}
+
+.scan-form-buttons{
+  display: flex;
+}
+
+.scan-add-button,
+.scan-delete-button,
+.scan-seeDetails-button{
+  margin: 1em;
+}
+
 
 .show-text {
   margin: auto;
@@ -21,3 +37,10 @@
   border: 3px solid green;
   padding: 10px;
 }
+
+.text-center {
+  color: $color-main;
+  font-size: 50px;
+  text-align: center;
+}
+

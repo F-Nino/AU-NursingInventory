@@ -44,7 +44,7 @@ class Login extends Component {
     return (
       <div className="registration-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <div className="login-container">
+         
             <h1>Welcome</h1>
 
             <input
@@ -52,7 +52,7 @@ class Login extends Component {
               placeholder="Username"
               value={username}
               onChange={this.handleChange}
-              className="ts-input"
+              className="au-input"
             />
 
             <input
@@ -61,18 +61,18 @@ class Login extends Component {
               placeholder="Password"
               value={password}
               onChange={this.handleChange}
-              className="ts-input"
+              className="au-input"
             />
 
             <button
-              className="button ts-button"
+              className="button au-button"
               disabled={isInvalid}
               type="submit"
             >
               Login
             </button>
             {error && <p>{error.message}</p>}
-          </div>
+
         </form>
       </div>
     );
