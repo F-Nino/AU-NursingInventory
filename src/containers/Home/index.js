@@ -5,7 +5,7 @@ import Report from "../../components/HomeReport";
 class Home extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="home-wrapper">
         <LastFiveScanned />
         <Report />
       </div>

@@ -21,7 +21,7 @@ class LastFiveScanned extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="last-five-wrapper">
         <h1 className="mt-4 text-center">last 5 items scanned</h1>
         <table className="table table-bordered table-hover">
           <thead>

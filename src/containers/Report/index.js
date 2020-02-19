@@ -4,7 +4,7 @@ import ReportPage from "../../components/Report";
 class Report extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="report-wrapper">
         <h2 className="text-center p-4">Inventory Report</h2>
         <ReportPage />
       </div>
