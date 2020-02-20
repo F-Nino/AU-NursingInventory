@@ -1,9 +1,8 @@
 import React from "react";
 import Item from "../TableItem";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.css";
 
-class LastFiveScanned extends React.Component {
+class Last5Scanned extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,4 +43,4 @@ class LastFiveScanned extends React.Component {
   }
 }
 
-export default LastFiveScanned;
+export default Last5Scanned;

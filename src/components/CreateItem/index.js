@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.css";
+
 import CreateItem from "./form";
 import Modal from "./modal";
 import html2canvas from "html2canvas";
