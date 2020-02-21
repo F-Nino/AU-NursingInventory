@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import CreateItem from "./form";
 import Modal from "./modal";
 import html2canvas from "html2canvas";
@@ -43,6 +42,11 @@ class CreateBarcode extends Component {
     this.setState({ showModal: false });
     document.getElementById("modal-bg").style.display = "none";
     document.body.style.overflowY = "visible";
+    let itemName = this.state.itemName;
+    let itemDescription = this.state.itemDescription;
+    itemName = "";
+    itemDescription = "";
+    this.setState({ itemName, itemDescription });
   };
 
   handleChange = event => {
