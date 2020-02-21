@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Category from "../Report/category";
+import Category from "../Category";
 import { reportDataFetch } from "../../redux/actions/reportPage.js";
 import { connect } from "react-redux";
 

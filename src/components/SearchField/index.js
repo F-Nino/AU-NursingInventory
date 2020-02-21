@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Item from "../TableItem";
+import TableItem from "../TableItem";
 
 class searchField extends Component {
   state = {
@@ -48,7 +48,7 @@ class searchField extends Component {
             </thead>
             <tbody>
               {this.state.items.map(item => (
-                <Item item={item} />
+                <TableItem item={item} />
               ))}
             </tbody>
           </table>

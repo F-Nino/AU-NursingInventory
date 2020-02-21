@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "../TableItem";
+import TableItem from "../TableItem";
 import axios from "axios";
 
 class LastFiveScanned extends React.Component {
@@ -34,7 +34,7 @@ class LastFiveScanned extends React.Component {
           </thead>
           <tbody>
             {this.state.lastFive.map(item => (
-              <Item key={item.id} item={item} />
+              <TableItem key={item.id} item={item} />
             ))}
           </tbody>
         </table>

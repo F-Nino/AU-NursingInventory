@@ -5,14 +5,20 @@
 }
 
 .scan-submit-button {
-  background-color: yellow;
+  background-color: $color-main;
   font-family: $font-header;
-  height: 30px;
-  width: 100px;
+  height: 75px;
+  width: 200px;
+  color: white;
+  font-size: 30px;
+  margin-top: 25px;
+  border-radius: 10px;
 }
 
 .scan-input {
   width: 100%;
+  margin-top: 10px;
+  border: 3px solid black;
 }
 
 .show-text {
@@ -20,4 +26,50 @@
   width: 50%;
   border: 3px solid green;
   padding: 10px;
+}
+
+.text-center {
+  color: $color-main;
+  padding-top: 20px;
+  font-size: 50px;
+}
+
+.form-buttons {
+  background-color: white;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 10px;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 10px;
+  margin-bottom: 50px;
+}
+
+.form-buttons:active {
+  background-color: lightblue;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+}
+
+.barcode-text {
+  color: red;
+  font-size: 1000px;
+}
+
+ul {
+  list-style-type: none;
 }

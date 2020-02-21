@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Item from "../TableItem";
+import TableItem from "../TableItem";
 
 class header extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class header extends Component {
             </thead>
             <tbody>
               {this.state.items.map(item => (
-                <Item key={item.id} item={item} />
+                <TableItem key={item.id} item={item} />
               ))}
             </tbody>
           </table>
