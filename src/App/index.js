@@ -17,12 +17,12 @@ const App = () => (
     <div>
       <Navigation />
 
-      <Route exact path={ROUTES.LOGIN} component={Login} />
-      <Route exact path={ROUTES.HOME} component={Home} />
-      <Route exact path={ROUTES.CREATE_BARCODE} component={CreateBarcode} />
-      <Route exact path={ROUTES.REPORT} component={Report} />
-      <Route exact path={ROUTES.SCAN} component={Scan} />
-      <Route exact path={ROUTES.TREND_REPORT} component={TrendReport} />
+      <Route path={ROUTES.LOGIN} component={Login} />
+      <PrivateRoute path={ROUTES.HOME} component={Home} />
+      <PrivateRoute path={ROUTES.CREATE_BARCODE} component={CreateBarcode} />
+      <PrivateRoute path={ROUTES.REPORT} component={Report} />
+      <PrivateRoute path={ROUTES.SCAN} component={Scan} />
+      <PrivateRoute path={ROUTES.TREND_REPORT} component={TrendReport} />
     </div>
   </Router>
 );
