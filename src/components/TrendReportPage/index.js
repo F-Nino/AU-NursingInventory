@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import TrendReportHeader from "../TrendReportHeader";
 
 class trendReportPage extends Component {
   state = {
     startDate: "",
-    endDate: ""
+    endDate: "",
+    headers: {}
   };
 
   handleInputChange = event => {
@@ -12,8 +14,6 @@ class trendReportPage extends Component {
   };
 
   getTrendReportData = () => {
-    console.log(this.state.startDate);
-    console.log(this.state.endDate);
     axios
       .post(
         `http://localhost:3000/api/v1/scanned_out_by_category`,
@@ -31,12 +31,10 @@ class trendReportPage extends Component {
         }
       )
       .then(res => {
-        console.log(res);
+        this.setState({ headers: res.data.data });
       })
       .catch(error => {
         console.log("error", error);
-        //errorMessage.push("Name already taken");
-        //this.setState({ errorMessage });
       });
   };
 
@@ -57,6 +55,8 @@ class trendReportPage extends Component {
   }
 
   render() {
+    const categoryKeys = Object.keys(this.state.headers);
+    console.log(categoryKeys);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -87,6 +87,15 @@ class trendReportPage extends Component {
             </div>
           </div>
         </form>
+
+        {this.state.headers !== null &&
+          categoryKeys.map((key, index) => (
+            <TrendReportHeader
+              key={index}
+              name={key}
+              items={this.state.headers[key]}
+            />
+          ))}
       </div>
     );
   }
