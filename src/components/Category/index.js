@@ -16,7 +16,12 @@ class category extends Component {
     } else {
       let categoryKeys = Object.keys(this.props.categoryInfo);
       return categoryKeys.map(key => (
-        <Header key={key} name={key} header={this.props.categoryInfo[key]} />
+        <Header
+          key={key}
+          name={key}
+          header={this.props.categoryInfo[key]}
+          onItemEdit={this.props.onItemEdit}
+        />
       ));
     }
   };

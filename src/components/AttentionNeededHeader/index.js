@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import TableItem from "../TableItem";
 
-class trendReportHeader extends Component {
+class header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: props.name,
       items: props.items,
-      open: false,
-      count: 0
+      open: false
     };
   }
 
@@ -18,41 +17,25 @@ class trendReportHeader extends Component {
     }));
   };
 
-  incrementCount = countToIncrementBy => {
-    let count = { ...this.state.count };
-    count += countToIncrementBy;
-    this.setState({ count });
+  handleDate = lastUpdate => {
+    var modifiedDate = new Date(lastUpdate);
+    return modifiedDate.toDateString();
   };
-
-  componentDidMount() {}
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.items !== this.props.items) {
-      let count = 0;
-      if (this.props.items !== null) {
-        this.props.items.forEach(item => {
-          count += item.count;
-        });
-        this.setState({ count });
-      }
-    }
-  }
 
   render() {
     return (
       <div className="section">
         <div
-          className="jumbotron-mini text-center"
+          className="jumbotron-mini text-center attention-needed-header"
           onClick={() => this.handleHeaderClick()}
         >
           <span>
             <h2>
               <b>{this.state.name}</b>
-              {this.state.count}
             </h2>
           </span>
         </div>
-        {this.state.open && this.props.items != null && (
+        {this.state.open && this.state.items != null && (
           <div className="table_holder">
             <table className="table">
               <thead>
@@ -61,11 +44,18 @@ class trendReportHeader extends Component {
                   <th>Description</th>
                   <th>Last Updated</th>
                   <th>Count</th>
+                  <th>Minimum Threshold</th>
                 </tr>
               </thead>
               <tbody>
-                {this.props.items.map(item => (
-                  <TableItem item={item} key={item.id} />
+                {this.state.items.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.description}</td>
+                    <td>{this.handleDate(item.updated_at)}</td>
+                    <td>{item.count}</td>
+                    <td>{item.threshold}</td>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -76,4 +66,4 @@ class trendReportHeader extends Component {
   }
 }
 
-export default trendReportHeader;
+export default header;
