@@ -11,6 +11,12 @@ class header extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.header) !== JSON.stringify(this.state.items)) {
+      this.setState({ items: this.props.header });
+    }
+  }
+
   handleHeaderClick = () => {
     this.setState(prevState => ({
       open: !prevState.open
@@ -22,7 +28,7 @@ class header extends Component {
     return modifiedDate.toDateString();
   };
 
-  handleItemDelete = item => {
+  handleItemDelete = (item, itemIndex) => {
     if (window.confirm("Confirm Deletion of " + item.name)) {
       axios
         .delete(`http://localhost:3000/api/v1/delete_item`, {
@@ -36,10 +42,18 @@ class header extends Component {
         })
         .then(res => {
           console.log(res);
+          let items = this.state.items;
+          items.splice(itemIndex, 1);
+          this.setState({ items });
         })
         .catch(error => {
           console.log("error", error);
         });
+      /*
+      let items = this.state.items;
+      items.splice(itemIndex, 1);
+      this.setState({ items });*/
+      //this.props.regetData();
     }
   };
 
@@ -69,7 +83,7 @@ class header extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.items.map(item => (
+                {this.state.items.map((item, index) => (
                   <tr key={item.id}>
                     <td>{item.name}</td>
                     <td>{item.description}</td>
@@ -78,7 +92,7 @@ class header extends Component {
                     <td>
                       <button
                         className="btn btn-danger"
-                        onClick={() => this.handleItemDelete(item)}
+                        onClick={() => this.handleItemDelete(item, index)}
                       >
                         Delete
                       </button>

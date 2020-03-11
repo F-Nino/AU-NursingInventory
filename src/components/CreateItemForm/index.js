@@ -63,7 +63,11 @@ class CreateItem extends Component {
               onChange={this.props.onChange}
             >
               {this.props.categories.map(category => (
-                <option id={category.id} value={category.name}>
+                <option
+                  key={category.id}
+                  id={category.id}
+                  value={category.name}
+                >
                   {category.name}
                 </option>
               ))}

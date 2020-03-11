@@ -33,29 +33,7 @@ class searchField extends Component {
       });
   };
 
-  ItemList = () => {
-    if (this.state.items.length > 0) {
-      return (
-        <div className="table_holder">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Last Updated</th>
-                <th>Count</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.items.map(item => (
-                <TableItem item={item} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
-    }
-  };
+  ItemList = () => {};
 
   render() {
     return (
@@ -85,7 +63,27 @@ class searchField extends Component {
           </div>
         </div>
         <div className="row mb-2">
-          <div className="col-12">{this.ItemList()}</div>
+          <div className="col-12">
+            {this.state.items.length > 0 && (
+              <div className="table_holder">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Last Updated</th>
+                      <th>Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.items.map(item => (
+                      <TableItem key={item.id} item={item} />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

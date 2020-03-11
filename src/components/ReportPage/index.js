@@ -17,6 +17,12 @@ class report extends Component {
     });
   }
 
+  regetDatalol = () => {
+    this.props.reportDataFetch().then(() => {
+      console.log(this.props.categoryInfo);
+    });
+  };
+
   handleItemEdit = item => {
     this.setState({ showModal: true, modalItem: item });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -43,7 +49,10 @@ class report extends Component {
           />
         )}
         <SearchField />
-        <Category onItemEdit={this.handleItemEdit} />
+        <Category
+          onItemEdit={this.handleItemEdit}
+          regetData={this.regetDatalol}
+        />
         <div
           className="modal-background"
           id="modal-bg"

@@ -27,7 +27,7 @@ class CreateBarcode extends Component {
         <div className="row">
           <div className="col-12">
             <div
-              class="btn-group btn-group-toggle create-buttons"
+              className="btn-group btn-group-toggle create-buttons"
               data-toggle="buttons"
             >
               <label className={this.getClassName("itemButton")}>
@@ -35,7 +35,7 @@ class CreateBarcode extends Component {
                   type="radio"
                   value="itemButton"
                   name="formRendered"
-                  autocomplete="off"
+                  autoComplete="off"
                   checked={this.state.selectedOption === "itemButton"}
                   onChange={this.handleOptionChange}
                 />
