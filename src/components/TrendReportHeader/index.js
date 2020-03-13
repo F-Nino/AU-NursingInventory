@@ -5,8 +5,6 @@ class trendReportHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.name,
-      items: props.items,
       open: false,
       count: 0
     };
@@ -18,23 +16,24 @@ class trendReportHeader extends Component {
     }));
   };
 
-  incrementCount = countToIncrementBy => {
-    let count = { ...this.state.count };
-    count += countToIncrementBy;
+  updateCount() {
+    let count = 0;
+    if (this.props.items !== null) {
+      this.props.items.forEach(item => {
+        count += item.count;
+      });
+    }
     this.setState({ count });
-  };
+  }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.updateCount();
+  }
 
   componentDidUpdate(prevProps) {
+    console.log("called");
     if (prevProps.items !== this.props.items) {
-      let count = 0;
-      if (this.props.items !== null) {
-        this.props.items.forEach(item => {
-          count += item.count;
-        });
-        this.setState({ count });
-      }
+      this.updateCount();
     }
   }
 
@@ -47,7 +46,8 @@ class trendReportHeader extends Component {
         >
           <span>
             <h2>
-              <b>{this.state.name}</b>
+              <b>{this.props.name}</b>
+              {"   "}
               {this.state.count}
             </h2>
           </span>

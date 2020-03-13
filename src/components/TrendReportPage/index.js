@@ -14,6 +14,12 @@ class trendReportPage extends Component {
   };
 
   getTrendReportData = () => {
+    let startDateAr = this.state.startDate.split("/");
+    let endDateAr = this.state.endDate.split("/");
+    let startDate =
+      startDateAr[2] + "-" + startDateAr[0] + "-" + startDateAr[1];
+    let endDate =
+      endDateAr[2] + "-" + endDateAr[0] + "-" + endDateAr[1] + " 23:59:59";
     axios
       .post(
         `http://localhost:3000/api/v1/scanned_out_by_category`,
@@ -25,8 +31,8 @@ class trendReportPage extends Component {
         },
         {
           data: {
-            start_date: this.state.startDate,
-            end_date: this.state.endDate
+            start_date: startDate,
+            end_date: endDate
           }
         }
       )
@@ -56,7 +62,6 @@ class trendReportPage extends Component {
 
   render() {
     const categoryKeys = Object.keys(this.state.headers);
-    console.log(categoryKeys);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
