@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 class header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.name,
-      items: props.header,
       open: false
     };
+    /*
+      name: props.name,
+      items: props.header,*/
   }
 
   componentDidUpdate(prevProps) {
@@ -28,6 +28,7 @@ class header extends Component {
     return modifiedDate.toDateString();
   };
 
+  /*
   handleItemDelete = (item, itemIndex) => {
     if (window.confirm("Confirm Deletion of " + item.name)) {
       axios
@@ -41,21 +42,16 @@ class header extends Component {
           }
         })
         .then(res => {
-          console.log(res);
-          let items = this.state.items;
-          items.splice(itemIndex, 1);
-          this.setState({ items });
+          console.log(itemIndex);
+          console.log(this.state.items);
+          console.log(this.state.items[itemIndex]);
+          this.props.regetData();
         })
         .catch(error => {
           console.log("error", error);
         });
-      /*
-      let items = this.state.items;
-      items.splice(itemIndex, 1);
-      this.setState({ items });*/
-      //this.props.regetData();
     }
-  };
+  };*/
 
   render() {
     return (
@@ -66,11 +62,11 @@ class header extends Component {
         >
           <span>
             <h2>
-              <b>{this.state.name}</b>
+              <b>{this.props.name}</b>
             </h2>
           </span>
         </div>
-        {this.state.open && this.state.items != null && (
+        {this.state.open && this.props.items != null && (
           <div className="table_holder">
             <table className="table">
               <thead>
@@ -83,7 +79,7 @@ class header extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.items.map((item, index) => (
+                {this.props.items.map(item => (
                   <tr key={item.id}>
                     <td>{item.name}</td>
                     <td>{item.description}</td>
@@ -92,7 +88,7 @@ class header extends Component {
                     <td>
                       <button
                         className="btn btn-danger"
-                        onClick={() => this.handleItemDelete(item, index)}
+                        onClick={() => this.props.onItemDelete(item)}
                       >
                         Delete
                       </button>

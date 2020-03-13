@@ -33,8 +33,6 @@ class searchField extends Component {
       });
   };
 
-  ItemList = () => {};
-
   render() {
     return (
       <div className="search">

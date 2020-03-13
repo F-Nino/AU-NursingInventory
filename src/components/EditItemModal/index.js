@@ -30,6 +30,7 @@ class EditItemModal extends Component {
       })
       .then(res => {
         alert("Succesfully updated");
+        this.props.onEditUpdate();
       })
       .catch(error => {
         console.log("error", error);

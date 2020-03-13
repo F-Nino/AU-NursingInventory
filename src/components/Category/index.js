@@ -16,9 +16,9 @@ class category extends Component {
         <Header
           key={key}
           name={key}
-          header={this.props.categoryInfo[key]}
+          items={this.props.categoryInfo[key]}
           onItemEdit={this.props.onItemEdit}
-          regetData={this.props.regetData}
+          onItemDelete={this.props.onItemDelete}
         />
       ))
     );

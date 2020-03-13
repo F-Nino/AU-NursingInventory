@@ -4,6 +4,7 @@ import SearchField from "../SearchField";
 import EditItemModal from "../EditItemModal";
 import { reportDataFetch } from "../../redux/actions/reportPage.js";
 import { connect } from "react-redux";
+import axios from "axios";
 
 class report extends Component {
   state = {
@@ -11,16 +12,35 @@ class report extends Component {
     modalItem: ""
   };
 
-  componentDidMount() {
+  getCurrentReportPage = () => {
     this.props.reportDataFetch().then(() => {
       console.log(this.props.categoryInfo);
     });
+  };
+
+  componentDidMount() {
+    this.getCurrentReportPage();
   }
 
-  regetDatalol = () => {
-    this.props.reportDataFetch().then(() => {
-      console.log(this.props.categoryInfo);
-    });
+  handleItemDelete = item => {
+    if (window.confirm("Confirm Deletion of " + item.name)) {
+      axios
+        .delete(`http://localhost:3000/api/v1/delete_item`, {
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            crossorigin: true
+          },
+          data: {
+            id: item.id
+          }
+        })
+        .then(res => {
+          this.getCurrentReportPage();
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
   };
 
   handleItemEdit = item => {
@@ -46,12 +66,13 @@ class report extends Component {
             onClose={this.closeModal}
             onPrint={this.printBarcode}
             item={this.state.modalItem}
+            onEditUpdate={this.getCurrentReportPage}
           />
         )}
         <SearchField />
         <Category
           onItemEdit={this.handleItemEdit}
-          regetData={this.regetDatalol}
+          onItemDelete={this.handleItemDelete}
         />
         <div
           className="modal-background"
