@@ -1,12 +1,10 @@
 .create-barcode-wrapper {
-  width: 75vw;
-
+  width: 60vw;
   margin: auto;
-
   padding-top: 10vh;
 }
 
-.radio-button-wrapper input[type="raio"] {
+.radio-button-wrapper input[type="radio"] {
   display: none;
 }
 
@@ -19,6 +17,26 @@
   cursor: pointer;
 }
 
-.radio-button-wrapperinput[type="radio"]:checked + label {
+
+.radio-button-wrapper input[type="radio"]:checked+label {
   background-color: #bbb;
+}
+
+.radio-button-wrapper{
+  float: right;
+}
+
+.create-item-form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.name-section{
+  width: 25vw;
+  padding-right: 100px;
+}
+
+.item-desc-section{
+  width:30vw;
 }

@@ -4,7 +4,7 @@ import CreateItemForm from "../CreateItemForm";
 import CreateItemModal from "../CreateItemModal";
 import html2canvas from "html2canvas";
 
-class CreateBarcode extends Component {
+class CreateItem extends Component {
   constructor() {
     super();
     this.state = {
@@ -178,4 +178,4 @@ class CreateBarcode extends Component {
   }
 }
 
-export default CreateBarcode;
+export default CreateItem;

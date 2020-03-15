@@ -22,23 +22,27 @@ class CreateBarcode extends Component {
   };
 
   render() {
+
     return (
+      
       <div className="create-barcode-wrapper">
         <div className="radio-button-wrapper">
-          <label className={this.getClassName("itemButton")}>Item</label>
+          <label className="itemButton" for='radio1'>Item</label>
           <input
             type="radio"
+            id='radio1'
             value="itemButton"
             name="formRendered"
-            autocomplete="off"
+   
             checked={this.state.selectedOption === "itemButton"}
             onChange={this.handleOptionChange}
           />
-          <label className={this.getClassName("categoryButton")}>
+          <label className="categoryButton" for='radio2'>
             Category
           </label>
           <input
             type="radio"
+            id='radio2'
             value="categoryButton"
             name="formRendered"
             checked={this.state.selectedOption === "categoryButton"}
