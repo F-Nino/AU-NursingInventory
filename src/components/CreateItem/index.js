@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CreateItem from "./form";
-import Modal from "./modal";
+import CreateItemForm from "../CreateItemForm";
+import CreateItemModal from "../CreateItemModal";
 import html2canvas from "html2canvas";
 
 class CreateBarcode extends Component {
@@ -133,7 +133,7 @@ class CreateBarcode extends Component {
     return (
       <div>
         {this.state.showModal && (
-          <Modal
+          <CreateItemModal
             onPrint={this.printBarcode}
             onClose={this.closeModal}
             itemName={this.state.itemName}
@@ -157,7 +157,7 @@ class CreateBarcode extends Component {
             )}
           </div>
 
-          <CreateItem
+          <CreateItemForm
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
             itemName={this.state.itemName}
@@ -165,7 +165,7 @@ class CreateBarcode extends Component {
             initialCount={this.state.initialCount}
             categories={this.state.categories}
             currentCategorySelected={this.state.currentCategorySelected}
-          ></CreateItem>
+          />
         </div>
 
         <div

@@ -77,7 +77,7 @@ class CategoryForm extends Component {
             <div className="col-4"></div>
             <div className="col-4 text-center">
               <button className="button ts-button" type="submit">
-                Create Category
+                <span className="temp">Create Category</span>
               </button>
             </div>
           </div>

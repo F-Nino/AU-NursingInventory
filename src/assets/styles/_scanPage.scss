@@ -1,35 +1,31 @@
-
 .scan-wrapper {
-  max-width:500px;
+  max-width: 500px;
   margin: 0 auto;
   padding-top: 10vh;
-
 }
 
 .scan-input {
   margin-top: 1em;
 }
 
-.scan-submit-button{
+.scan-submit-button {
   margin-top: 2em;
   width: 50%;
 }
 
-.scan-form{
+.scan-form {
   text-align: center;
-
 }
 
-.scan-form-buttons{
+.scan-form-buttons {
   display: flex;
 }
 
 .scan-add-button,
 .scan-delete-button,
-.scan-seeDetails-button{
+.scan-seeDetails-button {
   margin: 1em;
 }
-
 
 .show-text {
   margin: auto;
@@ -43,4 +39,3 @@
   font-size: 50px;
   text-align: center;
 }
-

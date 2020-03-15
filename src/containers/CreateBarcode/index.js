@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Item from "../../components/CreateItem";
-import Category from "../../components/CreateCategory";
+import CreateItem from "../../components/CreateItem";
+import CreateCategory from "../../components/CreateCategory";
 
 class CreateBarcode extends Component {
   constructor() {
@@ -23,40 +23,33 @@ class CreateBarcode extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div
-              class="btn-group btn-group-toggle create-buttons"
-              data-toggle="buttons"
-            >
-              <label className={this.getClassName("itemButton")}>
-                <input
-                  type="radio"
-                  value="itemButton"
-                  name="formRendered"
-                  autocomplete="off"
-                  checked={this.state.selectedOption === "itemButton"}
-                  onChange={this.handleOptionChange}
-                />
-                Item
-              </label>
-              <label className={this.getClassName("categoryButton")}>
-                Category
-                <input
-                  type="radio"
-                  value="categoryButton"
-                  name="formRendered"
-                  checked={this.state.selectedOption === "categoryButton"}
-                  onChange={this.handleOptionChange}
-                />
-              </label>
-            </div>
-          </div>
+      <div className="create-barcode-wrapper">
+        <div className="radio-button-wrapper">
+          <label className={this.getClassName("itemButton")}>Item</label>
+          <input
+            type="radio"
+            value="itemButton"
+            name="formRendered"
+            autocomplete="off"
+            checked={this.state.selectedOption === "itemButton"}
+            onChange={this.handleOptionChange}
+          />
+          <label className={this.getClassName("categoryButton")}>
+            Category
+          </label>
+          <input
+            type="radio"
+            value="categoryButton"
+            name="formRendered"
+            checked={this.state.selectedOption === "categoryButton"}
+            onChange={this.handleOptionChange}
+          />
         </div>
 
-        {this.state.selectedOption === "itemButton" ? <Item /> : null}
-        {this.state.selectedOption === "categoryButton" ? <Category /> : null}
+        {this.state.selectedOption === "itemButton" ? <CreateItem /> : null}
+        {this.state.selectedOption === "categoryButton" ? (
+          <CreateCategory />
+        ) : null}
       </div>
     );
   }

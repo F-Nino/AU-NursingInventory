@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import ItemData from "../../components/ItemData";
-
 class Scan extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +12,7 @@ class Scan extends Component {
       deleteButton: false,
       detailsButton: false,
       showData: false,
-      itemData: null
+      itemData: {}
     };
   }
 
@@ -51,7 +49,7 @@ class Scan extends Component {
             window.alert("Item not in db");
           }
           //if resp.data.status == SUCCESS
-          console.log("the resp", resp.data.data);
+          console.log("the resp", resp);
           this.setState({ itemData: resp.data.data, showData: true });
         })
         .catch(error => {
@@ -75,20 +73,19 @@ class Scan extends Component {
     console.log("add button state", this.state.addButton);
   };
 
-  // callDelete = event => {
-  //   event.preventDefault();
-  //   console.log("delete clicked");
-  //   this.setState({ deleteButton: true }, () => {
-  //     console.log(this.state.deleteButton);
-  //   });
-  // };
+  callDelete = event => {
+    event.preventDefault();
+    console.log("delete clicked");
+    this.setState({ deleteButton: !this.state.deleteButton });
+    console.log("delete button state", this.state.deleteButton);
+  };
 
-  // callDetails = event => {
-  //   event.preventDefault();
-  //   console.log("details clicked");
-  //   this.setState({ detailsButton: !this.state.detailsButton });
-  //   console.log("details button state", this.state.detailsButton);
-  // };
+  callDetails = event => {
+    event.preventDefault();
+    console.log("details clicked");
+    this.setState({ detailsButton: !this.state.detailsButton });
+    console.log("details button state", this.state.detailsButton);
+  };
 
   render() {
     const { barcode } = this.state;
@@ -96,10 +93,14 @@ class Scan extends Component {
     return (
       <div className="scan-wrapper">
         <div className="container">
-          <h1 className="text-center">Scan An Item</h1>
+          <h1 className="text-center">Inventory Scanning</h1>
 
           <div className="scan-form-buttons">
-            <button className="button scan-add-button" name="add-button" onClick={this.callAdd}>
+            <button
+              className="button scan-add-button"
+              name="add-button"
+              onClick={this.callAdd}
+            >
               Add
             </button>
 
@@ -121,7 +122,6 @@ class Scan extends Component {
             </button>
           </div>
 
-
           <form className="scan-form" onSubmit={this.onButtonClickHandler}>
             <input
               name="barcode"
@@ -134,16 +134,20 @@ class Scan extends Component {
             <button className="button scan-submit-button">Find Barcode</button>
           </form>
           {this.state.showData ? (
-            <ItemData
-              barcode={this.state.itemData.barcode}
-              category={this.state.itemData.category_id}
-              count={this.state.itemData.count}
-              created={this.state.itemData.created_at}
-              description={this.state.itemData.description}
-              id={this.state.itemData.id}
-              name={this.state.itemData.name}
-              updated={this.state.itemData.updated_at}
-            />
+            <ul className="mt-3">
+              <li>
+                <b>Id:</b> {this.state.itemData.id}
+              </li>
+              <li>
+                <b>Name:</b> {this.state.itemData.name}
+              </li>
+              <li>
+                <b>Count:</b> {this.state.itemData.count}
+              </li>
+              <li>
+                <b>Description:</b> {this.state.itemData.description}
+              </li>
+            </ul>
           ) : null}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReportPage from "../../components/Report";
+import ReportPage from "../../components/ReportPage";
 
 class Report extends Component {
   render() {

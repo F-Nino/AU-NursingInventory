@@ -1,0 +1,24 @@
+.create-barcode-wrapper {
+  width: 75vw;
+
+  margin: auto;
+
+  padding-top: 10vh;
+}
+
+.radio-button-wrapper input[type="raio"] {
+  display: none;
+}
+
+.radio-button-wrapper label {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 4px 11px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.radio-button-wrapperinput[type="radio"]:checked + label {
+  background-color: #bbb;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Category from "./category";
-import SearchField from "./searchField";
+import Category from "../Category";
+import SearchField from "../SearchField";
 import { reportDataFetch } from "../../redux/actions/reportPage.js";
 import { connect } from "react-redux";
 
