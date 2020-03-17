@@ -75,6 +75,34 @@ class CreateItem extends Component {
           </div>
         </div>
 
+        <div className="row py-3">
+          <div className="col-6">
+            <label>
+              <h3>Item Threshold:</h3>
+            </label>
+            <input
+              className="form-control"
+              name="itemThreshold"
+              type="number"
+              value={this.props.itemThreshold}
+              onChange={this.props.onChange}
+            />
+          </div>
+
+          <div className="col-6">
+            <label>
+              <h3>Item Cost:</h3>
+            </label>
+            <input
+              className="form-control"
+              name="itemCost"
+              type="number"
+              value={this.props.itemCost}
+              onChange={this.props.onChange}
+            />
+          </div>
+        </div>
+
         <div className="row">
           <div className="col-12 text-center">
             {this.props.itemName && (
