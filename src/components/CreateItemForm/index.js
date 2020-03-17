@@ -68,13 +68,55 @@ class CreateItem extends Component {
               rows="3"
               value={this.props.itemDescription}
               onChange={this.props.onChange}
+<<<<<<< HEAD
             />
+=======
+            >
+              {this.props.categories.map(category => (
+                <option
+                  key={category.id}
+                  id={category.id}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+              ))}
+            </select>
+>>>>>>> 0ba47ce09900500900f14649957f3e8ac6c1e743
           </div>
       
         
 
        
    
+
+        <div className="row py-3">
+          <div className="col-6">
+            <label>
+              <h3>Item Threshold:</h3>
+            </label>
+            <input
+              className="form-control"
+              name="itemThreshold"
+              type="number"
+              value={this.props.itemThreshold}
+              onChange={this.props.onChange}
+            />
+          </div>
+
+          <div className="col-6">
+            <label>
+              <h3>Item Cost:</h3>
+            </label>
+            <input
+              className="form-control"
+              name="itemCost"
+              type="number"
+              value={this.props.itemCost}
+              onChange={this.props.onChange}
+            />
+          </div>
+        </div>
 
         <div className="row">
         

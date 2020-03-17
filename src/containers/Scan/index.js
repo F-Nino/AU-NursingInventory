@@ -12,7 +12,8 @@ class Scan extends Component {
       deleteButton: false,
       detailsButton: false,
       showData: false,
-      itemData: {}
+      itemData: {},
+      itemCount: 1
     };
   }
 
@@ -27,7 +28,7 @@ class Scan extends Component {
       apiValue = "scan_in";
     }
     if (deleteButton) {
-      apiValue = "delete api endpoint";
+      apiValue = "scan_out";
     }
 
     if (detailsButton) {
@@ -35,28 +36,38 @@ class Scan extends Component {
     }
     let apiLink = "http://localhost:3000/api/v1/" + apiValue;
     console.log("the api link based on button", apiLink);
-    try {
-      axios
-        .post(apiLink, {
-          barcode: barcode
-        })
-        .then(resp => {
-          if (resp == null) {
-            console.log("null data resp");
-          }
-          if (resp.data.status == "ERROR") {
-            console.log("Item not in db");
-            window.alert("Item not in db");
-          }
-          //if resp.data.status == SUCCESS
-          console.log("the resp", resp);
-          this.setState({ itemData: resp.data.data, showData: true });
-        })
-        .catch(error => {
-          console.log("error", error);
-        });
-    } catch {
-      console.log("error from axios call in comp did mount");
+    if (this.state.itemCount > 0 && this.state.itemCount !== "") {
+      try {
+        axios
+          .post(apiLink, {
+            barcode: barcode,
+            count: this.state.itemCount
+          })
+          .then(resp => {
+            if (resp == null) {
+              console.log("null data resp");
+            }
+            if (resp.data.status == "ERROR") {
+              console.log("Item not in db");
+              window.alert("Item not in db");
+            }
+            //if resp.data.status == SUCCESS
+            console.log("the resp", resp);
+            this.setState({
+              itemData: resp.data.data,
+              showData: true,
+              barcode: ""
+            });
+            document.getElementById("barcode-id").focus();
+          })
+          .catch(error => {
+            console.log("error", error);
+          });
+      } catch {
+        console.log("error from axios call in comp did mount");
+      }
+    } else {
+      window.alert("count not correct");
     }
   };
 
@@ -69,21 +80,33 @@ class Scan extends Component {
   callAdd = event => {
     event.preventDefault();
     console.log("add clicked");
-    this.setState({ addButton: !this.state.addButton });
+    this.setState({
+      addButton: true,
+      deleteButton: false,
+      detailsButton: false
+    });
     console.log("add button state", this.state.addButton);
   };
 
   callDelete = event => {
     event.preventDefault();
     console.log("delete clicked");
-    this.setState({ deleteButton: !this.state.deleteButton });
+    this.setState({
+      deleteButton: true,
+      addButton: false,
+      detailsButton: false
+    });
     console.log("delete button state", this.state.deleteButton);
   };
 
   callDetails = event => {
     event.preventDefault();
     console.log("details clicked");
-    this.setState({ detailsButton: !this.state.detailsButton });
+    this.setState({
+      detailsButton: true,
+      deleteButton: false,
+      addButton: false
+    });
     console.log("details button state", this.state.detailsButton);
   };
 
@@ -101,7 +124,7 @@ class Scan extends Component {
               name="add-button"
               onClick={this.callAdd}
             >
-              Add
+              Increase Inventory
             </button>
 
             <button
@@ -110,7 +133,7 @@ class Scan extends Component {
               checked="true"
               onClick={this.callDelete}
             >
-              Delete
+              Decrease Inventory
             </button>
 
             <button
@@ -128,7 +151,16 @@ class Scan extends Component {
               placeholder=""
               value={barcode}
               onChange={this.handleChange}
-              className="input scan-input"
+              className="scan-input"
+              id="barcode-id"
+            />
+            <input
+              name="itemCount"
+              placeholder=""
+              value={this.state.itemCount}
+              type="number"
+              onChange={this.handleChange}
+              className="scan-input"
             />
 
             <button className="button scan-submit-button">Find Barcode</button>
