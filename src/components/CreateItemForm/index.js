@@ -68,9 +68,6 @@ class CreateItem extends Component {
               rows="3"
               value={this.props.itemDescription}
               onChange={this.props.onChange}
-<<<<<<< HEAD
-            />
-=======
             >
               {this.props.categories.map(category => (
                 <option
@@ -82,7 +79,6 @@ class CreateItem extends Component {
                 </option>
               ))}
             </select>
->>>>>>> 0ba47ce09900500900f14649957f3e8ac6c1e743
           </div>
       
         
