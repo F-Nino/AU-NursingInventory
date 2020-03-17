@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import LastFiveScanned from "../../components/LastFiveScanned";
-import Report from "../../components/HomeReport";
+import AttentionNeeded from "../../components/AttentionNeeded";
 
 class Home extends Component {
   render() {
     return (
       <div className="container">
         <LastFiveScanned />
-        <Report />
+        <AttentionNeeded />
       </div>
     );
   }

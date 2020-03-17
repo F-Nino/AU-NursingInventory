@@ -27,7 +27,7 @@ class Scan extends Component {
       apiValue = "scan_in";
     }
     if (deleteButton) {
-      apiValue = "delete api endpoint";
+      apiValue = "scan_out";
     }
 
     if (detailsButton) {
@@ -38,7 +38,8 @@ class Scan extends Component {
     try {
       axios
         .post(apiLink, {
-          barcode: barcode
+          barcode: barcode,
+          count: 2
         })
         .then(resp => {
           if (resp == null) {
