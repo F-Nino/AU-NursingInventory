@@ -27,14 +27,11 @@
 }
 
 .create-item-form{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+
 }
 
-.name-section{
-  width: 25vw;
-  padding-right: 100px;
+.row-one{
+ display: flex;
 }
 
 .item-desc-section{

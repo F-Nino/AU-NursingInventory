@@ -9,13 +9,10 @@ class CreateItem extends Component {
 
   render() {
     return (
-      
       <form onSubmit={this.props.onSubmit} className="create-item-form">
-       
-          <div className="name-section">
-            <label>
-              <h3>Name:</h3>
-            </label>
+        <div className="row-one">
+          <div>
+            <label>Name:</label>
             <input
               className="form-control"
               name="itemName"
@@ -25,10 +22,8 @@ class CreateItem extends Component {
             />
           </div>
 
-          <div className="category-section">
-            <label>
-              <h3>Category:</h3>
-            </label>
+          <div>
+            <label>Category:</label>
             <select
               className="form-control"
               name="currentCategorySelected"
@@ -41,13 +36,31 @@ class CreateItem extends Component {
                 </option>
               ))}
             </select>
-          </div>
+            </div>
 
-          
-          <div className="intial-count-section">
-            <label>
-              <h3>Intial Count:</h3>
-            </label>
+       
+            
+
+            </div>
+
+            <div className="row-three">
+
+            <div className="col-6">
+                <label>Threshold:</label>
+                <input
+                  className="form-control"
+                  name="itemThreshold"
+                  type="number"
+                  value={this.props.itemThreshold}
+                  onChange={this.props.onChange}
+                />
+    
+
+              
+            </div>
+
+            <div>
+            <label>Count:</label>
             <input
               className="form-control"
               name="initialCount"
@@ -56,11 +69,24 @@ class CreateItem extends Component {
               onChange={this.props.onChange}
             />
           </div>
+          
+            <div className="col-6">
+                <label>Cost:</label>
+                <input
+                  className="form-control"
+                  name="itemCost"
+                  type="number"
+                  value={this.props.itemCost}
+                  onChange={this.props.onChange}
+                />
+              </div>
+
+
+            </div>
+        <div className="row-two">
 
           <div className="item-desc-section">
-            <label>
-              <h3>Item Desciption:</h3>
-            </label>
+            <label>Description:</label>
             <textarea
               className="form-control"
               name="itemDescription"
@@ -78,59 +104,24 @@ class CreateItem extends Component {
                   {category.name}
                 </option>
               ))}
-            </select>
+            </textarea>
           </div>
-      
-        
 
        
-   
-
-        <div className="row py-3">
-          <div className="col-6">
-            <label>
-              <h3>Item Threshold:</h3>
-            </label>
-            <input
-              className="form-control"
-              name="itemThreshold"
-              type="number"
-              value={this.props.itemThreshold}
-              onChange={this.props.onChange}
-            />
-          </div>
-
-          <div className="col-6">
-            <label>
-              <h3>Item Cost:</h3>
-            </label>
-            <input
-              className="form-control"
-              name="itemCost"
-              type="number"
-              value={this.props.itemCost}
-              onChange={this.props.onChange}
-            />
-          </div>
         </div>
 
         <div className="row">
-        
-            {this.props.itemName && (
-              <Barcode value={this.props.itemName} width={1} />
-            )}
- 
+          {this.props.itemName && (
+            <Barcode value={this.props.itemName} width={1} />
+          )}
         </div>
 
         <div className="row">
-          
-            <button className="button ts-button" type="submit">
-              Create Item
-            </button>
-       
+          <button className="button ts-button" type="submit">
+            Create Item
+          </button>
         </div>
       </form>
-    
     );
   }
 }

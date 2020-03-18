@@ -14,11 +14,10 @@
   padding: 2rem 1rem;
   border-radius: 0.3rem;
   margin-bottom: 2rem;
-  background-color: $header-color;
+  background-color: #e9ecef;
   cursor: pointer;
 }
 
-<<<<<<< HEAD
 .home-wrapper {
   margin: auto;
   max-width: 75vw;
@@ -35,7 +34,7 @@ table{
 
 th{
   background-color: #314877;
-  color: #dddddd
+  color: #ffffff
 }
 th,td{
   text-align: left;
@@ -44,8 +43,8 @@ th,td{
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
-=======
+
+
 .attention-needed-header {
   background-color: $error-color;
 }
->>>>>>> 0ba47ce09900500900f14649957f3e8ac6c1e743
