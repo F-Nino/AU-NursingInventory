@@ -30,10 +30,50 @@
 
 }
 
-.row-one{
+.rows{
  display: flex;
+ justify-content: center;
 }
 
+.form-numbers{
+  width: 20%;
+  padding: 20px;
+}
+
+.form-top-padding{
+  padding-top: 10px;
+}
+
+.barcorde-wrapper{
+  text-align: center;
+}
+
+.button-wrapper{
+  text-align: center;
+  padding-top: 20px;
+}
+.create-item-button{
+  width: 25%;
+}
 .item-desc-section{
-  width:30vw;
+ padding: 20px;
+ width: 40%;
+}
+
+.text-height{
+  height: 90%;
+}
+
+.name-section{
+  padding: 20px;
+  width: 20%;
+}
+
+.category-section{
+  padding: 20px;
+  width: 40%;
+}
+
+.section-title{
+  display: block;
 }

@@ -10,9 +10,9 @@ class CreateItem extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit} className="create-item-form">
-        <div className="row-one">
-          <div>
-            <label>Name:</label>
+        <div className="rows">
+          <div className="name-section">
+            <label className='section-title'>Name:</label>
             <input
               className="form-control"
               name="itemName"
@@ -22,8 +22,8 @@ class CreateItem extends Component {
             />
           </div>
 
-          <div>
-            <label>Category:</label>
+          <div className="category-section">
+            <label className="section-title">Category:</label>
             <select
               className="form-control"
               name="currentCategorySelected"
@@ -43,10 +43,11 @@ class CreateItem extends Component {
 
             </div>
 
-            <div className="row-three">
+            <div className="rows">
 
+<div className="form-numbers">
             <div className="col-6">
-                <label>Threshold:</label>
+                <label className="section-title">Threshold:</label>
                 <input
                   className="form-control"
                   name="itemThreshold"
@@ -59,8 +60,8 @@ class CreateItem extends Component {
               
             </div>
 
-            <div>
-            <label>Count:</label>
+            <div className="form-top-padding">
+            <label className="section-title">Count:</label>
             <input
               className="form-control"
               name="initialCount"
@@ -69,9 +70,9 @@ class CreateItem extends Component {
               onChange={this.props.onChange}
             />
           </div>
-          
-            <div className="col-6">
-                <label>Cost:</label>
+
+            <div className="form-top-padding">
+                <label className="section-title">Cost:</label>
                 <input
                   className="form-control"
                   name="itemCost"
@@ -83,12 +84,13 @@ class CreateItem extends Component {
 
 
             </div>
-        <div className="row-two">
+     
+     
 
           <div className="item-desc-section">
-            <label>Description:</label>
+            <label className="section-title">Description:</label>
             <textarea
-              className="form-control"
+              className="text-height"
               name="itemDescription"
               type="text"
               rows="3"
@@ -110,14 +112,14 @@ class CreateItem extends Component {
        
         </div>
 
-        <div className="row">
+        <div className="barcode-wrapper">
           {this.props.itemName && (
             <Barcode value={this.props.itemName} width={1} />
           )}
         </div>
 
-        <div className="row">
-          <button className="button ts-button" type="submit">
+        <div className="button-wrapper">
+          <button className="button create-item-button" type="submit">
             Create Item
           </button>
         </div>
