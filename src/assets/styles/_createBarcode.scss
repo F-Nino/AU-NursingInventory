@@ -23,13 +23,23 @@
 }
 
 .radio-button-wrapper{
-  float: right;
+  display: block;
+  text-align: right;
 }
 
-.create-item-form{
-
+.create-category-input{
+width: 30%;
 }
 
+.create-category-button{
+  width: 20%;
+}
+
+.button-row{
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}
 .rows{
  display: flex;
  justify-content: center;

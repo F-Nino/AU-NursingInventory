@@ -12,7 +12,7 @@ class CreateItem extends Component {
       <form onSubmit={this.props.onSubmit} className="create-item-form">
         <div className="rows">
           <div className="name-section">
-            <label className='section-title'>Name:</label>
+            <label className="section-title">Name:</label>
             <input
               className="form-control"
               name="itemName"
@@ -36,56 +36,44 @@ class CreateItem extends Component {
                 </option>
               ))}
             </select>
-            </div>
-
-       
-            
-
-            </div>
-
-            <div className="rows">
-
-<div className="form-numbers">
-            <div className="col-6">
-                <label className="section-title">Threshold:</label>
-                <input
-                  className="form-control"
-                  name="itemThreshold"
-                  type="number"
-                  value={this.props.itemThreshold}
-                  onChange={this.props.onChange}
-                />
-    
-
-              
-            </div>
-
-            <div className="form-top-padding">
-            <label className="section-title">Count:</label>
-            <input
-              className="form-control"
-              name="initialCount"
-              type="number"
-              value={this.props.initialCount}
-              onChange={this.props.onChange}
-            />
           </div>
+        </div>
+
+        <div className="rows">
+          <div className="form-numbers">
+            <div className="col-6">
+              <label className="section-title">Threshold:</label>
+              <input
+                className="form-control"
+                name="itemThreshold"
+                type="number"
+                value={this.props.itemThreshold}
+                onChange={this.props.onChange}
+              />
+            </div>
 
             <div className="form-top-padding">
-                <label className="section-title">Cost:</label>
-                <input
-                  className="form-control"
-                  name="itemCost"
-                  type="number"
-                  value={this.props.itemCost}
-                  onChange={this.props.onChange}
-                />
-              </div>
-
-
+              <label className="section-title">Count:</label>
+              <input
+                className="form-control"
+                name="initialCount"
+                type="number"
+                value={this.props.initialCount}
+                onChange={this.props.onChange}
+              />
             </div>
-     
-     
+
+            <div className="form-top-padding">
+              <label className="section-title">Cost:</label>
+              <input
+                className="form-control"
+                name="itemCost"
+                type="number"
+                value={this.props.itemCost}
+                onChange={this.props.onChange}
+              />
+            </div>
+          </div>
 
           <div className="item-desc-section">
             <label className="section-title">Description:</label>
@@ -108,8 +96,6 @@ class CreateItem extends Component {
               ))}
             </textarea>
           </div>
-
-       
         </div>
 
         <div className="barcode-wrapper">

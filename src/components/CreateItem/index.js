@@ -158,7 +158,7 @@ class CreateItem extends Component {
         )}
         <div>
           <h1 className="text-center pt-3">
-            <u>Create Item</u>
+            Create Item
           </h1>
 
           <div className="error-message text-center">
