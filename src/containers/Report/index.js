@@ -4,7 +4,7 @@ import ReportPage from "../../components/ReportPage";
 class Report extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="report-wrapper">
         <ReportPage />
       </div>
     );

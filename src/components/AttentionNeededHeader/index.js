@@ -29,11 +29,11 @@ class header extends Component {
           className="jumbotron-mini text-center attention-needed-header"
           onClick={() => this.handleHeaderClick()}
         >
-          <span>
-            <h2>
-              <b>{this.state.name}</b>
+      
+            <h2 className="white-header">
+              {this.state.name}
             </h2>
-          </span>
+  
         </div>
         {this.state.open && this.state.items != null && (
           <div className="table_holder">

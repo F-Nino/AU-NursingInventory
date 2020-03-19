@@ -4,7 +4,7 @@ import TrendReportPage from "../../components/TrendReportPage";
 class TrendReport extends Component {
   render() {
     return (
-      <div className="container mt-4">
+      <div className="trend-report-wrapper">
         <TrendReportPage />
       </div>
     );

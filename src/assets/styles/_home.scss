@@ -8,13 +8,14 @@
 
 .table_holder {
   margin: 0 1rem;
+  padding-bottom: 25px;
 }
 
 .jumbotron-mini {
   padding: 2rem 1rem;
   border-radius: 0.3rem;
   margin-bottom: 2rem;
-  background-color: #e9ecef;
+  color: 'white';
   cursor: pointer;
 }
 
@@ -33,7 +34,7 @@ table{
 }
 
 th{
-  background-color: #314877;
+  background-color: #4a6eb5;
   color: #ffffff
 }
 th,td{
@@ -46,5 +47,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 
 .attention-needed-header {
-  background-color: $error-color;
+  background-color: $color-main;
+}
+
+.white-header{
+  color: white;
 }
