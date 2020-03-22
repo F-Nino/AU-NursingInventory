@@ -75,6 +75,7 @@ class header extends Component {
                   <th>Description</th>
                   <th>Last Updated</th>
                   <th>Count</th>
+                  <th>Threshold</th>
                   <th>Buttons</th>
                 </tr>
               </thead>
@@ -85,6 +86,7 @@ class header extends Component {
                     <td>{item.description}</td>
                     <td>{this.handleDate(item.updated_at)}</td>
                     <td>{item.count}</td>
+                    <td>{item.threshold}</td>
                     <td>
                       <button
                         className="btn btn-danger"

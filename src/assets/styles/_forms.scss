@@ -140,3 +140,17 @@ input[type="number"] {
 .trend-report-input {
   width: 20%;
 }
+
+.confirmation-update {
+  color: $color-main;
+  width: 100%;
+  text-align: center;
+}
+
+.flex-parent {
+  display: flex;
+}
+
+.modal-number-input {
+  padding: 0 0.25rem;
+}
