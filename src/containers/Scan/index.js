@@ -19,6 +19,7 @@ class Scan extends Component {
   onButtonClickHandler = event => {
     event.preventDefault();
     const { barcode, addButton, deleteButton, detailsButton } = this.state;
+    this.setState({ showData: false });
     console.log("form clicked");
     //this.setState({ showMessage: true });
     console.log(barcode);
@@ -27,11 +28,11 @@ class Scan extends Component {
       apiValue = "scan_in";
     }
     if (deleteButton) {
-      apiValue = "delete api endpoint";
+      apiValue = "scan_out";
     }
 
     if (detailsButton) {
-      apiValue = "details api endpoint";
+      apiValue = "details";
     }
     let apiLink = "http://localhost:3000/api/v1/" + apiValue;
     console.log("the api link based on button", apiLink);
@@ -69,21 +70,21 @@ class Scan extends Component {
   callAdd = event => {
     event.preventDefault();
     console.log("add clicked");
-    this.setState({ addButton: !this.state.addButton });
+    this.setState({ addButton: true, deleteButton: false, detailsButton: false, showData: false});
     console.log("add button state", this.state.addButton);
   };
 
   callDelete = event => {
     event.preventDefault();
     console.log("delete clicked");
-    this.setState({ deleteButton: !this.state.deleteButton });
+    this.setState({ deleteButton: true, addButton: false, detailsButton: false, showData: false });
     console.log("delete button state", this.state.deleteButton);
   };
 
   callDetails = event => {
     event.preventDefault();
     console.log("details clicked");
-    this.setState({ detailsButton: !this.state.detailsButton });
+    this.setState({ detailsButton: true, addButton: false, deleteButton: false, showData: false });
     console.log("details button state", this.state.detailsButton);
   };
 

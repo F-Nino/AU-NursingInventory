@@ -74,7 +74,7 @@ class CreateItem extends Component {
         <div className="row">
           <div className="col-12 text-center">
             {this.props.itemName && (
-              <Barcode value={this.props.itemName} width={1} />
+              <Barcode value={this.props.itemName} width={3} />
             )}
           </div>
         </div>

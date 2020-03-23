@@ -38,6 +38,17 @@ class CreateBarcode extends Component {
     }
   };
 
+  editModal = () => {
+    this.setState({ showModal: true });
+    document.getElementById("modal-bg").style.display = "none";
+    document.body.style.overflowY = "visible";
+    let itemName = this.state.itemName;
+    let itemDescription = this.state.itemDescription;
+    itemName = "";
+    itemDescription = "";
+    this.setState({ itemName, itemDescription });
+  };
+
   closeModal = () => {
     this.setState({ showModal: false });
     document.getElementById("modal-bg").style.display = "none";
@@ -135,6 +146,7 @@ class CreateBarcode extends Component {
         {this.state.showModal && (
           <CreateItemModal
             onPrint={this.printBarcode}
+            onEdit={this.editModal}
             onClose={this.closeModal}
             itemName={this.state.itemName}
             itemDescription={this.state.itemDescription}
