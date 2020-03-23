@@ -11,10 +11,13 @@ class CreateBarcode extends Component {
       itemName: "",
       itemDescription: "",
       initialCount: 0,
+      itemCost: 0.0,
+      itemThreshold: 1,
       categories: [],
       errorMessage: [],
       currentCategorySelected: "",
-      showModal: false
+      showModal: false,
+      width: 1
     };
   }
 
@@ -62,6 +65,12 @@ class CreateBarcode extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+    if (this.state.itemName.length < 10) {
+      this.setState({ width: 3 });
+    }
+    else {
+      this.setState({ width: 1 });
+    }
   };
 
   handleSubmit = event => {
@@ -86,6 +95,14 @@ class CreateBarcode extends Component {
       submitItem = false;
       errorMessage.push("item count cannot be less than 0");
     }
+    if (this.state.itemThreshold < 0) {
+      submitItem = false;
+      errorMessage.push("item threshold cannot be less than 0");
+    }
+    if (this.state.itemCost < 0) {
+      submitItem = false;
+      errorMessage.push("item cost cannot be less than 0");
+    }
     if (submitItem) {
       axios
         .post(`http://localhost:3000/api/v1/items`, {
@@ -98,7 +115,9 @@ class CreateBarcode extends Component {
             description: this.state.itemDescription,
             count: this.state.initialCount,
             barcode: this.state.itemName,
-            category_id: categoryId
+            category_id: categoryId,
+            threshold: this.state.itemThreshold,
+            cost: this.state.itemCost
           }
         })
         .then(res => {
@@ -152,6 +171,8 @@ class CreateBarcode extends Component {
             itemDescription={this.state.itemDescription}
             count={this.state.initialCount}
             category={this.state.currentCategorySelected}
+            itemThreshold={this.state.itemThreshold}
+            itemCost={this.state.itemCost}
           />
         )}
         <div>
@@ -176,7 +197,10 @@ class CreateBarcode extends Component {
             itemDescription={this.state.itemDescription}
             initialCount={this.state.initialCount}
             categories={this.state.categories}
+            itemThreshold={this.state.itemThreshold}
+            itemCost={this.state.itemCost}
             currentCategorySelected={this.state.currentCategorySelected}
+            width={this.state.width}
           />
         </div>
 

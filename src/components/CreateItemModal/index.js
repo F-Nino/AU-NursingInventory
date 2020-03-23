@@ -32,6 +32,16 @@ class modal extends Component {
                   <b>Category:</b> {this.props.category}
                 </label>
               </li>
+              <li>
+                <label>
+                  <b>Item Threshold:</b> {this.props.itemThreshold}
+                </label>
+              </li>
+              <li>
+                <label>
+                  <b>Item Cost:</b> {this.props.itemCost}
+                </label>
+              </li>
             </ul>
           </div>
           <div className="col-md-4 text-center align-center">
