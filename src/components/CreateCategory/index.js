@@ -67,6 +67,7 @@ class CategoryForm extends Component {
                 className="create-category-input"
                 name="categoryName"
                 type="text"
+                placeholder="Name"
                 value={this.props.categoryName}
                 onChange={this.handleChange}
               />

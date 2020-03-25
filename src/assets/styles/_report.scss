@@ -1,4 +1,34 @@
 .report-wrapper {
-  max-width: 75vw;
+  max-width: 60vw;
   margin: auto;
+}
+
+.search-button-wrapper{
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.search-report{
+  width: 20%;
+}
+
+.search-input{
+  width: 40%;
+}
+
+.search-input-wrapper{
+  text-align: center;
+}
+
+.edit-button{
+  background-color: #4a6eb5;
+}
+
+.delete-button{
+  background-color: red;
+}
+
+.table-buttons{
+  display: flex;
 }

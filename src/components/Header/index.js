@@ -61,7 +61,7 @@ class header extends Component {
           onClick={() => this.handleHeaderClick()}
         >
           <span>
-            <h2>
+            <h2 className="white-header">
               <b>{this.props.name}</b>
             </h2>
           </span>
@@ -85,15 +85,15 @@ class header extends Component {
                     <td>{item.description}</td>
                     <td>{this.handleDate(item.updated_at)}</td>
                     <td>{item.count}</td>
-                    <td>
+                    <td className="table-buttons">
                       <button
-                        className="btn btn-danger"
+                        className="button delete-button"
                         onClick={() => this.props.onItemDelete(item)}
                       >
                         Delete
                       </button>
                       <button
-                        className="btn btn-danger"
+                        className="button edit-button"
                         onClick={() => this.props.onItemEdit(item)}
                       >
                         Edit

@@ -35,13 +35,12 @@ class searchField extends Component {
 
   render() {
     return (
-      <div className="search">
-        <div className="row mb-2">
-          <div className="col-3"></div>
-          <div className="col-4">
+      <div className="search-section">
+        <div className="search-row-one">
+          <div className="search-input-wrapper">
             <input
               type="text"
-              className="form-control mb-2"
+              className="search-input"
               placeholder="Search For Item"
               id="searchInputField"
               onKeyPress={event => {
@@ -51,19 +50,19 @@ class searchField extends Component {
               }}
             />
           </div>
-          <div className="col-2">
+          <div className="search-button-wrapper">
             <button
-              className="btn mb-2 btn-primary"
+              className="button search-report"
               onClick={() => this.handleSearch()}
             >
               Search
             </button>
           </div>
         </div>
-        <div className="row mb-2">
-          <div className="col-12">
+        <div className="table-search-wrapper">
+       
             {this.state.items.length > 0 && (
-              <div className="table_holder">
+           
                 <table className="table">
                   <thead>
                     <tr>
@@ -79,9 +78,9 @@ class searchField extends Component {
                     ))}
                   </tbody>
                 </table>
-              </div>
+          
             )}
-          </div>
+         
         </div>
       </div>
     );

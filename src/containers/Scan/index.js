@@ -115,7 +115,7 @@ class Scan extends Component {
     const isInvalid = barcode === "";
     return (
       <div className="scan-wrapper">
-        <div className="container">
+
           <h1 className="text-center">Inventory Scanning</h1>
 
           <div className="scan-form-buttons">
@@ -145,14 +145,17 @@ class Scan extends Component {
             </button>
           </div>
 
+          
           <form className="scan-form" onSubmit={this.onButtonClickHandler}>
+            <div className="scan-input-row">
             <input
               name="barcode"
               placeholder=""
               value={barcode}
               onChange={this.handleChange}
-              className="scan-input"
+              className="scan-input scan-barcode"
               id="barcode-id"
+              autoFocus
             />
             <input
               name="itemCount"
@@ -160,11 +163,16 @@ class Scan extends Component {
               value={this.state.itemCount}
               type="number"
               onChange={this.handleChange}
-              className="scan-input"
+              className="scan-input scan-count"
+          
             />
+            </div>
 
+<div>
             <button className="button scan-submit-button">Find Barcode</button>
+            </div>
           </form>
+          <div>
           {this.state.showData ? (
             <ul className="mt-3">
               <li>
@@ -181,7 +189,8 @@ class Scan extends Component {
               </li>
             </ul>
           ) : null}
-        </div>
+          </div>
+      
       </div>
     );
   }

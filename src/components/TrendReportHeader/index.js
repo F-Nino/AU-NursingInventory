@@ -45,7 +45,7 @@ class trendReportHeader extends Component {
           onClick={() => this.handleHeaderClick()}
         >
           <span>
-            <h2>
+            <h2 className='white-header'>
               <b>{this.props.name}</b>
               {"   "}
               {this.state.count}
