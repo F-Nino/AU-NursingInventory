@@ -18,7 +18,8 @@ class CreateItem extends Component {
       errorMessage: [],
       currentCategorySelected: "",
       showModal: false,
-      item: {}
+      item: {},
+      width: 1
     };
   }
 
@@ -42,6 +43,17 @@ class CreateItem extends Component {
     }
   };
 
+  editModal = () => {
+    this.setState({ showModal: true });
+    document.getElementById("modal-bg").style.display = "none";
+    document.body.style.overflowY = "visible";
+    let itemName = this.state.itemName;
+    let itemDescription = this.state.itemDescription;
+    itemName = "";
+    itemDescription = "";
+    this.setState({ itemName, itemDescription });
+  };
+
   closeModal = () => {
     this.setState({ showModal: false });
     document.getElementById("modal-bg").style.display = "none";
@@ -55,6 +67,12 @@ class CreateItem extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+    if (this.state.itemName.length < 10) {
+      this.setState({ width: 3 });
+    }
+    else {
+      this.setState({ width: 1 });
+    }
   };
 
   handleSubmit = event => {
@@ -156,6 +174,7 @@ class CreateItem extends Component {
           <EditItemModal
             pageName={"Item Successfully Created"}
             onPrint={this.printBarcode}
+            onEdit={this.editModal}
             onClose={this.closeModal}
             item={this.state.item}
           />
@@ -185,6 +204,7 @@ class CreateItem extends Component {
             itemThreshold={this.state.itemThreshold}
             itemCost={this.state.itemCost}
             currentCategorySelected={this.state.currentCategorySelected}
+            width={this.state.width}
           />
         </div>
 

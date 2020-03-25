@@ -100,7 +100,7 @@ class CreateItem extends Component {
 
         <div className="barcode-wrapper">
           {this.props.itemName && (
-            <Barcode value={this.props.itemName} width={1} />
+            <Barcode value={this.props.itemName} width={this.props.width} />
           )}
         </div>
 

@@ -54,6 +54,11 @@ class modal extends Component {
                   Print Barcode
                 </button>
               </li>
+              <li className="edit-1">
+                <button className="btn btn-warning" onClick={this.props.onClose}>
+                  Edit
+                </button>
+              </li>
               <li className="pt-1">
                 <button className="btn btn-danger" onClick={this.props.onClose}>
                   Close
@@ -63,7 +68,7 @@ class modal extends Component {
           </div>
         </div>
         <div className="modal-buttons text-center" id="barcode-save">
-          <Barcode value={this.props.itemName} width={1} />
+          <Barcode value={this.props.itemName} width={3} />
         </div>
       </div>
     );
