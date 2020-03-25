@@ -3,6 +3,7 @@ import axios from "axios";
 import CreateItemForm from "../CreateItemForm";
 import CreateItemModal from "../CreateItemModal";
 import html2canvas from "html2canvas";
+import EditItemModal from "../EditItemModal";
 
 class CreateItem extends Component {
   constructor() {
@@ -16,7 +17,8 @@ class CreateItem extends Component {
       categories: [],
       errorMessage: [],
       currentCategorySelected: "",
-      showModal: false
+      showModal: false,
+      item: {}
     };
   }
 
@@ -103,12 +105,18 @@ class CreateItem extends Component {
           }
         })
         .then(res => {
-          this.setState({ errorMessage: [] });
           window.scrollTo({ top: 0, behavior: "smooth" });
-          this.setState({ showModal: true });
           document.getElementById("modal-bg").style.display = "block";
           document.body.style.height = "100%";
           document.body.style.overflowY = "hidden";
+          let item = {};
+          item.name = this.state.itemName;
+          item.count = this.state.initialCount;
+          item.threshold = this.state.itemThreshold;
+          item.cost = this.state.itemCost;
+          item.description = this.state.itemDescription;
+          item.id = res.data.data.id;
+          this.setState({ errorMessage: [], item, showModal: true });
         })
         .catch(error => {
           console.log("error", error);
@@ -145,15 +153,11 @@ class CreateItem extends Component {
     return (
       <div>
         {this.state.showModal && (
-          <CreateItemModal
+          <EditItemModal
+            pageName={"Item Successfully Created"}
             onPrint={this.printBarcode}
             onClose={this.closeModal}
-            itemName={this.state.itemName}
-            itemDescription={this.state.itemDescription}
-            count={this.state.initialCount}
-            category={this.state.currentCategorySelected}
-            itemThreshold={this.state.itemThreshold}
-            itemCost={this.state.itemCost}
+            item={this.state.item}
           />
         )}
         <div>

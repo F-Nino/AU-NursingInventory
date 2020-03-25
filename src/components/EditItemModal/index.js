@@ -7,42 +7,71 @@ class EditItemModal extends Component {
   state = {
     itemName: this.props.item.name,
     itemDescription: this.props.item.description,
-    itemCount: this.props.item.count
+    itemCount: this.props.item.count,
+    itemCost: this.props.item.cost,
+    itemThreshold: this.props.item.threshold,
+    message: ""
   };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSaveBarcode = () => {
-    axios
-      .patch(`http://localhost:3000/api/v1/update_item`, {
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          crossorigin: true
-        },
-        id: this.props.item.id,
-        item: {
-          name: this.state.itemName,
-          description: this.state.itemDescription,
-          count: this.state.itemCount
-        }
-      })
-      .then(res => {
-        alert("Succesfully updated");
-        this.props.onEditUpdate();
-      })
-      .catch(error => {
-        console.log("error", error);
-        alert(
-          "Item with name already exists or data fields entered incorrectly"
-        );
-      });
+  handleUpdateBarcode = () => {
+    let message = "";
+    let shouldItemUpdate = true;
+    if (this.state.itemName === "") {
+      shouldItemUpdate = false;
+    }
+    if (this.state.itemDescription === "") {
+      shouldItemUpdate = false;
+    }
+    if (this.state.itemCount < 0 || this.state.itemCount === "") {
+      shouldItemUpdate = false;
+    }
+    if (this.state.itemThreshold < 0 || this.state.itemThreshold === "") {
+      shouldItemUpdate = false;
+    }
+    if (this.state.itemCost < 0 || this.state.itemCost === "") {
+      shouldItemUpdate = false;
+    }
+    if (shouldItemUpdate) {
+      axios
+        .patch(`http://localhost:3000/api/v1/update_item`, {
+          headers: {
+            "Access-Control-Allow-Origin": true,
+            crossorigin: true
+          },
+          id: this.props.item.id,
+          item: {
+            name: this.state.itemName,
+            description: this.state.itemDescription,
+            count: this.state.itemCount,
+            cost: this.state.itemCost,
+            threshold: this.state.itemThreshold
+          }
+        })
+        .then(res => {
+          message = "Sucessfully Updated " + this.state.itemName;
+          try {
+            this.props.onEditUpdate();
+          } catch {}
+          this.setState({ message });
+        })
+        .catch(error => {
+          console.log("error", error);
+          message =
+            "Item with name already exists or data fields entered incorrectly";
+          this.setState({ message });
+        });
+    } else {
+      message = "Incorrect fields, please make sure all fields are appropriate";
+      this.setState({ message });
+    }
   };
 
   printBarcode = () => {
     let itemName = this.state.itemName;
-    console.log(itemName);
     html2canvas(document.querySelector("#barcode-save")).then(function(canvas) {
       let fileName = itemName + ".png";
       saveAs(canvas.toDataURL(), fileName);
@@ -57,7 +86,6 @@ class EditItemModal extends Component {
         link.click();
         document.body.removeChild(link);
       } else {
-        window.open(uri);
       }
     }
   };
@@ -66,9 +94,12 @@ class EditItemModal extends Component {
     return (
       <div className="modal-form show fade">
         <div className="modal-chunk p-2">
-          <h3>Edit Item</h3>
+          <h3>{this.props.pageName}</h3>
         </div>
         <div className="row pt-3 pl-3">
+          {this.state.message !== "" && (
+            <div className="confirmation-update">{this.state.message}</div>
+          )}
           <div className="col-md-8">
             <ul>
               <li>
@@ -90,21 +121,48 @@ class EditItemModal extends Component {
                   name="itemDescription"
                   className="no-resize"
                   type="text"
-                  rows="3"
+                  rows="1"
                   value={this.state.itemDescription}
                   onChange={this.handleChange}
                 />
               </li>
               <li>
-                <label>
-                  <b>Count:</b>
-                </label>
-                <input
-                  name="itemCount"
-                  type="number"
-                  value={this.state.itemCount}
-                  onChange={this.handleChange}
-                />
+                <div className="flex-parent">
+                  <div className="modal-number-input">
+                    <label>
+                      <b>Count:</b>
+                    </label>
+                    <input
+                      name="itemCount"
+                      type="number"
+                      value={this.state.itemCount}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="modal-number-input">
+                    <label>
+                      <b>Cost:</b>
+                    </label>
+                    <input
+                      name="itemCost"
+                      type="number"
+                      value={this.state.itemCost}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+
+                  <div className="modal-number-input">
+                    <label>
+                      <b>Threshold:</b>
+                    </label>
+                    <input
+                      name="itemThreshold"
+                      type="number"
+                      value={this.state.itemThreshold}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -113,7 +171,7 @@ class EditItemModal extends Component {
               <li className="pb-1">
                 <button
                   className="btn btn-primary"
-                  onClick={() => this.handleSaveBarcode()}
+                  onClick={() => this.handleUpdateBarcode()}
                 >
                   Save Changes
                 </button>

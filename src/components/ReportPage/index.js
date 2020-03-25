@@ -63,6 +63,7 @@ class report extends Component {
         <h2 className="text-center p-4">Inventory Overview</h2>
         {this.state.showModal && (
           <EditItemModal
+            pageName={"Edit item"}
             onClose={this.closeModal}
             onPrint={this.printBarcode}
             item={this.state.modalItem}
