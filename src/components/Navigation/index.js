@@ -43,7 +43,7 @@ const NavigationAuth = props => (
         <Link to={ROUTES.SCAN}>Scan</Link>
       </li>
       <li>
-        <Link to={ROUTES.REPORT}>Inventory Report</Link>
+        <Link to={ROUTES.REPORT}>Inventory</Link>
       </li>
       <li>
         <Link to={ROUTES.TREND_REPORT}>Trend Report</Link>

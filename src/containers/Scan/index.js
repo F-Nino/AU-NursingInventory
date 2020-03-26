@@ -208,13 +208,13 @@ class Scan extends Component {
           {this.state.showData ? (
             <ul className="response-data">
               <li>
-                <b>Id:</b> {this.state.itemData.id}
+                <b>Barcode ID:</b> {this.state.itemData.name}
               </li>
               <li>
-                <b>Name:</b> {this.state.itemData.name}
+                <b>Stock:</b> {this.state.itemData.count}
               </li>
               <li>
-                <b>Count:</b> {this.state.itemData.count}
+                <b>Threshold:</b> {this.state.itemData.threshold}
               </li>
               <li>
                 <b>Description:</b> {this.state.itemData.description}
