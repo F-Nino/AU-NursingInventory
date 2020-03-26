@@ -48,7 +48,8 @@ class EditItemModal extends Component {
             description: this.state.itemDescription,
             count: this.state.itemCount,
             cost: this.state.itemCost,
-            threshold: this.state.itemThreshold
+            threshold: this.state.itemThreshold,
+            barcode: this.state.itemName
           }
         })
         .then(res => {
