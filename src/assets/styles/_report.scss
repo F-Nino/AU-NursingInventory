@@ -6,8 +6,8 @@
 
 .search-button-wrapper{
   text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   width: 100%;
 }
 
@@ -17,13 +17,13 @@
 }
 
 .search-input{
-  //width: 40%;
+  margin-left: 18rem;
 }
 
 .search-input-wrapper{
   text-align: center;
   //padding-right: 10rem;
-  width: 100%;
+  width: 30rem;
 }
 
 .edit-button{
@@ -42,9 +42,21 @@
 .inventory-title {
   font-size: 4rem;
   padding-top: 2rem;
+  margin-bottom: 0rem;
+}
+
+.trend-report-title {
+  font-size: 4rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .search-row-one {
   display: flex;
   align-items: center;
+  padding-bottom: 2rem;
+}
+
+.table-search-wrapper {
+  padding-bottom: 4rem;
 }

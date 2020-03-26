@@ -10,14 +10,14 @@ class LastFiveOut extends React.Component {
     };
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     axios
       .get("http://localhost:3000/api/v1/get_last_five_scanned_out")
       .then(response => {
         this.setState({ lastFiveOut: response.data.data });
       })
       .catch(error => console.log(error));
-  }
+  }*/
 
   render() {
     return (
@@ -33,7 +33,7 @@ class LastFiveOut extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.lastFiveOut.map(item => (
+            {this.props.object.map(item => (
               <TableItem key={item.id} item={item} />
             ))}
           </tbody>
