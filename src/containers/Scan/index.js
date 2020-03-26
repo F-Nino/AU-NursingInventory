@@ -51,8 +51,8 @@ class Scan extends Component {
               console.log("null data resp");
             }
             if (resp.data.status == "ERROR") {
-              console.log("Item not in db");
-              window.alert("Item not in db");
+              console.log("Error: Item Not In Database");
+              window.alert("Error: Item Not In Database");
             } else {
               this.setState({
                 itemData: resp.data.data,
