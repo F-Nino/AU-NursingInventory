@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import LastFiveScanned from "../../components/LastFiveScanned";
 import AttentionNeeded from "../../components/AttentionNeeded";
-import LastFiveOut from "../../components/LastFiveOut";
+import axios from "axios";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: "In"
+      selectedOption: "In",
+      scannedInObject: [],
+      scannedOutObject: []
     };
   }
   handleOptionChange = event => {
@@ -22,6 +24,21 @@ class Home extends Component {
     }
     return classNameForLabel;
   };
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3000/api/v1/get_last_five")
+      .then(response => {
+        this.setState({ scannedInObject: response.data.data });
+      })
+      .catch(error => console.log(error));
+    axios
+      .get("http://localhost:3000/api/v1/get_last_five_scanned_out")
+      .then(response => {
+        this.setState({ scannedOutObject: response.data.data });
+      })
+      .catch(error => console.log(error));
+  }
 
   render() {
     return (
@@ -52,8 +69,15 @@ class Home extends Component {
           />
         </div>
 
-        {this.state.selectedOption === "In" ? <LastFiveScanned /> : null}
-        {this.state.selectedOption === "Out" ? <LastFiveOut /> : null}
+        {this.state.selectedOption === "In" ? (
+          <LastFiveScanned object={this.state.scannedInObject} header={"In"} />
+        ) : null}
+        {this.state.selectedOption === "Out" ? (
+          <LastFiveScanned
+            object={this.state.scannedOutObject}
+            header={"Out"}
+          />
+        ) : null}
         <AttentionNeeded />
       </div>
     );
