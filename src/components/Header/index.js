@@ -66,47 +66,50 @@ class header extends Component {
             </h2>
           </span>
         </div>
-        {this.state.open && this.props.items != null && (
-          <div className="table_holder">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Last Updated</th>
-                  <th>Stock</th>
-                  <th>Threshold</th>
-                  <th>Buttons</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.props.items.map(item => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.description}</td>
-                    <td>{this.handleDate(item.updated_at)}</td>
-                    <td>{item.count}</td>
-                    <td>{item.threshold}</td>
-                    <td className="table-buttons">
-                      <button
-                        className="button delete-button"
-                        onClick={() => this.props.onItemDelete(item)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className="button edit-button"
-                        onClick={() => this.props.onItemEdit(item)}
-                      >
-                        Edit
-                      </button>
-                    </td>
+        {this.state.open &&
+          (this.props.items != null ? (
+            <div className="table_holder">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Last Updated</th>
+                    <th>Stock</th>
+                    <th>Threshold</th>
+                    <th>Buttons</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                </thead>
+                <tbody>
+                  {this.props.items.map(item => (
+                    <tr key={item.id}>
+                      <td>{item.name}</td>
+                      <td>{item.description}</td>
+                      <td>{this.handleDate(item.updated_at)}</td>
+                      <td>{item.count}</td>
+                      <td>{item.threshold}</td>
+                      <td className="table-buttons">
+                        <button
+                          className="button delete-button"
+                          onClick={() => this.props.onItemDelete(item)}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="button edit-button"
+                          onClick={() => this.props.onItemEdit(item)}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <h2 className="text-center">This Category Is Empty</h2>
+          ))}
       </div>
     );
   }
