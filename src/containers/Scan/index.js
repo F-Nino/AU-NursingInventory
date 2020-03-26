@@ -22,9 +22,6 @@ class Scan extends Component {
     event.preventDefault();
     const { barcode, addButton, deleteButton, detailsButton } = this.state;
     this.setState({ showData: false });
-    console.log("form clicked");
-    //this.setState({ showMessage: true });
-    console.log(barcode);
     let apiValue = "";
     if (addButton) {
       apiValue = "scan_in";
@@ -37,8 +34,11 @@ class Scan extends Component {
       apiValue = "details";
     }
     let apiLink = "http://localhost:3000/api/v1/" + apiValue;
-    console.log("the api link based on button", apiLink);
-    if (this.state.itemCount > 0 && this.state.itemCount !== "") {
+    if (
+      this.state.itemCount > 0 &&
+      this.state.itemCount !== "" &&
+      barcode !== ""
+    ) {
       try {
         axios
           .post(apiLink, {
@@ -46,6 +46,7 @@ class Scan extends Component {
             count: this.state.itemCount
           })
           .then(resp => {
+            console.log(resp);
             if (resp == null) {
               console.log("null data resp");
             }
@@ -70,7 +71,7 @@ class Scan extends Component {
         console.log("error from axios call in comp did mount");
       }
     } else {
-      window.alert("Error: Invalid Count");
+      window.alert("Error: Invalid Fields (Barcode And/Or Count)");
     }
   };
 

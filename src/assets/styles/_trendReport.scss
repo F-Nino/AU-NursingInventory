@@ -1,25 +1,27 @@
 .trend-report-wrapper {
-    margin: auto;
-    max-width: 60vw;
-  }
+  margin: auto;
+  max-width: 60vw;
+}
 
-  .row-trend-report{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    //padding-top: 15px;
-    //padding-bottom: 15px;
-  }
+.row-trend-report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //padding-top: 15px;
+  //padding-bottom: 15px;
+  margin-bottom: 1rem;
+}
 
-  .start-input-wrapper{
-    padding-right: 15px;
+.start-input-wrapper {
+  padding-right: 1rem;
+  display: block;
+}
 
-  }
+.end-input-wrapper {
+  padding: 0 1rem;
+  display: block;
+}
 
-  .end-input-wrapper{
-    padding-left: 15px;
-  }
-
-  .item-search-button{
-
-  }
+.item-search-button {
+  margin-top: 1rem;
+}

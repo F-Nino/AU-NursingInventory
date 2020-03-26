@@ -86,10 +86,12 @@ class trendReportPage extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-            
-            <button className="button item-search-button" type="submit">
-              Search For Items
-            </button>
+
+            <div>
+              <button className="button item-search-button" type="submit">
+                Search For Items
+              </button>
+            </div>
           </div>
         </form>
 
