@@ -64,7 +64,7 @@ class trendReportPage extends Component {
     const categoryKeys = Object.keys(this.state.headers);
     return (
       <div>
-        <h2 className="text-center inventory-title">Inventory Use</h2>
+        <h2 className="text-center trend-report-title">Inventory Use</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row-trend-report">
             <div className="start-input-wrapper">
