@@ -48,6 +48,7 @@ class EditItemModal extends Component {
             description: this.state.itemDescription,
             count: this.state.itemCount,
             cost: this.state.itemCost,
+            barcode: this.state.itemName,
             threshold: this.state.itemThreshold
           }
         })
@@ -93,16 +94,24 @@ class EditItemModal extends Component {
   render() {
     return (
       <div className="modal-form show fade">
-        <div className="modal-chunk p-2">
+
+
+        <div className="header-wrapper">
           <h3>{this.props.pageName}</h3>
         </div>
+
+
         <div className="row pt-3 pl-3">
+
+
           {this.state.message !== "" && (
             <div className="confirmation-update">{this.state.message}</div>
           )}
+
+
           <div className="col-md-8">
-            <ul>
-              <li>
+     
+           <div>
                 <label>
                   <b>Name:</b>
                 </label>
@@ -112,8 +121,7 @@ class EditItemModal extends Component {
                   value={this.state.itemName}
                   onChange={this.handleChange}
                 ></input>
-              </li>
-              <li>
+           
                 <label>
                   <b>Description:</b>
                 </label>
@@ -125,8 +133,10 @@ class EditItemModal extends Component {
                   value={this.state.itemDescription}
                   onChange={this.handleChange}
                 />
-              </li>
-              <li>
+      </div>
+              
+
+
                 <div className="flex-parent">
                   <div className="modal-number-input">
                     <label>
@@ -139,6 +149,8 @@ class EditItemModal extends Component {
                       onChange={this.handleChange}
                     />
                   </div>
+
+
                   <div className="modal-number-input">
                     <label>
                       <b>Cost:</b>
@@ -163,38 +175,40 @@ class EditItemModal extends Component {
                     />
                   </div>
                 </div>
-              </li>
-            </ul>
+
+
           </div>
           <div className="col-md-4 text-center align-center">
-            <ul>
-              <li className="pb-1">
+           
                 <button
-                  className="btn btn-primary"
+                  className="button"
                   onClick={() => this.handleUpdateBarcode()}
                 >
                   Save Changes
                 </button>
-              </li>
-              <li className="py-1">
+            
+              
                 <button
-                  className="btn-custom"
+                  className="button"
                   onClick={() => this.printBarcode()}
                 >
                   Print Barcode
                 </button>
-              </li>
-              <li className="pt-1">
-                <button className="btn btn-danger" onClick={this.props.onClose}>
+         
+           
+                <button className="button" onClick={this.props.onClose}>
                   Close
                 </button>
-              </li>
-            </ul>
+           
           </div>
         </div>
-        <div className="modal-buttons text-center" id="barcode-save">
+
+
+        <div className="barcode-create-item" id="barcode-save">
           <Barcode value={this.state.itemName} width={1} />
         </div>
+
+
       </div>
     );
   }
