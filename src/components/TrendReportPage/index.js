@@ -64,9 +64,9 @@ class trendReportPage extends Component {
     const categoryKeys = Object.keys(this.state.headers);
     return (
       <div>
-          <h2 className="text-center inventory-title">Inventory Use</h2>
+        <h2 className="text-center inventory-title">Inventory Use</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="row-one-trend-report">
+          <div className="row-trend-report">
             <div className="start-input-wrapper">
               <label>Start Date</label>
               <input
@@ -76,7 +76,7 @@ class trendReportPage extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-        
+
             <div className="end-input-wrapper">
               <label>End Date</label>
               <input
@@ -86,13 +86,11 @@ class trendReportPage extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-            </div>
-            <div className="row-two-trend-report">
-              <button className="button item-search-button" type="submit">
-                Search For Items
-              </button>
-            </div>
-          
+            
+            <button className="button item-search-button" type="submit">
+              Search For Items
+            </button>
+          </div>
         </form>
 
         {this.state.headers !== null &&

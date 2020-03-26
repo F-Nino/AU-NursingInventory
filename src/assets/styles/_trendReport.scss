@@ -3,9 +3,12 @@
     max-width: 60vw;
   }
 
-  .row-one-trend-report{
+  .row-trend-report{
     display: flex;
     justify-content: center;
+    text-align: center;
+    //padding-top: 15px;
+    //padding-bottom: 15px;
   }
 
   .start-input-wrapper{
@@ -17,12 +20,6 @@
     padding-left: 15px;
   }
 
-  .row-two-trend-report{
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-
   .item-search-button{
-    width: 20%;
+
   }
