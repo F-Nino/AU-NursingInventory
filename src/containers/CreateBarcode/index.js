@@ -15,34 +15,38 @@ class CreateBarcode extends Component {
     console.log(event.target.value);
   };
 
-  getClassName = buttonName => {
-    let classes = "btn btn-secondary mt-3 ";
-    classes += this.state.selectedOption === buttonName && "active";
-    return classes;
+  getLabelClassName = value => {
+    let classNameForLabel = "label-for-button ";
+    if (value === this.state.selectedOption) {
+      classNameForLabel += "active-button";
+    }
+    return classNameForLabel;
   };
 
   render() {
-
     return (
-      
       <div className="create-barcode-wrapper">
         <div className="radio-button-wrapper">
-          <label className="itemButton" for='radio1'>Item</label>
+          <label className={this.getLabelClassName("itemButton")} for="radio1">
+            Item
+          </label>
           <input
             type="radio"
-            id='radio1'
+            id="radio1"
             value="itemButton"
             name="formRendered"
-   
             checked={this.state.selectedOption === "itemButton"}
             onChange={this.handleOptionChange}
           />
-          <label className="categoryButton" for='radio2'>
+          <label
+            className={this.getLabelClassName("categoryButton")}
+            for="radio2"
+          >
             Category
           </label>
           <input
             type="radio"
-            id='radio2'
+            id="radio2"
             value="categoryButton"
             name="formRendered"
             checked={this.state.selectedOption === "categoryButton"}

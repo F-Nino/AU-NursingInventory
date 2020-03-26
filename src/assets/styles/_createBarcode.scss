@@ -8,6 +8,10 @@
   display: none;
 }
 
+.active-button {
+  background-color: #bbb !important;
+}
+
 .radio-button-wrapper label {
   display: inline-block;
   background-color: #ddd;
@@ -17,77 +21,71 @@
   cursor: pointer;
 }
 
-
-.radio-button-wrapper input[type="radio"]:checked+label {
-  background-color: #bbb;
-}
-
-.radio-button-wrapper{
+.radio-button-wrapper {
   display: block;
   text-align: right;
 }
 
-.home{
+.home {
   padding-top: 30px;
 }
-.create-category-input{
-width: 30%;
+.create-category-input {
+  width: 30%;
 }
 
-.create-category-button{
+.create-category-button {
   width: 20%;
 }
 
-.button-row{
+.button-row {
   display: flex;
   justify-content: center;
   padding-top: 15px;
 }
-.rows{
- display: flex;
- justify-content: center;
+.rows {
+  display: flex;
+  justify-content: center;
 }
 
-.form-numbers{
+.form-numbers {
   width: 20%;
   padding: 20px;
 }
 
-.form-top-padding{
+.form-top-padding {
   padding-top: 10px;
 }
 
-.barcode-wrapper{
+.barcode-wrapper {
   text-align: center;
 }
 
-.button-wrapper{
+.button-wrapper {
   text-align: center;
   padding-top: 20px;
 }
-.create-item-button{
+.create-item-button {
   width: 25%;
 }
-.item-desc-section{
- padding: 20px;
- width: 40%;
-}
-
-.text-height{
-  height: 90%;
-}
-
-.name-section{
-  padding: 20px;
-  width: 20%;
-}
-
-.category-section{
+.item-desc-section {
   padding: 20px;
   width: 40%;
 }
 
-.section-title{
-  display: block;
+.text-height {
+  height: 90%;
 }
 
+.name-section {
+  padding: 20px;
+  width: 20%;
+}
+
+.category-section {
+  padding: 20px;
+  width: 40%;
+}
+
+.section-title {
+  display: block;
+}
