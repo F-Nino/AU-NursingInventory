@@ -8,22 +8,18 @@
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  width: 100%;
 }
 
 .search-report{
-  width: 25%;
   padding: .75rem 2.5rem;
 }
 
 .search-input{
-  margin-left: 18rem;
 }
 
 .search-input-wrapper{
   text-align: center;
-  //padding-right: 10rem;
-  width: 30rem;
+  padding-right: 1rem;
 }
 
 .edit-button{
@@ -54,7 +50,7 @@
 .search-row-one {
   display: flex;
   align-items: center;
-  padding-bottom: 2rem;
+  justify-content: center;
 }
 
 .table-search-wrapper {

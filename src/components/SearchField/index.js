@@ -59,29 +59,25 @@ class searchField extends Component {
             </button>
           </div>
         </div>
-        <div className="table-search-wrapper">
-       
-            {this.state.items.length > 0 && (
-           
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Last Updated</th>
-                      <th>Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.items.map(item => (
-                      <TableItem key={item.id} item={item} />
-                    ))}
-                  </tbody>
-                </table>
-          
-            )}
-         
-        </div>
+        {this.state.items.length > 0 && (
+          <div className="table-search-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Last Updated</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.items.map(item => (
+                  <TableItem key={item.id} item={item} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     );
   }
