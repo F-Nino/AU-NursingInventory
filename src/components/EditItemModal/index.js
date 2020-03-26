@@ -14,7 +14,7 @@ class EditItemModal extends Component {
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, message: "" });
   };
 
   handleUpdateBarcode = () => {
@@ -53,7 +53,7 @@ class EditItemModal extends Component {
           }
         })
         .then(res => {
-          message = "Sucessfully Updated " + this.state.itemName;
+          message = "Successfully Updated " + this.state.itemName + "NEED TO FIX Please Reprint Barcode If Name Has Changed";
           try {
             this.props.onEditUpdate();
           } catch {}
@@ -62,11 +62,11 @@ class EditItemModal extends Component {
         .catch(error => {
           console.log("error", error);
           message =
-            "Item with name already exists or data fields entered incorrectly";
+            "Item With Name Already Exists, or Data Fields Entered Incorrectly";
           this.setState({ message });
         });
     } else {
-      message = "Incorrect fields, please make sure all fields are appropriate";
+      message = "Invalid Data Entry, Please Check Your Inputs";
       this.setState({ message });
     }
   };
@@ -97,12 +97,7 @@ class EditItemModal extends Component {
         <div className="header-wrapper">
           <h3>{this.props.pageName}</h3>
         </div>
-
         <div className="modal-flex-parent">
-          {this.state.message !== "" && (
-            <div className="confirmation-update">{this.state.message}</div>
-          )}
-
           <div className="modal-input-wrapper">
             <div className="modal-name">
               <label>
@@ -114,7 +109,7 @@ class EditItemModal extends Component {
                 value={this.state.itemName}
                 onChange={this.handleChange}
               ></input>
-              </div>
+            </div>
 
             <div className="modal-desc">
               <label>
@@ -176,11 +171,17 @@ class EditItemModal extends Component {
               Save Changes
             </button>
 
-            <button className="button modal-button print" onClick={() => this.printBarcode()}>
+            <button
+              className="button modal-button print"
+              onClick={() => this.printBarcode()}
+            >
               Print Barcode
             </button>
 
-            <button className="button modal-button close" onClick={this.props.onClose}>
+            <button
+              className="button modal-button close"
+              onClick={this.props.onClose}
+            >
               Close
             </button>
           </div>
@@ -189,6 +190,9 @@ class EditItemModal extends Component {
         <div className="barcode-wrapper" id="barcode-save">
           <Barcode value={this.state.itemName} width={1} />
         </div>
+        {this.state.message !== "" && (
+          <div className="confirmation-update">{this.state.message}</div>
+        )}
       </div>
     );
   }
