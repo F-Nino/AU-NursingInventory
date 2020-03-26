@@ -53,7 +53,7 @@ class CreateItem extends Component {
             </div>
 
             <div className="form-top-padding">
-              <label className="section-title">Count:</label>
+              <label className="section-title">Stock:</label>
               <input
                 className="form-control"
                 name="initialCount"

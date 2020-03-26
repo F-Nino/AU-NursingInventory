@@ -21,7 +21,7 @@ class Home extends Component {
       <div className="home-wrapper">
         <div className="radio-button-wrapper home">
          
-            <label className="itemButton" for='radio1'>In  </label>
+            <label className="itemButton" for='radio1'>Scanned In</label>
               <input
                 type="radio"
                 id='radio1'
@@ -35,7 +35,7 @@ class Home extends Component {
           
  
 
-            <label className="itemButton" for='radio2'>Out</label>
+            <label className="itemButton" for='radio2'>Scanned Out</label>
               <input
                 type="radio"
                 name="itemsScanned"

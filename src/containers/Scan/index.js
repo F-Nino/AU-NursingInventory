@@ -105,7 +105,7 @@ class Scan extends Component {
     return (
       <div className="scan-wrapper">
 
-          <h1 className="text-center">Inventory Scanning</h1>
+          <h1 className="text-center scan-title">Inventory Scanning</h1>
 
           <div className="scan-form-buttons">
             <button
@@ -130,7 +130,7 @@ class Scan extends Component {
               name="seeDetails-button"
               onClick={this.callDetails}
             >
-              Details
+              Item Details
             </button>
           </div>
 

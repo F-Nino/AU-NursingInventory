@@ -43,7 +43,7 @@ class header extends Component {
                   <th>Name</th>
                   <th>Description</th>
                   <th>Last Updated</th>
-                  <th>Count</th>
+                  <th>Stock</th>
                   <th>Minimum Threshold</th>
                 </tr>
               </thead>

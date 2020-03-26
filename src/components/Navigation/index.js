@@ -40,13 +40,13 @@ const NavigationAuth = props => (
         <Link to={ROUTES.CREATE_BARCODE}>Create Barcode</Link>
       </li>
       <li>
-        <Link to={ROUTES.SCAN}> Scan</Link>
+        <Link to={ROUTES.SCAN}>Scan</Link>
       </li>
       <li>
-        <Link to={ROUTES.REPORT}> Report</Link>
+        <Link to={ROUTES.REPORT}>Inventory Report</Link>
       </li>
       <li>
-        <Link to={ROUTES.TREND_REPORT}> Trend Report</Link>
+        <Link to={ROUTES.TREND_REPORT}>Trend Report</Link>
       </li>
       <li>
         <Link to={ROUTES.LOGIN} onClick={props.logout}>
