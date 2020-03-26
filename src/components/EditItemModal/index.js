@@ -94,121 +94,101 @@ class EditItemModal extends Component {
   render() {
     return (
       <div className="modal-form show fade">
-
-
         <div className="header-wrapper">
           <h3>{this.props.pageName}</h3>
         </div>
 
-
-        <div className="row pt-3 pl-3">
-
-
+        <div className="modal-flex-parent">
           {this.state.message !== "" && (
             <div className="confirmation-update">{this.state.message}</div>
           )}
 
+          <div className="modal-input-wrapper">
+            <div className="modal-name">
+              <label>
+                <b>Name:</b>
+              </label>
+              <input
+                name="itemName"
+                type="text"
+                value={this.state.itemName}
+                onChange={this.handleChange}
+              ></input>
+              </div>
 
-          <div className="col-md-8">
-     
-           <div>
+            <div className="modal-desc">
+              <label>
+                <b>Description:</b>
+              </label>
+              <textarea
+                name="itemDescription"
+                className="no-resize"
+                type="text"
+                rows="3"
+                value={this.state.itemDescription}
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="flex-parent">
+              <div className="modal-number-input">
                 <label>
-                  <b>Name:</b>
+                  <b>Count:</b>
                 </label>
                 <input
-                  name="itemName"
-                  type="text"
-                  value={this.state.itemName}
-                  onChange={this.handleChange}
-                ></input>
-           
-                <label>
-                  <b>Description:</b>
-                </label>
-                <textarea
-                  name="itemDescription"
-                  className="no-resize"
-                  type="text"
-                  rows="1"
-                  value={this.state.itemDescription}
+                  name="itemCount"
+                  type="number"
+                  value={this.state.itemCount}
                   onChange={this.handleChange}
                 />
-      </div>
-              
+              </div>
 
+              <div className="modal-number-input">
+                <label>
+                  <b>Cost:</b>
+                </label>
+                <input
+                  name="itemCost"
+                  type="number"
+                  value={this.state.itemCost}
+                  onChange={this.handleChange}
+                />
+              </div>
 
-                <div className="flex-parent">
-                  <div className="modal-number-input">
-                    <label>
-                      <b>Count:</b>
-                    </label>
-                    <input
-                      name="itemCount"
-                      type="number"
-                      value={this.state.itemCount}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-
-                  <div className="modal-number-input">
-                    <label>
-                      <b>Cost:</b>
-                    </label>
-                    <input
-                      name="itemCost"
-                      type="number"
-                      value={this.state.itemCost}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div className="modal-number-input">
-                    <label>
-                      <b>Threshold:</b>
-                    </label>
-                    <input
-                      name="itemThreshold"
-                      type="number"
-                      value={this.state.itemThreshold}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-
-
+              <div className="modal-number-input">
+                <label>
+                  <b>Threshold:</b>
+                </label>
+                <input
+                  name="itemThreshold"
+                  type="number"
+                  value={this.state.itemThreshold}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
           </div>
-          <div className="col-md-4 text-center align-center">
-           
-                <button
-                  className="button"
-                  onClick={() => this.handleUpdateBarcode()}
-                >
-                  Save Changes
-                </button>
-            
-              
-                <button
-                  className="button"
-                  onClick={() => this.printBarcode()}
-                >
-                  Print Barcode
-                </button>
-         
-           
-                <button className="button" onClick={this.props.onClose}>
-                  Close
-                </button>
-           
+          <div className="modal-buttons">
+            <button
+              className="button modal-button save"
+              onClick={() => this.handleUpdateBarcode()}
+            >
+              Save Changes
+            </button>
+
+            <button className="button modal-button print" onClick={() => this.printBarcode()}>
+              Print Barcode
+            </button>
+
+            <button className="button modal-button close" onClick={this.props.onClose}>
+              Close
+            </button>
           </div>
         </div>
 
-
-        <div className="barcode-create-item" id="barcode-save">
+        <div className="barcode-wrapper" id="barcode-save">
           <Barcode value={this.state.itemName} width={1} />
         </div>
-
-
       </div>
     );
   }

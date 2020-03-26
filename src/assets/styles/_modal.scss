@@ -1,3 +1,33 @@
 .header-wrapper{
     text-align: center;
+    padding-top: 1rem;
+}
+
+.modal-flex-parent{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+.modal-buttons{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    justify-content: space-evenly;
+}
+.save{
+    background-color: $color-main-light;
+}
+
+.print{
+    background-color: #808080;}
+.close{
+    background-color: #ff0000;
+}
+.modal-input-wrapper{
+    width: 60%;
+}
+
+.modal-name{
+    padding-bottom: 1rem;
 }
