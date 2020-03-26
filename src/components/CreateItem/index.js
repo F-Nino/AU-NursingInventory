@@ -12,7 +12,7 @@ class CreateItem extends Component {
       itemName: "",
       itemDescription: "",
       initialCount: 0,
-      itemCost: 0.0,
+      itemCost: 0.00,
       itemThreshold: 1,
       categories: [],
       errorMessage: [],

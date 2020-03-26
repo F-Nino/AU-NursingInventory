@@ -12,7 +12,7 @@ class CategoryForm extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, message: "" });
   };
 
   handleSubmit = event => {
@@ -29,7 +29,7 @@ class CategoryForm extends Component {
           }
         })
         .then(res => {
-          this.setState({ message: "Category Created Successfully" });
+          this.setState({ message: "Category Created Successfully: " + this.state.categoryName });
           this.setState({ fontType: "green" });
         })
         .catch(error => {
@@ -46,45 +46,30 @@ class CategoryForm extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center">
-       Create Category
-        </h2>
+        <h2 className="text-center">Create Category</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div className="rows">
+            <input
+              className="create-category-input"
+              name="categoryName"
+              type="text"
+              placeholder="Name"
+              value={this.props.categoryName}
+              onChange={this.handleChange}
+            />
+          </div>
 
+          <div className="button-row">
+            <button className="button create-category-button" type="submit">
+              Create
+            </button>
+          </div>
+        </form>
         <div className="text-center">
           <span className="message" style={{ color: this.state.fontType }}>
             {this.state.message}
           </span>
         </div>
-
-        <form onSubmit={this.handleSubmit}>
-          <div className="rows">
-      
-
-
- 
-        
-              <input
-                className="create-category-input"
-                name="categoryName"
-                type="text"
-                placeholder="Name"
-                value={this.props.categoryName}
-                onChange={this.handleChange}
-              />
-          
-   
-          </div>
-
-
-          <div className="button-row">
-            
-    
-              <button className="button create-category-button" type="submit">
-                Create 
-              </button>
-           
-          </div>
-        </form>
       </div>
     );
   }

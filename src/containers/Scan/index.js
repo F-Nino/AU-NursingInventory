@@ -52,13 +52,15 @@ class Scan extends Component {
               console.log("Item not in db");
               window.alert("Item not in db");
             }
+            else {
+              this.setState({
+                itemData: resp.data.data,
+                showData: true,
+                barcode: ""
+              });
+            }
             //if resp.data.status == SUCCESS
             console.log("the resp", resp);
-            this.setState({
-              itemData: resp.data.data,
-              showData: true,
-              barcode: ""
-            });
             document.getElementById("barcode-id").focus();
           })
           .catch(error => {
@@ -68,7 +70,7 @@ class Scan extends Component {
         console.log("error from axios call in comp did mount");
       }
     } else {
-      window.alert("count not correct");
+      window.alert("Error: Invalid Count");
     }
   };
 
@@ -81,22 +83,33 @@ class Scan extends Component {
   callAdd = event => {
     event.preventDefault();
     console.log("add clicked");
-    this.setState({ addButton: true, deleteButton: false, detailsButton: false, showData: false});
-    console.log("add button state", this.state.addButton);
+    this.setState({ addButton: true, deleteButton: false, detailsButton: false, showData: false }, () => { console.log("add button state", this.state.addButton); });
   };
 
   callDelete = event => {
     event.preventDefault();
     console.log("delete clicked");
-    this.setState({ deleteButton: true, addButton: false, detailsButton: false, showData: false });
-    console.log("delete button state", this.state.deleteButton);
+    this.setState({ deleteButton: true, addButton: false, detailsButton: false, showData: false }, () => { console.log("add button state", this.state.deleteButton); });
   };
 
   callDetails = event => {
     event.preventDefault();
     console.log("details clicked");
-    this.setState({ detailsButton: true, addButton: false, deleteButton: false, showData: false });
-    console.log("details button state", this.state.detailsButton);
+    this.setState({ detailsButton: true, addButton: false, deleteButton: false, showData: false }, () => { console.log("add button state", this.state.detailsButton); });
+  };
+
+  getLabelClassName = value => {
+    let classNameForButton = "scan-button button ";
+    if(value === "add-button" && this.state.addButton) {
+      classNameForButton += "active-scan-button"
+    }
+    else if (value === "delete-button" && this.state.deleteButton) {
+      classNameForButton += "active-scan-button"
+    }
+    else if (value === "seeDetails-button" && this.state.detailsButton) {
+      classNameForButton += "active-scan-button"
+    }
+    return classNameForButton;
   };
 
   render() {
@@ -109,7 +122,7 @@ class Scan extends Component {
 
           <div className="scan-form-buttons">
             <button
-              className="button scan-add-button"
+              className={ this.getLabelClassName("add-button") }
               name="add-button"
               onClick={this.callAdd}
             >
@@ -117,16 +130,15 @@ class Scan extends Component {
             </button>
 
             <button
-              className="button scan-delete-button"
+              className={ this.getLabelClassName("delete-button") }
               name="delete-button"
-              checked="true"
               onClick={this.callDelete}
             >
               Decrease Inventory
             </button>
 
             <button
-              className="button scan-seeDetails-button"
+              className={ this.getLabelClassName("seeDetails-button") }
               name="seeDetails-button"
               onClick={this.callDetails}
             >
@@ -139,7 +151,7 @@ class Scan extends Component {
             <div className="scan-input-row">
             <input
               name="barcode"
-              placeholder=""
+              placeholder="Barcode"
               value={barcode}
               onChange={this.handleChange}
               className="scan-input scan-barcode"

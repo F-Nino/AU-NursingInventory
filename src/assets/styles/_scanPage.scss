@@ -21,10 +21,9 @@
   display: flex;
 }
 
-.scan-add-button,
-.scan-delete-button,
-.scan-seeDetails-button {
-  margin: 1em;
+.scan-button {
+  margin: .5rem;
+  background-color: $grey;
 }
 
 .show-text {
@@ -55,4 +54,8 @@
 
 .scan-title {
   font-size: 3rem;
+}
+
+.active-scan-button {
+  background-color: $color-main-light;
 }
