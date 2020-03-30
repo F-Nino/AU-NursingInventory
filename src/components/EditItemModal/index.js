@@ -10,11 +10,24 @@ class EditItemModal extends Component {
     itemCount: this.props.item.count,
     itemCost: this.props.item.cost,
     itemThreshold: this.props.item.threshold,
-    message: ""
+    message: "",
+    width: 1
   };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value, message: "" });
+    if (this.state.itemName.length < 8) {
+      this.setState({ width: 4 });
+    }
+    else if (this.state.itemName.length < 15) {
+      this.setState({ width: 3 });
+    }
+    else if (this.state.itemName.length < 25) {
+      this.setState({ width: 2 });
+    }
+    else {
+      this.setState({ width: 1 });
+    }
   };
 
   handleUpdateBarcode = () => {
@@ -188,7 +201,7 @@ class EditItemModal extends Component {
         </div>
 
         <div className="barcode-wrapper" id="barcode-save">
-          <Barcode value={this.state.itemName} width={1} />
+          <Barcode value={this.state.itemName} width={this.state.width} />
         </div>
         {this.state.message !== "" && (
           <div className="confirmation-update">{this.state.message}</div>

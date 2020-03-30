@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Barcode from "react-barcode";
+import NumericInput from "react-numeric-input";
 
 class CreateItem extends Component {
   constructor() {
@@ -65,12 +66,13 @@ class CreateItem extends Component {
 
             <div className="form-top-padding">
               <label className="section-title">Cost:</label>
-              <input
+              <NumericInput
                 className="form-control"
                 name="itemCost"
-                type="number"
                 value={this.props.itemCost}
-                onChange={this.props.onChange}
+                onChange={this.props.onCostChange}
+                step={0.01}
+                precision={2}
               />
             </div>
           </div>

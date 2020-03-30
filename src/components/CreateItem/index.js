@@ -67,12 +67,19 @@ class CreateItem extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    if (this.state.itemName.length < 10) {
+    if (this.state.itemName.length < 8) {
       this.setState({ width: 3 });
+    }
+    else if (this.state.itemName.length < 15) {
+      this.setState({ width: 2 });
     }
     else {
       this.setState({ width: 1 });
     }
+  };
+
+  handleCostChange = value => {
+    this.setState({ itemCost:value });
   };
 
   handleSubmit = event => {
@@ -196,6 +203,7 @@ class CreateItem extends Component {
 
           <CreateItemForm
             onChange={this.handleChange}
+            onCostChange={this.handleCostChange}
             onSubmit={this.handleSubmit}
             itemName={this.state.itemName}
             itemDescription={this.state.itemDescription}

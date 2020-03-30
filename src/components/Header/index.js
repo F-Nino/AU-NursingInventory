@@ -90,16 +90,16 @@ class header extends Component {
                       <td>{item.threshold}</td>
                       <td className="table-buttons">
                         <button
-                          className="button delete-button"
-                          onClick={() => this.props.onItemDelete(item)}
-                        >
-                          Delete
-                        </button>
-                        <button
                           className="button edit-button"
                           onClick={() => this.props.onItemEdit(item)}
                         >
                           Edit
+                        </button>
+                        <button
+                          className="button delete-button"
+                          onClick={() => this.props.onItemDelete(item)}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>

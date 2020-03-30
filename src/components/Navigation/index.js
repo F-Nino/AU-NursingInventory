@@ -37,7 +37,7 @@ const NavigationAuth = props => (
         <Link to={ROUTES.HOME}>Home</Link>
       </li>
       <li>
-        <Link to={ROUTES.CREATE_BARCODE}>Create Barcode</Link>
+        <Link to={ROUTES.CREATE_BARCODE}>Create</Link>
       </li>
       <li>
         <Link to={ROUTES.SCAN}>Scan</Link>
