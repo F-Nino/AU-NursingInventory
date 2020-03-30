@@ -35,13 +35,12 @@ class searchField extends Component {
 
   render() {
     return (
-      <div className="search">
-        <div className="row mb-2">
-          <div className="col-3"></div>
-          <div className="col-4">
+      <div className="search-section">
+        <div className="search-row-one">
+          <div className="search-input-wrapper">
             <input
               type="text"
-              className="form-control mb-2"
+              className="search-input"
               placeholder="Search For Item"
               id="searchInputField"
               onKeyPress={event => {
@@ -51,38 +50,34 @@ class searchField extends Component {
               }}
             />
           </div>
-          <div className="col-2">
+          <div className="search-button-wrapper">
             <button
-              className="btn mb-2 btn-primary"
+              className="button search-report"
               onClick={() => this.handleSearch()}
             >
               Search
             </button>
           </div>
         </div>
-        <div className="row mb-2">
-          <div className="col-12">
-            {this.state.items.length > 0 && (
-              <div className="table_holder">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Last Updated</th>
-                      <th>Count</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.items.map(item => (
-                      <TableItem key={item.id} item={item} />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+        {this.state.items.length > 0 && (
+          <div className="table-search-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Last Updated</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.items.map(item => (
+                  <TableItem key={item.id} item={item} />
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
+        )}
       </div>
     );
   }

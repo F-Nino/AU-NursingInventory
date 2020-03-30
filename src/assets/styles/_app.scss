@@ -21,7 +21,7 @@ h5,
 h6 {
   font-family: $font-header;
   margin-bottom: 0.5em;
-  color: $grey;
+  color: $black;
 }
 
 .logo {
@@ -39,15 +39,3 @@ h6 {
   padding: $container-padding;
 }
 
-.small-text {
-  font-size: 14px;
-}
-
-.delete-icon {
-  width: 16px;
-}
-
-.back-icon-container {
-  width: 25px;
-  cursor: pointer;
-}

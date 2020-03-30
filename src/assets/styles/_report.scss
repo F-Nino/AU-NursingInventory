@@ -1,0 +1,59 @@
+.report-wrapper {
+  max-width: 60vw;
+  margin: auto;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.search-button-wrapper{
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.search-report{
+  padding: .75rem 2.5rem;
+}
+
+.search-input{
+}
+
+.search-input-wrapper{
+  text-align: center;
+  padding-right: 1rem;
+}
+
+.edit-button{
+  background-color: #4a6eb5;
+  margin-right: .5rem;
+}
+
+.delete-button{
+  background-color: red;
+}
+
+.table-buttons{
+  display: flex;
+}
+
+.inventory-title {
+  font-size: 4rem;
+  padding-top: 2rem;
+  margin-bottom: 0rem;
+}
+
+.trend-report-title {
+  font-size: 4rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-row-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-search-wrapper {
+  padding-bottom: 4rem;
+}

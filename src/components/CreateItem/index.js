@@ -3,20 +3,22 @@ import axios from "axios";
 import CreateItemForm from "../CreateItemForm";
 import CreateItemModal from "../CreateItemModal";
 import html2canvas from "html2canvas";
+import EditItemModal from "../EditItemModal";
 
-class CreateBarcode extends Component {
+class CreateItem extends Component {
   constructor() {
     super();
     this.state = {
       itemName: "",
       itemDescription: "",
       initialCount: 0,
-      itemCost: 0.0,
+      itemCost: 0.00,
       itemThreshold: 1,
       categories: [],
       errorMessage: [],
       currentCategorySelected: "",
       showModal: false,
+      item: {},
       width: 1
     };
   }
@@ -65,12 +67,19 @@ class CreateBarcode extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    if (this.state.itemName.length < 10) {
+    if (this.state.itemName.length < 8) {
       this.setState({ width: 3 });
+    }
+    else if (this.state.itemName.length < 15) {
+      this.setState({ width: 2 });
     }
     else {
       this.setState({ width: 1 });
     }
+  };
+
+  handleCostChange = value => {
+    this.setState({ itemCost:value });
   };
 
   handleSubmit = event => {
@@ -121,12 +130,18 @@ class CreateBarcode extends Component {
           }
         })
         .then(res => {
-          this.setState({ errorMessage: [] });
           window.scrollTo({ top: 0, behavior: "smooth" });
-          this.setState({ showModal: true });
           document.getElementById("modal-bg").style.display = "block";
           document.body.style.height = "100%";
           document.body.style.overflowY = "hidden";
+          let item = {};
+          item.name = this.state.itemName;
+          item.count = this.state.initialCount;
+          item.threshold = this.state.itemThreshold;
+          item.cost = this.state.itemCost;
+          item.description = this.state.itemDescription;
+          item.id = res.data.data.id;
+          this.setState({ errorMessage: [], item, showModal: true });
         })
         .catch(error => {
           console.log("error", error);
@@ -163,21 +178,17 @@ class CreateBarcode extends Component {
     return (
       <div>
         {this.state.showModal && (
-          <CreateItemModal
+          <EditItemModal
+            pageName={"Item Successfully Created"}
             onPrint={this.printBarcode}
             onEdit={this.editModal}
             onClose={this.closeModal}
-            itemName={this.state.itemName}
-            itemDescription={this.state.itemDescription}
-            count={this.state.initialCount}
-            category={this.state.currentCategorySelected}
-            itemThreshold={this.state.itemThreshold}
-            itemCost={this.state.itemCost}
+            item={this.state.item}
           />
         )}
         <div>
           <h1 className="text-center pt-3">
-            <u>Create Item</u>
+            Create Item
           </h1>
 
           <div className="error-message text-center">
@@ -192,6 +203,7 @@ class CreateBarcode extends Component {
 
           <CreateItemForm
             onChange={this.handleChange}
+            onCostChange={this.handleCostChange}
             onSubmit={this.handleSubmit}
             itemName={this.state.itemName}
             itemDescription={this.state.itemDescription}
@@ -214,4 +226,4 @@ class CreateBarcode extends Component {
   }
 }
 
-export default CreateBarcode;
+export default CreateItem;

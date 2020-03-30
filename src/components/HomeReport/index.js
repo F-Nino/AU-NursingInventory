@@ -15,7 +15,7 @@ class report extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center mt-4">Inventory Overview</h1>
+        <h3 className="text-center mt-4">Inventory Overview</h3>
         <Category />
       </div>
     );

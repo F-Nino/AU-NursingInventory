@@ -27,17 +27,18 @@ class attentionNeeded extends Component {
   render() {
     const categoryKeys = Object.keys(this.state.headers);
     return (
-      <div>
-        <h2 className="text-center">Attention Needed</h2>
-        {this.state.headers !== null &&
-          categoryKeys.map((key, index) => (
+      categoryKeys.length !== 0 && (
+        <div>
+          <h2 className="text-center">Attention Needed</h2>
+          {categoryKeys.map((key, index) => (
             <AttentionNeededHeader
               key={index}
               name={key}
               items={this.state.headers[key]}
             />
           ))}
-      </div>
+        </div>
+      )
     );
   }
 }

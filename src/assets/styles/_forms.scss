@@ -3,17 +3,17 @@ select,
 textarea {
   /* styles go here */
   padding: 10px 12px;
-  font-size: 16px;
+  font-size: 20px;
   font-family: $font-body;
   display: block;
   width: 100%;
-  border: none;
   border: 1px solid $color-secondary;
   display: inline-block;
   padding: 10px 15px;
   font-size: 16px;
-  // border-radius: 0.3em;
-  //-webkit-appearance: none;
+  border-radius: 0.3em;
+  background-color:white;
+
 }
 
 .button {
@@ -24,6 +24,7 @@ textarea {
   font-family: $font-body;
   transition: 1s;
   display: inline-block;
+  justify-content: center;
   padding: 10px 15px;
   font-size: 16x;
   border-radius: 0.3em;
@@ -36,9 +37,9 @@ textarea {
   transition: 1s;
 }
 
-.ts-input,
-.ts-button {
-  margin-bottom: 0.5em;
+.au-input,
+.au-button {
+  margin-bottom: .4em;
 }
 
 .registration-wrapper {
@@ -106,6 +107,7 @@ textarea {
   width: 60%;
   z-index: 1072;
   background-color: white;
+  border-radius: 25px;
 }
 
 .modal-chunk {
@@ -133,10 +135,27 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
+
 input[type="number"] {
   -moz-appearance: textfield;
 }
 
 .trend-report-input {
   width: 20%;
+}
+
+.confirmation-update {
+  color: $color-main;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.flex-parent {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.modal-number-input {
+  padding: 0 0.25rem;
 }

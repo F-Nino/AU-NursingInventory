@@ -60,9 +60,10 @@ class report extends Component {
   render() {
     return (
       <div>
-        <h2 className="text-center p-4">Inventory Overview</h2>
+        <h2 className="text-center inventory-title">Inventory Overview</h2>
         {this.state.showModal && (
           <EditItemModal
+            pageName={"Edit item"}
             onClose={this.closeModal}
             onPrint={this.printBarcode}
             item={this.state.modalItem}

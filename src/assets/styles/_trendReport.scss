@@ -1,0 +1,30 @@
+.trend-report-wrapper {
+  margin: auto;
+  max-width: 60vw;
+  padding-bottom: 2rem;
+}
+
+.row-trend-report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //padding-top: 15px;
+  //padding-bottom: 15px;
+  margin-bottom: 1rem;
+}
+
+.start-input-wrapper {
+  padding-right: 1rem;
+  display: block;
+  width: 20%;
+}
+
+.end-input-wrapper {
+  padding: 0 1rem;
+  display: block;
+  width: 20%;
+}
+
+.item-search-button {
+  margin-top: 1rem;
+}

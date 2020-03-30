@@ -12,7 +12,7 @@ class CategoryForm extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, message: "" });
   };
 
   handleSubmit = event => {
@@ -29,7 +29,7 @@ class CategoryForm extends Component {
           }
         })
         .then(res => {
-          this.setState({ message: "Category Created Successfully" });
+          this.setState({ message: "Category Created Successfully: " + this.state.categoryName });
           this.setState({ fontType: "green" });
         })
         .catch(error => {
@@ -46,42 +46,30 @@ class CategoryForm extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center pt-3">
-          <u>Create Category</u>
-        </h1>
+        <h2 className="text-center">Create Category</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div className="rows">
+            <input
+              className="create-category-input"
+              name="categoryName"
+              type="text"
+              placeholder="Name"
+              value={this.props.categoryName}
+              onChange={this.handleChange}
+            />
+          </div>
 
+          <div className="button-row">
+            <button className="button create-category-button" type="submit">
+              Create
+            </button>
+          </div>
+        </form>
         <div className="text-center">
           <span className="message" style={{ color: this.state.fontType }}>
             {this.state.message}
           </span>
         </div>
-
-        <form onSubmit={this.handleSubmit}>
-          <div className="row py-2">
-            <div className="col-2"></div>
-            <label htmlFor="itemName" className="col-2">
-              <h2>Name</h2>
-            </label>
-            <div className="col-6">
-              <input
-                className="form-control"
-                name="categoryName"
-                type="text"
-                value={this.props.categoryName}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="col-2"></div>
-          </div>
-          <div className="row py-2">
-            <div className="col-4"></div>
-            <div className="col-4 text-center">
-              <button className="button ts-button" type="submit">
-                <span className="temp">Create Category</span>
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     );
   }
