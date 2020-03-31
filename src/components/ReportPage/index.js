@@ -46,6 +46,8 @@ class report extends Component {
   handleItemEdit = item => {
     this.setState({ showModal: true, modalItem: item });
     window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     document.getElementById("modal-bg").style.display = "block";
     document.body.style.height = "100%";
     document.body.style.overflowY = "hidden";

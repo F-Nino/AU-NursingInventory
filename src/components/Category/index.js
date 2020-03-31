@@ -9,7 +9,10 @@ class category extends Component {
   }
 
   render() {
-    let categoryKeys = Object.keys(this.props.categoryInfo);
+    let categoryKeys = null;
+    try {
+      categoryKeys = Object.keys(this.props.categoryInfo);
+    } catch {}
     return (
       this.props.categoryInfo !== null &&
       categoryKeys.map(key => (

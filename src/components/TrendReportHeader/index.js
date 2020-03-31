@@ -31,7 +31,6 @@ class trendReportHeader extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("called");
     if (prevProps.items !== this.props.items) {
       this.updateCount();
     }
