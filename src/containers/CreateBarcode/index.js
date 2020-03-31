@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import CreateItem from "../../components/CreateItem";
 import CreateCategory from "../../components/CreateCategory";
+import axios from "axios";
 
 class CreateBarcode extends Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: "itemButton"
+      selectedOption: "itemButton",
+      categories: []
     };
   }
 
@@ -22,6 +24,24 @@ class CreateBarcode extends Component {
     }
     return classNameForLabel;
   };
+
+  componentDidMount() {
+    axios
+      .get(`http://localhost:3000/api/v1/categories`, {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          crossorigin: true
+        }
+      })
+      .then(res => {
+        console.log(res.data.data);
+        try {
+          this.setState({ categories: res.data.data });
+        } catch {
+          console.log("uh oh");
+        }
+      });
+  }
 
   render() {
     return (
@@ -54,9 +74,9 @@ class CreateBarcode extends Component {
           />
         </div>
 
-        {this.state.selectedOption === "itemButton" ? <CreateItem /> : null}
+        {this.state.selectedOption === "itemButton" ? <CreateItem categories = { this.state.categories }/> : null}
         {this.state.selectedOption === "categoryButton" ? (
-          <CreateCategory />
+          <CreateCategory categories = { this.state.categories } />
         ) : null}
       </div>
     );

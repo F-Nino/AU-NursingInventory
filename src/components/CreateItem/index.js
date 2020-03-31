@@ -6,17 +6,16 @@ import html2canvas from "html2canvas";
 import EditItemModal from "../EditItemModal";
 
 class CreateItem extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       itemName: "",
       itemDescription: "",
       initialCount: 0,
-      itemCost: 0.00,
+      itemCost: 0.0,
       itemThreshold: 1,
-      categories: [],
       errorMessage: [],
-      currentCategorySelected: "",
+      currentCategorySelected: this.props.categories[0],
       showModal: false,
       item: {},
       width: 1
@@ -69,23 +68,21 @@ class CreateItem extends Component {
     this.setState({ [event.target.name]: event.target.value });
     if (this.state.itemName.length < 8) {
       this.setState({ width: 3 });
-    }
-    else if (this.state.itemName.length < 15) {
+    } else if (this.state.itemName.length < 15) {
       this.setState({ width: 2 });
-    }
-    else {
+    } else {
       this.setState({ width: 1 });
     }
   };
 
   handleCostChange = value => {
-    this.setState({ itemCost:value });
+    this.setState({ itemCost: value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     var categoryId;
-    this.state.categories.forEach(category => {
+    this.props.categories.forEach(category => {
       if (category.name === this.state.currentCategorySelected) {
         categoryId = category.id;
       }
@@ -94,23 +91,23 @@ class CreateItem extends Component {
     var errorMessage = [];
     if (this.state.itemName === "") {
       submitItem = false;
-      errorMessage.push("item name cannot be empty");
+      errorMessage.push("Item Name Cannot Be Empty");
     }
     if (this.state.itemDescription === "") {
       submitItem = false;
-      errorMessage.push("item description cannot be empty");
+      errorMessage.push("Item Description Cannot Be Empty");
     }
     if (this.state.initialCount < 0) {
       submitItem = false;
-      errorMessage.push("item count cannot be less than 0");
+      errorMessage.push("Item Count Cannot Be Less Than 0");
     }
     if (this.state.itemThreshold < 0) {
       submitItem = false;
-      errorMessage.push("item threshold cannot be less than 0");
+      errorMessage.push("Item Threshold Cannot Be Less Than 0");
     }
     if (this.state.itemCost < 0) {
       submitItem = false;
-      errorMessage.push("item cost cannot be less than 0");
+      errorMessage.push("Item Cost Cannot Be Less Than 0");
     }
     if (submitItem) {
       axios
@@ -153,27 +150,6 @@ class CreateItem extends Component {
     }
   };
 
-  componentDidMount() {
-    axios
-      .get(`http://localhost:3000/api/v1/categories`, {
-        headers: {
-          "Access-Control-Allow-Origin": true,
-          crossorigin: true
-        }
-      })
-      .then(res => {
-        console.log(res.data.data);
-        try {
-          this.setState({ categories: res.data.data });
-          this.setState({
-            currentCategorySelected: this.state.categories[0].name
-          });
-        } catch {
-          console.log("uh oh");
-        }
-      });
-  }
-
   render() {
     return (
       <div>
@@ -187,19 +163,7 @@ class CreateItem extends Component {
           />
         )}
         <div>
-          <h1 className="text-center pt-3">
-            Create Item
-          </h1>
-
-          <div className="error-message text-center">
-            {this.state.errorMessage.length > 0 && (
-              <ul>
-                {this.state.errorMessage.map(message => (
-                  <li>{message}</li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <h1 className="text-center pt-3">Create Item</h1>
 
           <CreateItemForm
             onChange={this.handleChange}
@@ -208,7 +172,7 @@ class CreateItem extends Component {
             itemName={this.state.itemName}
             itemDescription={this.state.itemDescription}
             initialCount={this.state.initialCount}
-            categories={this.state.categories}
+            categories={this.props.categories}
             itemThreshold={this.state.itemThreshold}
             itemCost={this.state.itemCost}
             currentCategorySelected={this.state.currentCategorySelected}
@@ -221,6 +185,16 @@ class CreateItem extends Component {
           id="modal-bg"
           onClick={this.closeModal}
         ></div>
+
+        <div className="error-message">
+          {this.state.errorMessage.length > 0 && (
+            <ul>
+              {this.state.errorMessage.map(message => (
+                <li>{message}</li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     );
   }

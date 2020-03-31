@@ -1,7 +1,6 @@
 .trend-report-wrapper {
   margin: auto;
   max-width: 60vw;
-  padding-bottom: 2rem;
 }
 
 .row-trend-report {
@@ -27,4 +26,19 @@
 
 .item-search-button {
   margin-top: 1rem;
+}
+
+.inventory-report-cat-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.cat-header-name {
+  //justify-content: right;
+}
+
+.cat-header-stock {
+  position: absolute;
+  right: 3%;
 }

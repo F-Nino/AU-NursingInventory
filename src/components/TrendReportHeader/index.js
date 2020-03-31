@@ -44,13 +44,16 @@ class trendReportHeader extends Component {
           className="jumbotron-mini text-center"
           onClick={() => this.handleHeaderClick()}
         >
-          <span>
-            <h2 className="white-header">
-              <b>{this.props.name}</b>
-              {"   "}
-              {this.state.count}
-            </h2>
-          </span>
+          <div className="inventory-report-cat-header">
+            <div className="cat-header-name">
+              <h2 className="white-header">
+                <b>{this.props.name}</b>
+              </h2>
+            </div>
+            <div className="cat-header-stock">
+              <h2 className="white-header">{this.state.count}</h2>
+            </div>
+          </div>
         </div>
         {this.state.open &&
           (this.props.items != null ? (

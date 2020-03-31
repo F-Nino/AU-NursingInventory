@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ReactScrollableList from "react-scrollable-list";
 
 class CategoryForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       categoryName: "",
       message: "",
@@ -29,7 +30,9 @@ class CategoryForm extends Component {
           }
         })
         .then(res => {
-          this.setState({ message: "Category Created Successfully: " + this.state.categoryName });
+          this.setState({
+            message: "Category Created Successfully: " + this.state.categoryName
+          });
           this.setState({ fontType: "green" });
         })
         .catch(error => {
@@ -42,6 +45,15 @@ class CategoryForm extends Component {
       this.setState({ fontType: "#6b0103" });
     }
   };
+
+  componentDidMount() {
+    console.log(this.props.categories);
+    let x = [];
+    this.props.categories.foreach(category => {
+      x.push({id: category.id, content: category.name});
+    });
+    console.log(x);
+  }
 
   render() {
     return (
@@ -70,6 +82,11 @@ class CategoryForm extends Component {
             {this.state.message}
           </span>
         </div>
+        <ReactScrollableList
+          listItems={this.props.categories}
+          heightOfItem={30}
+          maxItemsToRender={50}
+        />
       </div>
     );
   }
