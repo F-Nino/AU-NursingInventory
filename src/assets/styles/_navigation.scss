@@ -18,16 +18,16 @@
     text-transform: uppercase;
     a {
       transition: 0.5s;
-      font-size: 1.25em;
+      font-size: 1.35em;
     }
     .active {
       color: white;
     }
     .not-active {
-      color: grey;
+      color: #A0A0A0;
     }
     a:hover {
-      color: $color-secondary;
+      color: #E0E0E0;
     }
   }
 }

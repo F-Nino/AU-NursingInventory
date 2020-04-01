@@ -79,21 +79,21 @@ class CategoryForm extends Component {
             {this.state.message}
           </span>
         </div>
-        <div className="create-category-table">
-          <table className="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Current Inventory Categories</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.categories.map(category => (
-                <tr>
-                  <td>{category.name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="create-category-header">
+          <h2>Current Inventory Categories</h2>
+        </div>
+        <div className="category-table-wrapper">
+          <div className="create-category-table">
+            <table className="table table-bordered table-hover">
+              <tbody>
+                {this.props.categories.map(category => (
+                  <tr>
+                    <td>{category.name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
