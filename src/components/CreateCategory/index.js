@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ReactScrollableList from "react-scrollable-list";
+import TableItem from "../TableItem";
 
 class CategoryForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categoryName: "",
-      message: "",
-      fontType: "",
-      categoryList: []
+      message: " ",
+      fontType: ""
     };
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value, message: "" });
+    if (event.target.value.length > 20) {
+      this.setState({
+        message: "ERROR: Category Name Cannot Exceed 20 Characters"
+      });
+    } else {
+      this.setState({ [event.target.name]: event.target.value, message: "" });
+    }
   };
 
   handleSubmit = event => {
@@ -38,22 +43,14 @@ class CategoryForm extends Component {
         })
         .catch(error => {
           console.log("error", error);
-          this.setState({ message: "Name already taken" });
+          this.setState({ message: "Name Already Taken" });
           this.setState({ fontType: "#6b0103" });
         });
     } else {
-      this.setState({ message: "Name cannot be empty" });
+      this.setState({ message: "Name Cannot Be Empty" });
       this.setState({ fontType: "#6b0103" });
     }
   };
-
-  componentDidMount() {
-    let categoryList = [];
-    this.props.categories.forEach(category => {
-      categoryList.push({ id: category.id, content: category.name });
-    });
-    this.setState({ categoryList });
-  }
 
   render() {
     return (
@@ -82,11 +79,22 @@ class CategoryForm extends Component {
             {this.state.message}
           </span>
         </div>
-        <ReactScrollableList
-          listItems={this.state.categoryList}
-          heightOfItem={1000}
-          maxItemsToRender={50}
-        />
+        <div className="create-category-table">
+          <table className="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Current Inventory Categories</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.categories.map(category => (
+                <tr>
+                  <td>{category.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

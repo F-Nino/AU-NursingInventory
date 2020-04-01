@@ -89,3 +89,12 @@
 .section-title {
   display: block;
 }
+
+.create-category-table {
+  overflow:hidden;
+  overflow-y: scroll;
+  height: 15rem;
+  margin-top: 3rem;
+  width: 50%;
+  margin-left: 25%;
+}
