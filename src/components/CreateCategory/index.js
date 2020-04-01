@@ -8,7 +8,8 @@ class CategoryForm extends Component {
     this.state = {
       categoryName: "",
       message: "",
-      fontType: ""
+      fontType: "",
+      categoryList: []
     };
   }
 
@@ -47,12 +48,11 @@ class CategoryForm extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.categories);
-    let x = [];
-    this.props.categories.foreach(category => {
-      x.push({id: category.id, content: category.name});
+    let categoryList = [];
+    this.props.categories.forEach(category => {
+      categoryList.push({ id: category.id, content: category.name });
     });
-    console.log(x);
+    this.setState({ categoryList });
   }
 
   render() {
@@ -83,8 +83,8 @@ class CategoryForm extends Component {
           </span>
         </div>
         <ReactScrollableList
-          listItems={this.props.categories}
-          heightOfItem={30}
+          listItems={this.state.categoryList}
+          heightOfItem={1000}
           maxItemsToRender={50}
         />
       </div>
