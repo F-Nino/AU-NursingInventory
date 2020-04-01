@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../Header";
-import { connect } from "react-redux";
+
 
 class category extends Component {
   constructor(props) {
@@ -25,8 +25,4 @@ class category extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  categoryInfo: state.reportState.reportData
-});
-
-export default connect(mapStateToProps, null)(category);
+export default category;
