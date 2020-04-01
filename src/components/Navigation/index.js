@@ -44,7 +44,7 @@ class Navigation extends React.Component {
 
 const Logo = () => (
   <div className="logo">
-    <span>FNBJ</span>
+    <span>INSERT NAME HERE</span>
   </div>
 );
 

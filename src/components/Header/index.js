@@ -85,7 +85,7 @@ class header extends Component {
                     <th>Last Updated</th>
                     <th>Stock</th>
                     <th>Threshold</th>
-                    <th>Buttons</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>

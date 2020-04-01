@@ -9,8 +9,9 @@
 }
 
 .scan-submit-button {
-  margin-top: 2em;
+  margin-top: 1.5rem;
   width: 50%;
+  font-size: 1rem;
 }
 
 .scan-form {
@@ -37,7 +38,14 @@
   color: $color-main;
   font-size: 2rem;
   text-align: center;
-  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.text-center-create-item {
+  color: $color-main;
+  font-size: 3rem;
+  text-align: center;
+  padding-bottom: 1%;
 }
 
 .scan-input-row {

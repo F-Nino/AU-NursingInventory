@@ -35,6 +35,7 @@
 
 .create-category-button {
   width: 20%;
+  font-size: 1rem;
 }
 
 .button-row {
@@ -66,6 +67,7 @@
 }
 .create-item-button {
   width: 25%;
+  font-size: 1rem;
 }
 .item-desc-section {
   padding: 20px;
@@ -94,7 +96,20 @@
   overflow:hidden;
   overflow-y: scroll;
   height: 15rem;
-  margin-top: 3rem;
   width: 50%;
-  margin-left: 25%;
+}
+
+.create-category-header {
+  text-align: center;
+  padding-top: 3rem;
+
+  h2 {
+    color: $color-main;
+    font-size: 1.9rem;
+  }
+}
+
+.category-table-wrapper {
+  display: flex;
+  justify-content: center;
 }

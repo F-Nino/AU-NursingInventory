@@ -73,6 +73,7 @@ class CreateItem extends Component {
                 onChange={this.props.onCostChange}
                 step={0.01}
                 precision={2}
+                min={0.00}
               />
             </div>
           </div>
