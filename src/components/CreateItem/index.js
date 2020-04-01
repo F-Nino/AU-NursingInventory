@@ -163,7 +163,7 @@ class CreateItem extends Component {
           />
         )}
         <div>
-          <h1 className="text-center pt-3">Create Item</h1>
+          <h1 className="text-center-create-item pt-3">Create Item</h1>
 
           <CreateItemForm
             onChange={this.handleChange}
