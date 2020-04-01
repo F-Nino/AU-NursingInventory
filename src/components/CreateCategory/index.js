@@ -66,7 +66,7 @@ class CategoryForm extends Component {
               name="categoryName"
               type="text"
               placeholder="Name"
-              value={this.props.categoryName}
+              value={this.state.categoryName}
               onChange={this.handleChange}
             />
           </div>

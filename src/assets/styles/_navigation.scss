@@ -17,10 +17,14 @@
     padding-right: 1rem;
     text-transform: uppercase;
     a {
-      color: white;
       transition: 0.5s;
       font-size: 1.25em;
-
+    }
+    .active {
+      color: white;
+    }
+    .not-active {
+      color: grey;
     }
     a:hover {
       color: $color-secondary;
