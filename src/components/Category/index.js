@@ -19,6 +19,7 @@ class category extends Component {
           items={this.props.categoryInfo[key]}
           onItemEdit={this.props.onItemEdit}
           onItemDelete={this.props.onItemDelete}
+          onCategoryModalClick={this.props.onCategoryModalClick}
         />
       ))
     );

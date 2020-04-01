@@ -14,7 +14,6 @@ class Navigation extends React.Component {
   }
   getPageClicked = pageClicked => {
     this.setState({ pageClicked });
-    //console.log(pageClicked);
   };
 
   getNavItemClassName = name => {

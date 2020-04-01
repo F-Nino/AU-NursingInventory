@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import Category from "../Category";
 import SearchField from "../SearchField";
 import EditItemModal from "../EditItemModal";
+import EditCategoryModal from "../EditCategoryModal";
 import { reportDataFetch } from "../../redux/actions/reportPage.js";
 import { connect } from "react-redux";
 import axios from "axios";
 
 class report extends Component {
   state = {
-    showModal: false,
-    modalItem: ""
+    showItemModal: false,
+    showCategoryModal: false,
+    modalItem: "",
+    modalCategory: ""
   };
 
   getCurrentReportPage = () => {
@@ -44,7 +47,7 @@ class report extends Component {
   };
 
   handleItemEdit = item => {
-    this.setState({ showModal: true, modalItem: item });
+    this.setState({ showItemModal: true, modalItem: item });
     window.scrollTo({ top: 0, behavior: "smooth" });
     document.getElementById("modal-bg").style.display = "block";
     document.body.style.height = "100%";
@@ -52,16 +55,23 @@ class report extends Component {
   };
 
   closeModal = () => {
-    this.setState({ showModal: false });
+    this.setState({ showItemModal: false, showCategoryModal: false });
     document.getElementById("modal-bg").style.display = "none";
     document.body.style.overflowY = "visible";
+  };
+
+  popUpCategoryModal = category => {
+    this.setState({ showCategoryModal: true, modalCategory: category });
+    document.getElementById("modal-bg").style.display = "block";
+    document.body.style.height = "100%";
+    document.body.style.overflowY = "hidden";
   };
 
   render() {
     return (
       <div>
         <h2 className="text-center inventory-title">Inventory Overview</h2>
-        {this.state.showModal && (
+        {this.state.showItemModal && (
           <EditItemModal
             pageName={"Edit item"}
             onClose={this.closeModal}
@@ -70,10 +80,18 @@ class report extends Component {
             onEditUpdate={this.getCurrentReportPage}
           />
         )}
+        {this.state.showCategoryModal && (
+          <EditCategoryModal
+            onClose={this.closeModal}
+            category={this.state.modalCategory}
+            onEditUpdate={this.getCurrentReportPage}
+          />
+        )}
         <SearchField />
         <Category
           onItemEdit={this.handleItemEdit}
           onItemDelete={this.handleItemDelete}
+          onCategoryModalClick={this.popUpCategoryModal}
         />
         <div
           className="modal-background"

@@ -60,11 +60,19 @@ class header extends Component {
           className="jumbotron-mini text-center"
           onClick={() => this.handleHeaderClick()}
         >
-          <span>
+          <div className="flex-report-parent">
             <h2 className="white-header">
               <b>{this.props.name}</b>
             </h2>
-          </span>
+            <div>
+              <button
+                className="button pencil-icon"
+                onClick={() => this.props.onCategoryModalClick(this.props.name)}
+              >
+                &#9998;
+              </button>
+            </div>
+          </div>
         </div>
         {this.state.open &&
           (this.props.items != null ? (

@@ -5,34 +5,34 @@
   padding-bottom: 2rem;
 }
 
-.search-button-wrapper{
+.search-button-wrapper {
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.search-report{
-  padding: .75rem 2.5rem;
+.search-report {
+  padding: 0.75rem 2.5rem;
 }
 
-.search-input{
+.search-input {
 }
 
-.search-input-wrapper{
+.search-input-wrapper {
   text-align: center;
   padding-right: 1rem;
 }
 
-.edit-button{
+.edit-button {
   background-color: #4a6eb5;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
-.delete-button{
+.delete-button {
   background-color: red;
 }
 
-.table-buttons{
+.table-buttons {
   display: flex;
 }
 
@@ -55,4 +55,14 @@
 
 .table-search-wrapper {
   padding-bottom: 4rem;
+}
+
+.flex-report-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pencil-icon {
+  font-size: 2rem;
 }
