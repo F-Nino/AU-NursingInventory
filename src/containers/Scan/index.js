@@ -53,6 +53,10 @@ class Scan extends Component {
             if (resp.data.status == "ERROR") {
               console.log("Error: Item Not In Database");
               window.alert("Error: Item Not In Database");
+              this.setState({
+                barcode: ""
+              });
+              document.getElementById("barcode-id").focus();
             } else {
               this.setState({
                 itemData: resp.data.data,
@@ -66,12 +70,17 @@ class Scan extends Component {
           })
           .catch(error => {
             console.log("error", error);
+            window.alert("Error: Decrease Exceeds Stock Count")
           });
       } catch {
         console.log("error from axios call in comp did mount");
       }
     } else {
       window.alert("Error: Invalid Fields (Barcode And/Or Count)");
+      this.setState({
+        barcode: "",
+        itemCount: 1
+      });
     }
   };
 
@@ -212,7 +221,7 @@ class Scan extends Component {
                 <b>Barcode ID:</b> {this.state.itemData.name}
               </li>
               <li>
-                <b>Stock:</b> {this.state.itemData.count}
+                <b>In Stock:</b> {this.state.itemData.count}
               </li>
               <li>
                 <b>Threshold:</b> {this.state.itemData.threshold}
