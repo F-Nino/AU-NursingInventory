@@ -31,8 +31,8 @@ class CreateItem extends Component {
               value={this.props.currentCategorySelected}
               onChange={this.props.onChange}
             >
-              {this.props.categories.map(category => (
-                <option id={category.id} value={category.name}>
+              {this.props.categories.map((category, index) => (
+                <option id={index} value={category.name}>
                   {category.name}
                 </option>
               ))}
@@ -73,7 +73,7 @@ class CreateItem extends Component {
                 onChange={this.props.onCostChange}
                 step={0.01}
                 precision={2}
-                min={0.00}
+                min={0.0}
               />
             </div>
           </div>

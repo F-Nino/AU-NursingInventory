@@ -25,7 +25,7 @@ class CreateBarcode extends Component {
     return classNameForLabel;
   };
 
-  componentDidMount() {
+  getCategories = () => {
     axios
       .get(`http://localhost:3000/api/v1/categories`, {
         headers: {
@@ -37,10 +37,12 @@ class CreateBarcode extends Component {
         console.log(res.data.data);
         try {
           this.setState({ categories: res.data.data });
-        } catch {
-          console.log("uh oh");
-        }
+        } catch {}
       });
+  };
+
+  componentDidMount() {
+    this.getCategories();
   }
 
   render() {
@@ -74,9 +76,14 @@ class CreateBarcode extends Component {
           />
         </div>
 
-        {this.state.selectedOption === "itemButton" ? <CreateItem categories = { this.state.categories }/> : null}
+        {this.state.selectedOption === "itemButton" ? (
+          <CreateItem categories={this.state.categories} />
+        ) : null}
         {this.state.selectedOption === "categoryButton" ? (
-          <CreateCategory categories = { this.state.categories } />
+          <CreateCategory
+            categories={this.state.categories}
+            getCategories={this.getCategories}
+          />
         ) : null}
       </div>
     );

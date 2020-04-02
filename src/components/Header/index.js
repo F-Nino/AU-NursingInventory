@@ -6,9 +6,6 @@ class header extends Component {
     this.state = {
       open: false
     };
-    /*
-      name: props.name,
-      items: props.header,*/
   }
 
   componentDidUpdate(prevProps) {

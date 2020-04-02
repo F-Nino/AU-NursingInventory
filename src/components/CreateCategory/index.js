@@ -40,6 +40,7 @@ class CategoryForm extends Component {
             message: "Category Created Successfully: " + this.state.categoryName
           });
           this.setState({ fontType: "green" });
+          this.props.getCategories();
         })
         .catch(error => {
           console.log("error", error);
@@ -86,8 +87,8 @@ class CategoryForm extends Component {
           <div className="create-category-table">
             <table className="table table-bordered table-hover">
               <tbody>
-                {this.props.categories.map(category => (
-                  <tr>
+                {this.props.categories.map((category, index) => (
+                  <tr key={index}>
                     <td>{category.name}</td>
                   </tr>
                 ))}
