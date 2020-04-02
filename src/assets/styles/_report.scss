@@ -56,10 +56,13 @@
 
 .flex-report-parent {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .pencil-icon {
   font-size: 2rem;
+}
+
+.csv-box{
+  text-align: right;
 }
