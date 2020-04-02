@@ -15,6 +15,7 @@ class CreateItem extends Component {
       itemCost: 0.0,
       itemThreshold: 1,
       errorMessage: [],
+      errorAsterik: [],
       currentCategorySelected: this.props.categories[0],
       showModal: false,
       item: {},
@@ -89,25 +90,31 @@ class CreateItem extends Component {
     });
     var submitItem = true;
     var errorMessage = [];
+    let errorAsterik = [];
     if (this.state.itemName === "") {
       submitItem = false;
       errorMessage.push("Item Name Cannot Be Empty");
+      errorAsterik.push("itemName");
     }
     if (this.state.itemDescription === "") {
       submitItem = false;
       errorMessage.push("Item Description Cannot Be Empty");
+      errorAsterik.push("itemDescription");
     }
     if (this.state.initialCount < 0) {
       submitItem = false;
       errorMessage.push("Item Count Cannot Be Less Than 0");
+      errorAsterik.push("initialCount");
     }
     if (this.state.itemThreshold < 0) {
       submitItem = false;
       errorMessage.push("Item Threshold Cannot Be Less Than 0");
+      errorAsterik.push("itemThreshold");
     }
     if (this.state.itemCost < 0) {
       submitItem = false;
       errorMessage.push("Item Cost Cannot Be Less Than 0");
+      errorAsterik.push("itemCost");
     }
     if (submitItem) {
       axios
@@ -151,7 +158,7 @@ class CreateItem extends Component {
           this.setState({ errorMessage });
         });
     } else {
-      this.setState({ errorMessage });
+      this.setState({ errorMessage, errorAsterik });
     }
   };
 
@@ -180,7 +187,12 @@ class CreateItem extends Component {
           <form onSubmit={this.handleSubmit} className="create-item-form">
             <div className="rows">
               <div className="name-section">
-                <label className="section-title">Name:</label>
+                <label className="section-title">
+                  Name:
+                  {this.state.errorAsterik.includes("itemName") && (
+                    <span className="error-asterik">*</span>
+                  )}
+                </label>
                 <input
                   className="form-control"
                   name="itemName"
@@ -210,7 +222,12 @@ class CreateItem extends Component {
             <div className="rows">
               <div className="form-numbers">
                 <div className="col-6">
-                  <label className="section-title">Threshold:</label>
+                  <label className="section-title">
+                    Threshold:
+                    {this.state.errorAsterik.includes("itemThreshold") && (
+                      <span className="error-asterik">*</span>
+                    )}
+                  </label>
                   <input
                     className="form-control"
                     name="itemThreshold"
@@ -221,7 +238,12 @@ class CreateItem extends Component {
                 </div>
 
                 <div className="form-top-padding">
-                  <label className="section-title">Stock:</label>
+                  <label className="section-title">
+                    Stock:
+                    {this.state.errorAsterik.includes("initialCount") && (
+                      <span className="error-asterik">*</span>
+                    )}
+                  </label>
                   <input
                     className="form-control"
                     name="initialCount"
@@ -232,7 +254,12 @@ class CreateItem extends Component {
                 </div>
 
                 <div className="form-top-padding">
-                  <label className="section-title">Cost:</label>
+                  <label className="section-title">
+                    Cost:
+                    {this.state.errorAsterik.includes("itemCost") && (
+                      <span className="error-asterik">*</span>
+                    )}
+                  </label>
                   <NumericInput
                     className="form-control"
                     name="itemCost"
@@ -246,7 +273,12 @@ class CreateItem extends Component {
               </div>
 
               <div className="item-desc-section">
-                <label className="section-title">Description:</label>
+                <label className="section-title">
+                  Description:
+                  {this.state.errorAsterik.includes("itemDescription") && (
+                    <span className="error-asterik">*</span>
+                  )}
+                </label>
                 <textarea
                   className="text-height"
                   name="itemDescription"
@@ -281,8 +313,8 @@ class CreateItem extends Component {
         <div className="error-message">
           {this.state.errorMessage.length > 0 && (
             <ul>
-              {this.state.errorMessage.map(message => (
-                <li>{message}</li>
+              {this.state.errorMessage.map((message, index) => (
+                <li key={index}>{message}</li>
               ))}
             </ul>
           )}
