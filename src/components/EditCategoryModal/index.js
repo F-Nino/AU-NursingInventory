@@ -12,34 +12,45 @@ class editCategoryModal extends Component {
   };
 
   handleDeleteCategory = () => {
-    if (window.confirm("Confirm Deletion of " + this.state.category)) {
-      axios
-        .delete(`http://localhost:3000/api/v1/delete_category`, {
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            crossorigin: true
-          },
-          data: {
-            name: this.state.category
-          }
-        })
-        .then(res => {
-          this.props.onEditUpdate();
-          console.log("she worked");
-          this.setState({
-            message: "Succesfull deletion of " + this.state.category
+    if (
+      window.confirm(
+        "WARNING: DELETING A CATEGORY WILL COMPLETELY REMOVE\nALL OF THE ITEMS IN THAT CATEGORY FROM THE INVENTORY SYSTEM" +
+          "\n\nAre You Sure You Want To Permanently Delete The Category: " +
+          this.props.category
+      )
+    ) {
+      if (this.state.category !== this.props.category) {
+        window.alert(
+          "ERROR: The Category You Are Trying To Delete\nDoes Not Match The Input Field"
+        );
+      } else {
+        axios
+          .delete(`http://localhost:3000/api/v1/delete_category`, {
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              crossorigin: true
+            },
+            data: {
+              name: this.props.category
+            }
+          })
+          .then(res => {
+            this.props.onEditUpdate();
+            this.setState({
+              message: "Successful Deletion Of Category: " + this.state.category
+            });
+          })
+          .catch(error => {
+            console.log("Error: ", error);
           });
-        })
-        .catch(error => {
-          console.log("error", error);
-        });
+      }
     }
   };
 
   handleUpdateCategory = () => {
     if (this.state.category.length > 20) {
       this.setState({
-        message: "Error: Category Length cannot be greater than 20"
+        message: "Error: Category Length Cannot Be Greater Than 20"
       });
     }
     axios
@@ -56,11 +67,11 @@ class editCategoryModal extends Component {
       .then(res => {
         this.props.onEditUpdate();
         this.setState({
-          message: "Successfully updated " + this.state.category
+          message: "Successfully Updated Category Name: " + this.state.category
         });
       })
       .catch(error => {
-        this.setState({ message: "Error: invalid name" });
+        this.setState({ message: "Error: Invalid Name" });
       });
   };
 
