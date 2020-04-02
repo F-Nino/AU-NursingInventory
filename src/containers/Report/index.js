@@ -83,7 +83,7 @@ class Report extends Component {
   };
 
   closeModal = () => {
-    this.setState({ showItemModal: false });
+    this.setState({ showItemModal: false, showCategoryModal: false });
     document.getElementById("modal-bg").style.display = "none";
     document.body.style.overflowY = "visible";
   };
