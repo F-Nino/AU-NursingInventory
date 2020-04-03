@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Barcode from "react-barcode";
 import html2canvas from "html2canvas";
 import axios from "axios";
+import NumericInput from "react-numeric-input";
 
 class EditItemModal extends Component {
   state = {
@@ -16,11 +17,16 @@ class EditItemModal extends Component {
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value,
-      message: "",
-      isSaveDisabled: false
-    });
+    if (event.target == undefined) {
+      this.setState({ itemCost: event, isSaveDisabled: false});
+    }
+    else {
+      this.setState({
+        [event.target.name]: event.target.value,
+        message: "",
+        isSaveDisabled: false
+      });
+    }
     if (this.state.itemName.length < 8) {
       this.setState({ width: 4 });
     } else if (this.state.itemName.length < 15) {
@@ -69,9 +75,9 @@ class EditItemModal extends Component {
         })
         .then(res => {
           message =
-            "Successfully Updated " +
+            "Successfully Updated: " +
             this.state.itemName +
-            "NEED TO FIX Please Reprint Barcode If Name Has Changed";
+            ". Please Reprint Barcode If Name Has Changed";
           try {
             this.props.onEditUpdate();
           } catch {}
@@ -128,7 +134,7 @@ class EditItemModal extends Component {
   render() {
     return (
       <div className="modal-form show fade">
-        <div className="header-wrapper">
+        <div className="header-wrapper-edit-item">
           <h3>{this.props.pageName}</h3>
         </div>
         <div className="modal-flex-parent">
@@ -176,11 +182,14 @@ class EditItemModal extends Component {
                 <label>
                   <b>Cost:</b>
                 </label>
-                <input
+                <NumericInput
+                  className="form-control"
                   name="itemCost"
-                  type="number"
                   value={this.state.itemCost}
                   onChange={this.handleChange}
+                  step={0.01}
+                  precision={2}
+                  min={0.0}
                 />
               </div>
 

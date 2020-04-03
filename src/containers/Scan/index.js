@@ -70,7 +70,7 @@ class Scan extends Component {
           })
           .catch(error => {
             console.log("error", error);
-            window.alert("Error: Decrease Exceeds Stock Count")
+            window.alert("Error: Decrease Exceeds Stock Count");
           });
       } catch {
         console.log("error from axios call in comp did mount");
@@ -216,20 +216,22 @@ class Scan extends Component {
         </form>
         <div>
           {this.state.showData ? (
-            <ul className="response-data">
-              <li>
-                <b>Barcode ID:</b> {this.state.itemData.name}
-              </li>
-              <li>
-                <b>In Stock:</b> {this.state.itemData.count}
-              </li>
-              <li>
-                <b>Threshold:</b> {this.state.itemData.threshold}
-              </li>
-              <li>
-                <b>Description:</b> {this.state.itemData.description}
-              </li>
-            </ul>
+            <table className="scan-table">
+              <thead>
+                <tr>
+                  <th>Barcode ID:</th><td>{this.state.itemData.name}</td>
+                </tr>
+                <tr>
+                  <th>In Stock:</th><td>{this.state.itemData.count}</td>
+                </tr>
+                <tr>
+                  <th>Threshold:</th><td>{this.state.itemData.threshold}</td>
+                </tr>
+                <tr>
+                  <th>Description:</th><td>{this.state.itemData.description}</td>
+                </tr>
+              </thead>
+            </table>
           ) : null}
         </div>
       </div>

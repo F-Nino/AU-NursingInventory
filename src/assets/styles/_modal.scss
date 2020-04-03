@@ -3,6 +3,17 @@
   padding-top: 1rem;
 }
 
+.header-wrapper-edit-item {
+  text-align: center;
+  padding-top: 1rem;
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: $color-main;
+  }
+}
+
 .modal-flex-parent {
   display: flex;
   justify-content: space-evenly;
