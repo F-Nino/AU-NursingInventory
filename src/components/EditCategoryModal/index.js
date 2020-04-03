@@ -5,7 +5,8 @@ class editCategoryModal extends Component {
   state = {
     category: this.props.category,
     message: "",
-    isDisabledButton: true
+    isDisabledButton: true,
+    isCategoryDeleted: false
   };
 
   handleChange = event => {
@@ -42,7 +43,9 @@ class editCategoryModal extends Component {
           .then(res => {
             this.props.onEditUpdate();
             this.setState({
-              message: "Successful Deletion Of Category: " + this.state.category
+              message:
+                "Successful Deletion Of Category: " + this.state.category,
+              isCategoryDeleted: true
             });
           })
           .catch(error => {
@@ -97,37 +100,50 @@ class editCategoryModal extends Component {
               className="category-input-name"
               value={this.state.category}
               onChange={this.handleChange}
+              disabled={this.state.isCategoryDeleted}
             ></input>
           </div>
-          <div className="modal-category-buttons">
-            <div>
-              <button
-                className="button modal-button save"
-                disabled={this.state.isDisabledButton}
-                onClick={() => this.handleUpdateCategory()}
-              >
-                Save Changes
-              </button>
-            </div>
+          {this.state.isCategoryDeleted === false ? (
+            <div className="modal-category-buttons">
+              <div>
+                <button
+                  className="button modal-button save"
+                  disabled={this.state.isDisabledButton}
+                  onClick={() => this.handleUpdateCategory()}
+                >
+                  Save Changes
+                </button>
+              </div>
 
-            <div>
-              <button
-                className="button modal-button print"
-                onClick={() => this.handleDeleteCategory()}
-              >
-                Delete Category
-              </button>
+              <div>
+                <button
+                  className="button modal-button print"
+                  onClick={() => this.handleDeleteCategory()}
+                >
+                  Delete Category
+                </button>
+              </div>
+              <div>
+                <button
+                  className="button modal-button close"
+                  onClick={this.props.onClose}
+                >
+                  Close
+                </button>
+              </div>
             </div>
-
-            <div>
-              <button
-                className="button modal-button close"
-                onClick={this.props.onClose}
-              >
-                Close
-              </button>
+          ) : (
+            <div className="modal-category-buttons">
+              <div>
+                <button
+                  className="button modal-button close"
+                  onClick={this.props.onClose}
+                >
+                  Close
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
         {this.state.message !== "" && (
           <div className="confirmation-update">{this.state.message}</div>

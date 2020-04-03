@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import TrendReportHeader from "../../components/TrendReportHeader";
 
-
 class TrendReport extends Component {
   state = {
     startDate: "",
@@ -18,7 +17,12 @@ class TrendReport extends Component {
     let startDateAr = this.state.startDate.split("/");
     let endDateAr = this.state.endDate.split("/");
     let startDate =
-      startDateAr[2] + "-" + startDateAr[0] + "-" + startDateAr[1];
+      startDateAr[2] +
+      "-" +
+      startDateAr[0] +
+      "-" +
+      startDateAr[1] +
+      " 00:00:00";
     let endDate =
       endDateAr[2] + "-" + endDateAr[0] + "-" + endDateAr[1] + " 23:59:59";
     axios
@@ -65,7 +69,7 @@ class TrendReport extends Component {
     const categoryKeys = Object.keys(this.state.headers);
     return (
       <div className="trend-report-wrapper">
-          <h2 className="text-center trend-report-title">Inventory Use</h2>
+        <h2 className="text-center trend-report-title">Inventory Use</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row-trend-report">
             <div className="start-input-wrapper">
