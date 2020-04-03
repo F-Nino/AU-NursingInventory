@@ -11,21 +11,23 @@ class EditItemModal extends Component {
     itemCost: this.props.item.cost,
     itemThreshold: this.props.item.threshold,
     message: "",
-    width: 1
+    width: this.props.width,
+    isSaveDisabled: true
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value, message: "" });
+    this.setState({
+      [event.target.name]: event.target.value,
+      message: "",
+      isSaveDisabled: false
+    });
     if (this.state.itemName.length < 8) {
       this.setState({ width: 4 });
-    }
-    else if (this.state.itemName.length < 15) {
+    } else if (this.state.itemName.length < 15) {
       this.setState({ width: 3 });
-    }
-    else if (this.state.itemName.length < 25) {
+    } else if (this.state.itemName.length < 25) {
       this.setState({ width: 2 });
-    }
-    else {
+    } else {
       this.setState({ width: 1 });
     }
   };
@@ -66,7 +68,10 @@ class EditItemModal extends Component {
           }
         })
         .then(res => {
-          message = "Successfully Updated " + this.state.itemName + "NEED TO FIX Please Reprint Barcode If Name Has Changed";
+          message =
+            "Successfully Updated " +
+            this.state.itemName +
+            "NEED TO FIX Please Reprint Barcode If Name Has Changed";
           try {
             this.props.onEditUpdate();
           } catch {}
@@ -103,6 +108,22 @@ class EditItemModal extends Component {
       }
     }
   };
+
+  componentWillMount() {
+    if (this.state.width === undefined) {
+      console.log("init");
+      console.log(this.state.itemName.length);
+      if (this.state.itemName.length < 8) {
+        this.setState({ width: 4 });
+      } else if (this.state.itemName.length < 15) {
+        this.setState({ width: 3 });
+      } else if (this.state.itemName.length < 25) {
+        this.setState({ width: 2 });
+      } else {
+        this.setState({ width: 1 });
+      }
+    }
+  }
 
   render() {
     return (
@@ -179,6 +200,7 @@ class EditItemModal extends Component {
           <div className="modal-buttons">
             <button
               className="button modal-button save"
+              disabled={this.state.isSaveDisabled}
               onClick={() => this.handleUpdateBarcode()}
             >
               Save Changes

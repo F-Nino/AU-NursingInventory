@@ -94,7 +94,7 @@
 }
 
 .create-category-table {
-  overflow:hidden;
+  overflow: hidden;
   overflow-y: scroll;
   height: 15rem;
   width: 50%;
@@ -113,4 +113,8 @@
 .category-table-wrapper {
   display: flex;
   justify-content: center;
+}
+
+.error-asterik {
+  color: $error-color;
 }

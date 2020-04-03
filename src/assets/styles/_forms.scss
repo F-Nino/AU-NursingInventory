@@ -12,8 +12,7 @@ textarea {
   padding: 10px 15px;
   font-size: 16px;
   border-radius: 0.3em;
-  background-color:white;
-
+  background-color: white;
 }
 
 .button {
@@ -35,11 +34,12 @@ textarea {
 .button:disabled {
   background: $grey;
   transition: 1s;
+  cursor: initial;
 }
 
 .au-input,
 .au-button {
-  margin-bottom: .4em;
+  margin-bottom: 0.4em;
 }
 
 .registration-wrapper {
