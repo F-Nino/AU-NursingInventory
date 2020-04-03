@@ -10,16 +10,17 @@
 }
 
 .active-button {
-  background-color: #bbb !important;
+  background-color: $color-main !important;
 }
 
 .radio-button-wrapper label {
   display: inline-block;
-  background-color: #ddd;
-  padding: 4px 11px;
+  background-color: $color-main-light;
+  padding: .5rem 1rem;
   font-family: Arial;
   font-size: 16px;
   cursor: pointer;
+  color: white;
 }
 
 .radio-button-wrapper {
@@ -28,7 +29,7 @@
 }
 
 .home {
-  padding-top: 30px;
+  padding-top: 3rem;
 }
 .create-category-input {
   width: 30%;
