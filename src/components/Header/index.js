@@ -50,6 +50,14 @@ class header extends Component {
     }
   };*/
 
+  testing = name => {
+    console.log("heyo");
+    this.setState(prevState => ({
+      open: !prevState.open
+    }));
+    this.props.onCategoryModalClick(name);
+  };
+
   render() {
     return (
       <div className="section">
@@ -64,7 +72,7 @@ class header extends Component {
             <div className="pencil-div">
               <button
                 className="button pencil-icon"
-                onClick={() => this.props.onCategoryModalClick(this.props.name)}
+                onClick={() => this.testing(this.props.name)}
               >
                 &#9998;
               </button>

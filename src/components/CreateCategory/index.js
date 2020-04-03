@@ -8,7 +8,8 @@ class CategoryForm extends Component {
     this.state = {
       categoryName: "",
       message: " ",
-      fontType: ""
+      fontType: "",
+      categoryCreated: ""
     };
   }
 
@@ -39,7 +40,10 @@ class CategoryForm extends Component {
           this.setState({
             message: "Category Created Successfully: " + this.state.categoryName
           });
-          this.setState({ fontType: "green" });
+          this.setState({
+            fontType: "green",
+            categoryCreated: this.state.categoryName
+          });
           this.props.getCategories();
         })
         .catch(error => {
@@ -52,6 +56,18 @@ class CategoryForm extends Component {
       this.setState({ fontType: "#6b0103" });
     }
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.categories !== prevProps.categories &&
+      this.state.categoryCreated !== ""
+    ) {
+      let scrollToElement = document.getElementById(this.state.categoryCreated);
+      scrollToElement.scrollIntoView(true);
+      scrollToElement.style.backgroundColor = "#314877";
+      scrollToElement.style.color = "white";
+    }
+  }
 
   render() {
     return (
@@ -89,7 +105,7 @@ class CategoryForm extends Component {
               <tbody>
                 {this.props.categories.map((category, index) => (
                   <tr key={index}>
-                    <td>{category.name}</td>
+                    <td id={category.name}>{category.name}</td>
                   </tr>
                 ))}
               </tbody>

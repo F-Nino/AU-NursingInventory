@@ -4,13 +4,14 @@ import TableItem from "../TableItem";
 
 class searchField extends Component {
   state = {
-    items: []
+    items: [],
+    hasSearchedForItem: false
   };
 
   handleSearch = () => {
     var wordSearch = document.getElementById("searchInputField").value;
     if (wordSearch === "") {
-      this.setState({ items: [] });
+      this.setState({ items: [], hasSearchedForItem: false });
       return;
     }
     axios
@@ -29,7 +30,7 @@ class searchField extends Component {
       )
       .then(res => {
         this.setState({ items: [] });
-        this.setState({ items: res.data.data });
+        this.setState({ items: res.data.data, hasSearchedForItem: true });
       });
   };
 
@@ -77,6 +78,9 @@ class searchField extends Component {
               </tbody>
             </table>
           </div>
+        )}
+        {this.state.items.length === 0 && this.state.hasSearchedForItem && (
+          <h2 className="text-center">No Results</h2>
         )}
       </div>
     );
