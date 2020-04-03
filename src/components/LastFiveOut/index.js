@@ -6,7 +6,7 @@ class LastFiveOut extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastFiveOut: []
+      lastFiveOut: [],
     };
   }
 
@@ -26,14 +26,14 @@ class LastFiveOut extends React.Component {
         <table className="table table-bordered table-hover">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Last Updated</th>
-              <th>Count</th>
+              <th width="10%">Name</th>
+              <th width="70%">Description</th>
+              <th width="10%">Last Updated</th>
+              <th width="10%">Count</th>
             </tr>
           </thead>
           <tbody>
-            {this.props.object.map(item => (
+            {this.props.object.map((item) => (
               <TableItem key={item.id} item={item} />
             ))}
           </tbody>

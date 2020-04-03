@@ -25,11 +25,13 @@ h6 {
 }
 
 .logo {
-  letter-spacing: 0.2rem;
-  font-size: 2rem;
+  letter-spacing: 0.3rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: white;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .view-container {
