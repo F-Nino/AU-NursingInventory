@@ -3,7 +3,8 @@ import axios from "axios";
 
 class editCategoryModal extends Component {
   state = {
-    category: this.props.category,
+    originalName: this.props.category,
+    editedName: this.props.category,
     message: "",
     isDisabledButton: true,
     isCategoryDeleted: false
@@ -22,10 +23,10 @@ class editCategoryModal extends Component {
       window.confirm(
         "WARNING: DELETING A CATEGORY WILL COMPLETELY REMOVE\nALL OF THE ITEMS IN THAT CATEGORY FROM THE INVENTORY SYSTEM" +
           "\n\nAre You Sure You Want To Permanently Delete The Category: " +
-          this.props.category
+          this.state.originalName
       )
     ) {
-      if (this.state.category !== this.props.category) {
+      if (this.state.editedName !== this.state.originalName) {
         window.alert(
           "ERROR: The Category You Are Trying To Delete\nDoes Not Match The Input Field"
         );
@@ -37,14 +38,14 @@ class editCategoryModal extends Component {
               crossorigin: true
             },
             data: {
-              name: this.props.category
+              name: this.state.originalName
             }
           })
           .then(res => {
             this.props.onEditUpdate();
             this.setState({
               message:
-                "Successful Deletion Of Category: " + this.state.category,
+                "Successful Deletion Of Category: " + this.state.originalName,
               isCategoryDeleted: true
             });
           })
@@ -56,7 +57,7 @@ class editCategoryModal extends Component {
   };
 
   handleUpdateCategory = () => {
-    if (this.state.category.length > 20) {
+    if (this.state.editedName.length > 20) {
       this.setState({
         message: "Error: Category Length Cannot Be Greater Than 20"
       });
@@ -68,14 +69,18 @@ class editCategoryModal extends Component {
           crossorigin: true
         },
         category: {
-          old_name: this.props.category,
-          name: this.state.category
+          old_name: this.state.originalName,
+          name: this.state.editedName
         }
       })
       .then(res => {
+        console.log(res);
+        console.log("what is going on");
         this.props.onEditUpdate();
         this.setState({
-          message: "Successfully Updated Category Name: " + this.state.category
+          message:
+            "Successfully Updated Category Name: " + this.state.editedName,
+          originalName: this.state.editedName
         });
       })
       .catch(error => {
@@ -95,10 +100,10 @@ class editCategoryModal extends Component {
               <b>Name:</b>
             </label>
             <input
-              name="category"
+              name="editedName"
               type="text"
               className="category-input-name"
-              value={this.state.category}
+              value={this.state.editedName}
               onChange={this.handleChange}
               disabled={this.state.isCategoryDeleted}
             ></input>

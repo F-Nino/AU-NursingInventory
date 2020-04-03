@@ -42,7 +42,10 @@ class TrendReport extends Component {
         }
       )
       .then(res => {
-        this.setState({ headers: res.data.data });
+        console.log(res.data.data);
+        this.setState({ headers: res.data.data }, () => {
+          console.log(this.state.headers);
+        });
       })
       .catch(error => {
         console.log("error", error);
