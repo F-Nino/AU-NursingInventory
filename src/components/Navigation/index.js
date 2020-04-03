@@ -4,6 +4,7 @@ import * as ROUTES from "../../constants/routes";
 //import logo from "../../assets/images/logo.png";
 import { connect } from "react-redux";
 import { userLogOut } from "../../redux/actions/user";
+import logo from '../../assets/images/club-logo.png';
 
 class Navigation extends React.Component {
   constructor() {
@@ -44,7 +45,8 @@ class Navigation extends React.Component {
 
 const Logo = () => (
   <div className="logo">
-    <span>INSERT NAME HERE</span>
+    <img className="nav-logo" src={logo} alt="logo"></img>
+    <span>AIM</span>
   </div>
 );
 
