@@ -83,7 +83,7 @@ class Report extends Component {
   };
 
   closeModal = () => {
-    this.setState({ showItemModal: false });
+    this.setState({ showItemModal: false, showCategoryModal: false });
     document.getElementById("modal-bg").style.display = "none";
     document.body.style.overflowY = "visible";
   };
@@ -98,10 +98,10 @@ class Report extends Component {
   render() {
     return (
       <div className="report-wrapper">
-        <h2 className="text-center inventory-title">Inventory Overview</h2>
         <div className="csv-box">
-          <CSVLink data={this.state.data}>Download me</CSVLink>
+          <CSVLink data={this.state.data}>Download Inventory Report</CSVLink>
         </div>
+        <h2 className="text-center inventory-title">Inventory Overview</h2>
         {this.state.showItemModal && (
           <EditItemModal
             pageName={"Edit item"}

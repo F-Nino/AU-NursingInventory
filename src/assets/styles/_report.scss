@@ -57,6 +57,7 @@
 .flex-report-parent {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .pencil-icon {
@@ -65,4 +66,14 @@
 
 .csv-box{
   text-align: right;
+
+  a {
+    color: $color-main-light;
+    font-size: 1.25rem;
+  }
+}
+
+.pencil-div {
+  position: absolute;
+  right: 1%;
 }

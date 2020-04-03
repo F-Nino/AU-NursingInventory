@@ -61,7 +61,7 @@ class header extends Component {
             <h2 className="white-header">
               <b>{this.props.name}</b>
             </h2>
-            <div>
+            <div className="pencil-div">
               <button
                 className="button pencil-icon"
                 onClick={() => this.props.onCategoryModalClick(this.props.name)}
