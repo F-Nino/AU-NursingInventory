@@ -138,6 +138,10 @@
     padding: 0.6rem;
   }
 
+  .button-wrapper {
+    padding-top: 1rem;
+  }
+
   .radio-button-wrapper {
     display: flex;
     justify-content: center;
@@ -145,13 +149,16 @@
   }
 }
 
+@media (max-width: 991.98px) {
+  .show-category-table {
+    display: table;
+  }
+}
+
 @media (max-width: 767.98px) {
   .create-category-input,
   .create-category-button {
     width: 100%;
-  }
-  .show-category-table {
-    display: table;
   }
   .create-category-table {
     width: 100%;

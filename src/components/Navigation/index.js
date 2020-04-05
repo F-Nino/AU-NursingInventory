@@ -135,7 +135,7 @@ const NavigationAuth = (props) => (
         </div>
         <div className="sandwich">
           <button className="sandwich-button" onClick={props.openSandwich}>
-            Heyo
+            Menu
           </button>
         </div>
       </nav>
