@@ -14,6 +14,12 @@ class Navigation extends React.Component {
       isSandwichOpen: false,
     };
   }
+
+  logoutClicked = () => {
+    this.setState({ pageClicked: "home", isSandwichOpen: false });
+    this.props.userLogOut();
+  };
+
   getPageClicked = (pageClicked) => {
     this.setState({ pageClicked, isSandwichOpen: false });
   };
@@ -39,7 +45,7 @@ class Navigation extends React.Component {
           <NavigationAuth
             onPageClick={this.getPageClicked}
             getNavItemClassName={this.getNavItemClassName}
-            logout={userLogOut}
+            logout={this.logoutClicked}
             openSandwich={this.onSandwichClick}
             isSandwichOpen={this.state.isSandwichOpen}
           />
@@ -134,7 +140,7 @@ const NavigationAuth = (props) => (
         </div>
       </nav>
       {props.isSandwichOpen && (
-        <ul id="test" className="menu-sandwich-bar">
+        <ul className="menu-sandwich-bar">
           <li>
             <Link
               to={ROUTES.HOME}

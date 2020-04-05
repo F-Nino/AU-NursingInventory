@@ -110,17 +110,50 @@
   color: $error-color;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 991.98px) {
+  .create-item-form {
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .rows {
+    flex-wrap: wrap;
+  }
+
+  .form-numbers {
+    width: 100%;
+    padding: 0;
+  }
+
+  .create-item-button {
+    width: 100%;
+  }
+
+  .name-section,
+  .category-section,
+  .form-top-padding,
+  .item-desc-section,
+  .button-wrapper {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
   .radio-button-wrapper {
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
   }
-  .radio-button-wrapper label {
-    padding: 0.25rem 0.5rem;
-  }
+}
+
+@media (max-width: 767.98px) {
   .create-category-input,
   .create-category-button {
-    width: auto;
+    width: 100%;
+  }
+  .show-category-table {
+    display: table;
+  }
+  .create-category-table {
+    width: 100%;
   }
 }

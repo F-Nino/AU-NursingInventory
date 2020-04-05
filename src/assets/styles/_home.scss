@@ -26,7 +26,7 @@
 
 table {
   width: 100%;
-  display: block;
+  display: table;
   overflow-x: auto;
 }
 
@@ -53,4 +53,10 @@ tr:nth-child(odd) {
   color: white;
   margin-bottom: 0;
   padding: 10px 0;
+}
+
+@media (max-width: 991.98px) {
+  .table {
+    display: block;
+  }
 }

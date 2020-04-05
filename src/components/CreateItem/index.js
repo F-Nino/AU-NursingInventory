@@ -19,12 +19,14 @@ class CreateItem extends Component {
       currentCategorySelected: this.props.categories[0],
       showModal: false,
       item: {},
-      width: 1
+      width: 1,
     };
   }
 
-  printBarcode = itemName => {
-    html2canvas(document.querySelector("#barcode-save")).then(function(canvas) {
+  printBarcode = (itemName) => {
+    html2canvas(document.querySelector("#barcode-save")).then(function (
+      canvas
+    ) {
       let fileName = itemName + ".png";
       saveAs(canvas.toDataURL(), fileName);
     });
@@ -65,7 +67,7 @@ class CreateItem extends Component {
     this.setState({ itemName, itemDescription });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
     if (this.state.itemName.length < 8) {
       this.setState({ width: 3 });
@@ -76,14 +78,14 @@ class CreateItem extends Component {
     }
   };
 
-  handleCostChange = value => {
+  handleCostChange = (value) => {
     this.setState({ itemCost: value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     var categoryId;
-    this.props.categories.forEach(category => {
+    this.props.categories.forEach((category) => {
       if (category.name === this.state.currentCategorySelected) {
         categoryId = category.id;
       }
@@ -121,7 +123,7 @@ class CreateItem extends Component {
         .post(`http://localhost:3000/api/v1/items`, {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
+            crossorigin: true,
           },
           item: {
             name: this.state.itemName,
@@ -130,10 +132,10 @@ class CreateItem extends Component {
             barcode: this.state.itemName,
             category_id: categoryId,
             threshold: this.state.itemThreshold,
-            cost: this.state.itemCost
-          }
+            cost: this.state.itemCost,
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
           if (res.data.staus === "Failed") {
             console.log(res.data.data);
@@ -152,7 +154,7 @@ class CreateItem extends Component {
             this.setState({ errorMessage: [], item, showModal: true });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
           errorMessage.push("Name already taken");
           this.setState({ errorMessage });
@@ -221,7 +223,7 @@ class CreateItem extends Component {
 
             <div className="rows">
               <div className="form-numbers">
-                <div className="col-6">
+                <div className="form-top-padding">
                   <label className="section-title">
                     Threshold:
                     {this.state.errorAsterik.includes("itemThreshold") && (

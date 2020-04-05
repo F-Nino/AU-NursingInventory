@@ -26,6 +26,13 @@
   display: flex;
 }
 
+.inventory-report-cat-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow-x: auto;
+}
+
 .inventory-title {
   font-size: 4rem;
   margin-bottom: 0rem;
@@ -52,7 +59,7 @@
 }
 
 .csv-box {
-  text-align: right;
+  text-align: center;
 
   a {
     color: $color-main-light;
@@ -84,7 +91,15 @@
   .report-wrapper {
     max-width: 90%;
   }
+  .inventory-report-cat-header {
+    display: block;
+  }
+  .pencil-div {
+    position: static;
+    //padding-left: 1rem;
+  }
 }
+
 @media (max-width: 575.98px) {
   .report-wrapper {
     max-width: 95%;

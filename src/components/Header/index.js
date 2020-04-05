@@ -65,7 +65,7 @@ class header extends Component {
           className="jumbotron-mini text-center"
           onClick={() => this.handleHeaderClick()}
         >
-          <div className="flex-report-parent">
+          <div className="inventory-report-cat-header">
             <h2 className="white-header">
               <b>{this.props.name}</b>
             </h2>

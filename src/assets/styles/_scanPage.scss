@@ -90,3 +90,10 @@
     border: 1px solid black;
   }
 }
+
+@media (max-width: 575.98px) {
+  .scan-table {
+    max-width: 95%;
+    margin: 3rem auto 0 auto;
+  }
+}

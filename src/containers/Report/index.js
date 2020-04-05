@@ -98,9 +98,6 @@ class Report extends Component {
   render() {
     return (
       <div className="page-wrapper">
-        <div className="csv-box">
-          <CSVLink data={this.state.data}>Download Inventory Report</CSVLink>
-        </div>
         <h2 className="text-center inventory-title">Inventory Overview</h2>
         {this.state.showItemModal && (
           <EditItemModal
@@ -130,6 +127,9 @@ class Report extends Component {
           id="modal-bg"
           onClick={this.closeModal}
         ></div>
+        <div className="csv-box">
+          <CSVLink data={this.state.data}>Download Inventory Report</CSVLink>
+        </div>
       </div>
     );
   }

@@ -9,44 +9,45 @@ class CategoryForm extends Component {
       categoryName: "",
       message: " ",
       fontType: "",
-      categoryCreated: ""
+      categoryCreated: "",
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     if (event.target.value.length > 20) {
       this.setState({
-        message: "ERROR: Category Name Cannot Exceed 20 Characters"
+        message: "ERROR: Category Name Cannot Exceed 20 Characters",
       });
     } else {
       this.setState({ [event.target.name]: event.target.value, message: "" });
     }
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.categoryName !== "") {
       axios
         .post(`http://localhost:3000/api/v1/categories`, {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
+            crossorigin: true,
           },
           category: {
-            name: this.state.categoryName
-          }
+            name: this.state.categoryName,
+          },
         })
-        .then(res => {
+        .then((res) => {
           this.setState({
-            message: "Category Created Successfully: " + this.state.categoryName
+            message:
+              "Category Created Successfully: " + this.state.categoryName,
           });
           this.setState({
             fontType: "green",
-            categoryCreated: this.state.categoryName
+            categoryCreated: this.state.categoryName,
           });
           this.props.getCategories();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
           this.setState({ message: "Name Already Taken" });
           this.setState({ fontType: "#6b0103" });
@@ -73,8 +74,8 @@ class CategoryForm extends Component {
     return (
       <div>
         <h2 className="text-center">Create Category</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className="rows">
+        <form onSubmit={this.handleSubmit} className="create-item-form">
+          <div className="rows ">
             <input
               className="create-category-input"
               name="categoryName"
@@ -101,7 +102,7 @@ class CategoryForm extends Component {
         </div>
         <div className="category-table-wrapper">
           <div className="create-category-table">
-            <table className="table table-bordered table-hover">
+            <table className="table table-bordered table-hover show-category-table">
               <tbody>
                 {this.props.categories.map((category, index) => (
                   <tr key={index}>
