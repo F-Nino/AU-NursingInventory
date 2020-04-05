@@ -4,7 +4,7 @@ class header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
     };
   }
 
@@ -15,12 +15,12 @@ class header extends Component {
   }
 
   handleHeaderClick = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
+    this.setState((prevState) => ({
+      open: !prevState.open,
     }));
   };
 
-  handleDate = lastUpdated => {
+  handleDate = (lastUpdated) => {
     var modifiedDate = new Date(lastUpdated);
     return modifiedDate.toDateString();
   };
@@ -50,10 +50,10 @@ class header extends Component {
     }
   };*/
 
-  testing = name => {
+  testing = (name) => {
     console.log("heyo");
-    this.setState(prevState => ({
-      open: !prevState.open
+    this.setState((prevState) => ({
+      open: !prevState.open,
     }));
     this.props.onCategoryModalClick(name);
   };
@@ -90,11 +90,11 @@ class header extends Component {
                     <th>Last Updated</th>
                     <th>Stock</th>
                     <th>Threshold</th>
-                    <th></th>
+                    <th>Buttons</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.items.map(item => (
+                  {this.props.items.map((item) => (
                     <tr key={item.id}>
                       <td>{item.name}</td>
                       <td>{item.description}</td>

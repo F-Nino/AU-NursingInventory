@@ -6,36 +6,14 @@ class trendReportHeader extends Component {
     super(props);
     this.state = {
       open: false,
-      count: 0
     };
   }
 
   handleHeaderClick = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
+    this.setState((prevState) => ({
+      open: !prevState.open,
     }));
   };
-
-  updateCount() {
-    let count = 0;
-    if (this.props.items !== null) {
-      this.props.items.forEach(item => {
-        count += item.count;
-      });
-    }
-    this.setState({ count });
-  }
-
-  componentDidMount() {
-    this.updateCount();
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log("called");
-    if (prevProps.items !== this.props.items) {
-      this.updateCount();
-    }
-  }
 
   render() {
     return (
@@ -51,7 +29,7 @@ class trendReportHeader extends Component {
               </h2>
             </div>
             <div className="cat-header-stock">
-              <h2 className="white-header">{this.state.count}</h2>
+              <h2 className="white-header">{this.props.count}</h2>
             </div>
           </div>
         </div>
@@ -68,7 +46,7 @@ class trendReportHeader extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.items.map(item => (
+                  {this.props.items.map((item) => (
                     <TableItem item={item} key={item.id} />
                   ))}
                 </tbody>

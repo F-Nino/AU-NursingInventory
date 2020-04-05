@@ -6,10 +6,11 @@ class TrendReport extends Component {
   state = {
     startDate: "",
     endDate: "",
-    headers: {}
+    headers: {},
+    sortedHeaders: [],
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -31,28 +32,42 @@ class TrendReport extends Component {
         {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
-          }
+            crossorigin: true,
+          },
         },
         {
           data: {
             start_date: startDate,
-            end_date: endDate
-          }
+            end_date: endDate,
+          },
         }
       )
-      .then(res => {
-        console.log(res.data.data);
-        this.setState({ headers: res.data.data }, () => {
-          console.log(this.state.headers);
+      .then((res) => {
+        let headers = res.data.data;
+        let testing = {};
+        const categoryKeys = Object.keys(headers);
+        categoryKeys.forEach((key) => {
+          let count = 0;
+          if (headers[key] !== null) {
+            headers[key].forEach((item) => {
+              count += item.count;
+            });
+          }
+          testing[key] = count;
+        });
+        console.log(testing);
+        let entries = Object.entries(testing);
+        let sortedHeaders = entries.sort((a, b) => b[1] - a[1]);
+        this.setState({ headers: res.data.data, sortedHeaders }, () => {
+          console.log(this.state);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("error", error);
       });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.getTrendReportData();
   };
@@ -69,9 +84,9 @@ class TrendReport extends Component {
   }
 
   render() {
-    const categoryKeys = Object.keys(this.state.headers);
+    //const categoryKeys = Object.keys(this.state.headers);
     return (
-      <div className="trend-report-wrapper">
+      <div className="page-wrapper">
         <h2 className="text-center trend-report-title">Inventory Use</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="row-trend-report">
@@ -104,11 +119,12 @@ class TrendReport extends Component {
         </form>
 
         {this.state.headers !== null &&
-          categoryKeys.map((key, index) => (
+          this.state.sortedHeaders.map((key, index) => (
             <TrendReportHeader
               key={index}
-              name={key}
-              items={this.state.headers[key]}
+              name={key[0]}
+              count={key[1]}
+              items={this.state.headers[key[0]]}
             />
           ))}
       </div>

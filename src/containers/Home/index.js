@@ -9,15 +9,15 @@ class Home extends Component {
     this.state = {
       selectedOption: "In",
       scannedInObject: [],
-      scannedOutObject: []
+      scannedOutObject: [],
     };
   }
-  handleOptionChange = event => {
+  handleOptionChange = (event) => {
     this.setState({ selectedOption: event.target.value });
     console.log(event.target.value);
   };
 
-  getLabelClassName = value => {
+  getLabelClassName = (value) => {
     let classNameForLabel = "label-for-button ";
     if (value === this.state.selectedOption) {
       classNameForLabel += "active-button";
@@ -28,21 +28,21 @@ class Home extends Component {
   componentDidMount() {
     axios
       .get("http://localhost:3000/api/v1/get_last_five")
-      .then(response => {
+      .then((response) => {
         this.setState({ scannedInObject: response.data.data });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
     axios
       .get("http://localhost:3000/api/v1/get_last_five_scanned_out")
-      .then(response => {
+      .then((response) => {
         this.setState({ scannedOutObject: response.data.data });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   render() {
     return (
-      <div className="home-wrapper">
+      <div className="page-wrapper">
         <div className="radio-button-wrapper home">
           <label className={this.getLabelClassName("In")} for="radio1">
             Scanned In

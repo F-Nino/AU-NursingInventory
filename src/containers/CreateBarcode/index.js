@@ -8,16 +8,16 @@ class CreateBarcode extends Component {
     super();
     this.state = {
       selectedOption: "itemButton",
-      categories: []
+      categories: [],
     };
   }
 
-  handleOptionChange = event => {
+  handleOptionChange = (event) => {
     this.setState({ selectedOption: event.target.value });
     console.log(event.target.value);
   };
 
-  getLabelClassName = value => {
+  getLabelClassName = (value) => {
     let classNameForLabel = "label-for-button ";
     if (value === this.state.selectedOption) {
       classNameForLabel += "active-button";
@@ -30,10 +30,10 @@ class CreateBarcode extends Component {
       .get(`http://localhost:3000/api/v1/categories`, {
         headers: {
           "Access-Control-Allow-Origin": true,
-          crossorigin: true
-        }
+          crossorigin: true,
+        },
       })
-      .then(res => {
+      .then((res) => {
         console.log(res.data.data);
         try {
           this.setState({ categories: res.data.data });
@@ -47,7 +47,7 @@ class CreateBarcode extends Component {
 
   render() {
     return (
-      <div className="create-barcode-wrapper">
+      <div className="page-wrapper">
         <div className="radio-button-wrapper">
           <label className={this.getLabelClassName("itemButton")} for="radio1">
             Item

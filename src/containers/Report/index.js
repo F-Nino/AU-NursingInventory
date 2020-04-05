@@ -15,7 +15,7 @@ class Report extends Component {
     modalItem: "",
     modalCategory: "",
     headers: [],
-    data: []
+    data: [],
   };
 
   getCurrentReportPage = () => {
@@ -32,10 +32,10 @@ class Report extends Component {
   getInventoryData() {
     axios
       .get("http://localhost:3000/api/v1/get_all_items")
-      .then(resp => {
+      .then((resp) => {
         this.setState({ data: resp.data.data }, () => this.fixdata());
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("error", err);
       });
   }
@@ -43,7 +43,7 @@ class Report extends Component {
   fixdata = () => {
     let sortData = this.state.data;
     let newData = [];
-    sortData.map(value => {
+    sortData.map((value) => {
       console.log("map", value);
       delete value.created_at;
       delete value.updated_at;
@@ -53,28 +53,28 @@ class Report extends Component {
     this.setState({ data: newData });
   };
 
-  handleItemDelete = item => {
+  handleItemDelete = (item) => {
     if (window.confirm("Confirm Deletion of " + item.name)) {
       axios
         .delete(`http://localhost:3000/api/v1/delete_item`, {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
+            crossorigin: true,
           },
           data: {
-            id: item.id
-          }
+            id: item.id,
+          },
         })
-        .then(res => {
+        .then((res) => {
           this.getCurrentReportPage();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
         });
     }
   };
 
-  handleItemEdit = item => {
+  handleItemEdit = (item) => {
     this.setState({ showItemModal: true, modalItem: item });
     window.scrollTo({ top: 0, behavior: "smooth" });
     document.getElementById("modal-bg").style.display = "block";
@@ -88,7 +88,7 @@ class Report extends Component {
     document.body.style.overflowY = "visible";
   };
 
-  popUpCategoryModal = category => {
+  popUpCategoryModal = (category) => {
     this.setState({ showCategoryModal: true, modalCategory: category });
     document.getElementById("modal-bg").style.display = "block";
     document.body.style.height = "100%";
@@ -97,7 +97,7 @@ class Report extends Component {
 
   render() {
     return (
-      <div className="report-wrapper">
+      <div className="page-wrapper">
         <div className="csv-box">
           <CSVLink data={this.state.data}>Download Inventory Report</CSVLink>
         </div>
@@ -135,11 +135,11 @@ class Report extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  categoryInfo: state.reportState.reportData
+const mapStateToProps = (state) => ({
+  categoryInfo: state.reportState.reportData,
 });
 
-const mapDispatchToProps = dispatch => ({
-  reportDataFetch: () => dispatch(reportDataFetch())
+const mapDispatchToProps = (dispatch) => ({
+  reportDataFetch: () => dispatch(reportDataFetch()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Report);
