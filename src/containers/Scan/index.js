@@ -211,7 +211,7 @@ class Scan extends Component {
           </div>
 
           <div>
-            <button className="button scan-submit-button">Find Barcode</button>
+            <button className="button scan-submit-button">Scan Barcode</button>
           </div>
         </form>
         <div>

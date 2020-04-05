@@ -13,8 +13,8 @@ class LastFiveScanned extends React.Component {
             <tr>
               <th width="15%">Name</th>
               <th width="65%">Description</th>
-              <th width="10%">Last Updated</th>
-              <th width="10%">Count</th>
+              <th width="12%">Last Updated</th>
+              <th width="8%">Count</th>
             </tr>
           </thead>
           <tbody>
