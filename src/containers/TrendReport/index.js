@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TrendReportHeader from "../../components/TrendReportHeader";
+import { apiRoute } from "../../constants/routes";
 
 class TrendReport extends Component {
   state = {
@@ -28,7 +29,7 @@ class TrendReport extends Component {
       endDateAr[2] + "-" + endDateAr[0] + "-" + endDateAr[1] + " 23:59:59";
     axios
       .post(
-        `http://localhost:3000/api/v1/scanned_out_by_category`,
+        apiRoute + "scanned_out_by_category",
         {
           headers: {
             "Access-Control-Allow-Origin": true,

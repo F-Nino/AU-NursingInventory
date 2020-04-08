@@ -7,6 +7,7 @@ import { reportDataFetch } from "../../redux/actions/reportPage.js";
 import { connect } from "react-redux";
 import axios from "axios";
 import { CSVLink } from "react-csv";
+import { apiRoute } from "../../constants/routes";
 
 class Report extends Component {
   state = {
@@ -31,7 +32,7 @@ class Report extends Component {
 
   getInventoryData() {
     axios
-      .get("http://localhost:3000/api/v1/get_all_items")
+      .get(apiRoute + "get_all_items")
       .then((resp) => {
         this.setState({ data: resp.data.data }, () => this.fixdata());
       })
@@ -56,7 +57,7 @@ class Report extends Component {
   handleItemDelete = (item) => {
     if (window.confirm("Confirm Deletion of " + item.name)) {
       axios
-        .delete(`http://localhost:3000/api/v1/delete_item`, {
+        .delete(apiRoute + "delete_item", {
           headers: {
             "Access-Control-Allow-Origin": true,
             crossorigin: true,

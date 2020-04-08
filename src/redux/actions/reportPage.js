@@ -1,22 +1,23 @@
 import axios from "axios";
 import { SAVE_REPORT_DATA } from "./actionTypes";
+import { apiRoute } from "../../constants/routes";
 
 export const reportDataFetch = () => {
-  return dispatch => {
+  return (dispatch) => {
     return axios
-      .get("http://localhost:3000/api/v1/report_page", {
-        headers: { "Access-Control-Allow-Origin": true, crossorigin: true }
+      .get(apiRoute + "report_page", {
+        headers: { "Access-Control-Allow-Origin": true, crossorigin: true },
       })
-      .then(res => {
+      .then((res) => {
         dispatch(loginUser(res.data.data));
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("error", error);
       });
   };
 };
 
-const loginUser = reportObj => ({
+const loginUser = (reportObj) => ({
   type: SAVE_REPORT_DATA,
-  payload: reportObj
+  payload: reportObj,
 });

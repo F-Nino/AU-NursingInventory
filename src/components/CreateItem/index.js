@@ -4,6 +4,7 @@ import Barcode from "react-barcode";
 import NumericInput from "react-numeric-input";
 import html2canvas from "html2canvas";
 import EditItemModal from "../EditItemModal";
+import { apiRoute } from "../../constants/routes";
 
 class CreateItem extends Component {
   constructor(props) {
@@ -120,7 +121,7 @@ class CreateItem extends Component {
     }
     if (submitItem) {
       axios
-        .post(`http://localhost:3000/api/v1/items`, {
+        .post(apiRoute + "items", {
           headers: {
             "Access-Control-Allow-Origin": true,
             crossorigin: true,

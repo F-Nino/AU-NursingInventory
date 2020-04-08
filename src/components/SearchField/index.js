@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TableItem from "../TableItem";
+import { apiRoute } from "../../constants/routes";
 
 class searchField extends Component {
   state = {
     items: [],
-    hasSearchedForItem: false
+    hasSearchedForItem: false,
   };
 
   handleSearch = () => {
@@ -16,19 +17,19 @@ class searchField extends Component {
     }
     axios
       .post(
-        `http://localhost:3000/api/v1/search_field_item`,
+        apiRoute + "search_field_item",
         {
           headers: {
             "Access-Control-Allow-Origin": true,
             crossorigin: true,
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         },
         {
-          data: { name: wordSearch }
+          data: { name: wordSearch },
         }
       )
-      .then(res => {
+      .then((res) => {
         this.setState({ items: [] });
         this.setState({ items: res.data.data, hasSearchedForItem: true });
       });
@@ -44,7 +45,7 @@ class searchField extends Component {
               className="search-input"
               placeholder="Search For Item"
               id="searchInputField"
-              onKeyPress={event => {
+              onKeyPress={(event) => {
                 if (event.key === "Enter") {
                   this.handleSearch();
                 }
@@ -72,7 +73,7 @@ class searchField extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.items.map(item => (
+                {this.state.items.map((item) => (
                   <TableItem key={item.id} item={item} />
                 ))}
               </tbody>

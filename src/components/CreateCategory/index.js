@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import TableItem from "../TableItem";
+import { apiRoute } from "../../constants/routes";
 
 class CategoryForm extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class CategoryForm extends Component {
     event.preventDefault();
     if (this.state.categoryName !== "") {
       axios
-        .post(`http://localhost:3000/api/v1/categories`, {
+        .post(apiRoute + "categories", {
           headers: {
             "Access-Control-Allow-Origin": true,
             crossorigin: true,

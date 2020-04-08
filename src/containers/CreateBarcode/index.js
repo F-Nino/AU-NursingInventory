@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CreateItem from "../../components/CreateItem";
 import CreateCategory from "../../components/CreateCategory";
 import axios from "axios";
+import { apiRoute } from "../../constants/routes";
 
 class CreateBarcode extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class CreateBarcode extends Component {
 
   getCategories = () => {
     axios
-      .get(`http://localhost:3000/api/v1/categories`, {
+      .get(apiRoute + "/categories", {
         headers: {
           "Access-Control-Allow-Origin": true,
           crossorigin: true,

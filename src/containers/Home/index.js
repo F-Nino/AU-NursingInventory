@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LastFiveScanned from "../../components/LastFiveScanned";
 import AttentionNeeded from "../../components/AttentionNeeded";
 import axios from "axios";
+import { apiRoute } from "../../constants/routes";
 
 class Home extends Component {
   constructor(props) {
@@ -27,13 +28,13 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3000/api/v1/get_last_five")
+      .get(apiRoute + "get_last_five")
       .then((response) => {
         this.setState({ scannedInObject: response.data.data });
       })
       .catch((error) => console.log(error));
     axios
-      .get("http://localhost:3000/api/v1/get_last_five_scanned_out")
+      .get(apiRoute + "get_last_five_scanned_out")
       .then((response) => {
         this.setState({ scannedOutObject: response.data.data });
       })

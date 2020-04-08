@@ -25,33 +25,7 @@ class header extends Component {
     return modifiedDate.toDateString();
   };
 
-  /*
-  handleItemDelete = (item, itemIndex) => {
-    if (window.confirm("Confirm Deletion of " + item.name)) {
-      axios
-        .delete(`http://localhost:3000/api/v1/delete_item`, {
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            crossorigin: true
-          },
-          data: {
-            id: item.id
-          }
-        })
-        .then(res => {
-          console.log(itemIndex);
-          console.log(this.state.items);
-          console.log(this.state.items[itemIndex]);
-          this.props.regetData();
-        })
-        .catch(error => {
-          console.log("error", error);
-        });
-    }
-  };*/
-
-  testing = (name) => {
-    console.log("heyo");
+  handleModalClick = (name) => {
     this.setState((prevState) => ({
       open: !prevState.open,
     }));
@@ -72,7 +46,7 @@ class header extends Component {
             <div className="pencil-div">
               <button
                 className="button pencil-icon"
-                onClick={() => this.testing(this.props.name)}
+                onClick={() => this.handleModalClick(this.props.name)}
               >
                 &#9998;
               </button>

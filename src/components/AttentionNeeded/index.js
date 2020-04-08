@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AttentionNeededHeader from "../AttentionNeededHeader";
+import { apiRoute } from "../../constants/routes";
 
 class attentionNeeded extends Component {
   state = {
-    headers: {}
+    headers: {},
   };
 
   componentWillMount() {
     axios
-      .get(`http://localhost:3000/api/v1/threshold_items`, {
+      .get(apiRoute + "threshold_items", {
         headers: {
           "Access-Control-Allow-Origin": true,
-          crossorigin: true
-        }
+          crossorigin: true,
+        },
       })
-      .then(res => {
+      .then((res) => {
         console.log(res);
         this.setState({ headers: res.data.data });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("error", error);
       });
   }

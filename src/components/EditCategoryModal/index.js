@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { apiRoute } from "../../constants/routes";
 
 class editCategoryModal extends Component {
   state = {
@@ -7,14 +8,14 @@ class editCategoryModal extends Component {
     editedName: this.props.category,
     message: "",
     isDisabledButton: true,
-    isCategoryDeleted: false
+    isCategoryDeleted: false,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
       message: "",
-      isDisabledButton: false
+      isDisabledButton: false,
     });
   };
 
@@ -32,24 +33,24 @@ class editCategoryModal extends Component {
         );
       } else {
         axios
-          .delete(`http://localhost:3000/api/v1/delete_category`, {
+          .delete(apiRoute + "delete_category", {
             headers: {
               "Access-Control-Allow-Origin": true,
-              crossorigin: true
+              crossorigin: true,
             },
             data: {
-              name: this.state.originalName
-            }
+              name: this.state.originalName,
+            },
           })
-          .then(res => {
+          .then((res) => {
             this.props.onEditUpdate();
             this.setState({
               message:
                 "Successful Deletion Of Category: " + this.state.originalName,
-              isCategoryDeleted: true
+              isCategoryDeleted: true,
             });
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("Error: ", error);
           });
       }
@@ -59,31 +60,31 @@ class editCategoryModal extends Component {
   handleUpdateCategory = () => {
     if (this.state.editedName.length > 20) {
       this.setState({
-        message: "Error: Category Length Cannot Be Greater Than 20"
+        message: "Error: Category Length Cannot Be Greater Than 20",
       });
     }
     axios
-      .patch(`http://localhost:3000/api/v1/update_category`, {
+      .patch(apiRoute + "update_category", {
         headers: {
           "Access-Control-Allow-Origin": true,
-          crossorigin: true
+          crossorigin: true,
         },
         category: {
           old_name: this.state.originalName,
-          name: this.state.editedName
-        }
+          name: this.state.editedName,
+        },
       })
-      .then(res => {
+      .then((res) => {
         console.log(res);
         console.log("what is going on");
         this.props.onEditUpdate();
         this.setState({
           message:
             "Successfully Updated Category Name: " + this.state.editedName,
-          originalName: this.state.editedName
+          originalName: this.state.editedName,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ message: "Error: Invalid Name" });
       });
   };

@@ -6,3 +6,4 @@ export const SCAN = "/scan";
 export const REPORT = "/report";
 export const CREATE_BARCODE = "/create_barcode";
 export const LOGOUT = "/logout";
+export const apiRoute = "http://45.55.136.114:3000/api/v1/";

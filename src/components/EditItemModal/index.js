@@ -3,6 +3,7 @@ import Barcode from "react-barcode";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import NumericInput from "react-numeric-input";
+import { apiRoute } from "../../constants/routes";
 
 class EditItemModal extends Component {
   state = {
@@ -13,18 +14,17 @@ class EditItemModal extends Component {
     itemThreshold: this.props.item.threshold,
     message: "",
     width: this.props.width,
-    isSaveDisabled: true
+    isSaveDisabled: true,
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     if (event.target == undefined) {
-      this.setState({ itemCost: event, isSaveDisabled: false});
-    }
-    else {
+      this.setState({ itemCost: event, isSaveDisabled: false });
+    } else {
       this.setState({
         [event.target.name]: event.target.value,
         message: "",
-        isSaveDisabled: false
+        isSaveDisabled: false,
       });
     }
     if (this.state.itemName.length < 8) {
@@ -58,10 +58,10 @@ class EditItemModal extends Component {
     }
     if (shouldItemUpdate) {
       axios
-        .patch(`http://localhost:3000/api/v1/update_item`, {
+        .patch(apiRoute + "update_item", {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
+            crossorigin: true,
           },
           id: this.props.item.id,
           item: {
@@ -70,10 +70,10 @@ class EditItemModal extends Component {
             count: this.state.itemCount,
             cost: this.state.itemCost,
             barcode: this.state.itemName,
-            threshold: this.state.itemThreshold
-          }
+            threshold: this.state.itemThreshold,
+          },
         })
-        .then(res => {
+        .then((res) => {
           message =
             "Successfully Updated: " +
             this.state.itemName +
@@ -83,7 +83,7 @@ class EditItemModal extends Component {
           } catch {}
           this.setState({ message });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
           message =
             "Item With Name Already Exists, or Data Fields Entered Incorrectly";
@@ -97,7 +97,9 @@ class EditItemModal extends Component {
 
   printBarcode = () => {
     let itemName = this.state.itemName;
-    html2canvas(document.querySelector("#barcode-save")).then(function(canvas) {
+    html2canvas(document.querySelector("#barcode-save")).then(function (
+      canvas
+    ) {
       let fileName = itemName + ".png";
       saveAs(canvas.toDataURL(), fileName);
     });
