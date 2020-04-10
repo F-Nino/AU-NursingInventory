@@ -18,54 +18,90 @@ class TrendReport extends Component {
   getTrendReportData = () => {
     let startDateAr = this.state.startDate.split("/");
     let endDateAr = this.state.endDate.split("/");
-    let startDate =
-      startDateAr[2] +
-      "-" +
-      startDateAr[0] +
-      "-" +
-      startDateAr[1] +
-      " 00:00:00";
-    let endDate =
-      endDateAr[2] + "-" + endDateAr[0] + "-" + endDateAr[1] + " 23:59:59";
-    axios
-      .post(
-        apiRoute + "scanned_out_by_category",
-        {
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            crossorigin: true,
+    let isAcceptableInput = true;
+
+    if (startDateAr.length !== 3 || endDateAr.length !== 3) {
+      isAcceptableInput = false;
+    } else if (
+      startDateAr[0] === "" ||
+      startDateAr[1] === "" ||
+      startDateAr[2] === "" ||
+      endDateAr[0] === "" ||
+      endDateAr[1] === "" ||
+      endDateAr[2] === ""
+    ) {
+      isAcceptableInput = false;
+    } else if (
+      this.state.startDate.match(/[A-Za-z]/) ||
+      this.state.endDate.match(/[A-Za-z]/)
+    ) {
+      isAcceptableInput = false;
+    } else if (
+      !(
+        startDateAr[0].match(/[0-9]/g).length === 2 ||
+        startDateAr[0].match(/[0-9]/g).length === 1
+      ) ||
+      !(
+        startDateAr[1].match(/[0-9]/g).length === 2 ||
+        startDateAr[1].match(/[0-9]/g).length === 1
+      ) ||
+      !startDateAr[2].match(/[0-9]/g).length === 4
+    ) {
+      isAcceptableInput = false;
+    }
+
+    if (isAcceptableInput) {
+      let startDate =
+        startDateAr[2] +
+        "-" +
+        startDateAr[0] +
+        "-" +
+        startDateAr[1] +
+        " 00:00:00";
+      let endDate =
+        endDateAr[2] + "-" + endDateAr[0] + "-" + endDateAr[1] + " 23:59:59";
+      axios
+        .post(
+          apiRoute + "scanned_out_by_category",
+          {
+            headers: {
+              "Access-Control-Allow-Origin": true,
+              crossorigin: true,
+            },
           },
-        },
-        {
-          data: {
-            start_date: startDate,
-            end_date: endDate,
-          },
-        }
-      )
-      .then((res) => {
-        let headers = res.data.data;
-        let testing = {};
-        const categoryKeys = Object.keys(headers);
-        categoryKeys.forEach((key) => {
-          let count = 0;
-          if (headers[key] !== null) {
-            headers[key].forEach((item) => {
-              count += item.count;
-            });
+          {
+            data: {
+              start_date: startDate,
+              end_date: endDate,
+            },
           }
-          testing[key] = count;
+        )
+        .then((res) => {
+          let headers = res.data.data;
+          let testing = {};
+          const categoryKeys = Object.keys(headers);
+          categoryKeys.forEach((key) => {
+            let count = 0;
+            if (headers[key] !== null) {
+              headers[key].forEach((item) => {
+                count += item.count;
+              });
+            }
+            testing[key] = count;
+          });
+          console.log(testing);
+          let entries = Object.entries(testing);
+          let sortedHeaders = entries.sort((a, b) => b[1] - a[1]);
+          this.setState({ headers: res.data.data, sortedHeaders }, () => {
+            console.log(this.state);
+          });
+        })
+        .catch((error) => {
+          console.log("error", error);
         });
-        console.log(testing);
-        let entries = Object.entries(testing);
-        let sortedHeaders = entries.sort((a, b) => b[1] - a[1]);
-        this.setState({ headers: res.data.data, sortedHeaders }, () => {
-          console.log(this.state);
-        });
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    } else if (!isAcceptableInput) {
+      alert("not correct format, format needs to be '0/0/0000'");
+    }
   };
 
   handleSubmit = (e) => {

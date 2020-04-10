@@ -110,6 +110,12 @@
   color: $error-color;
 }
 
+.mobile-creation-message {
+  text-align: center;
+  font-size: 1.75rem;
+  color: $color-main-light;
+}
+
 @media (max-width: 991.98px) {
   .create-item-form {
     max-width: 80%;

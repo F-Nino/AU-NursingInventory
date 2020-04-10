@@ -10,18 +10,17 @@ class Login extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   };
 
-  handleSubmit = async event => {
+  handleSubmit = async (event) => {
     const { username, password } = this.state;
     event.preventDefault();
     console.log(username, password);
@@ -32,7 +31,7 @@ class Login extends Component {
 
   render() {
     const { error, username, password } = this.state;
-    const { currentUser } = this.props;
+    const { currentUser, isWrongLogin } = this.props;
     const isInvalid = password === "" || username === "";
     console.log("current", currentUser);
 
@@ -44,48 +43,52 @@ class Login extends Component {
     return (
       <div className="registration-wrapper">
         <form onSubmit={this.handleSubmit}>
-         
-            <h1>Welcome</h1>
+          <h1>Welcome</h1>
 
-            <input
-              name="username"
-              placeholder="Username"
-              value={username}
-              onChange={this.handleChange}
-              className="au-input"
-            />
+          <input
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={this.handleChange}
+            className="au-input"
+          />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={this.handleChange}
-              className="au-input"
-            />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={this.handleChange}
+            className="au-input"
+          />
 
-            <button
-              className="button au-button"
-              disabled={isInvalid}
-              type="submit"
-            >
-              Login
-            </button>
-            {error && <p>{error.message}</p>}
-
+          <button
+            className="button au-button"
+            disabled={isInvalid}
+            type="submit"
+          >
+            Login
+          </button>
+          {error && <p>{error.message}</p>}
         </form>
+        {isWrongLogin && (
+          <div className="invalid-login">
+            <span>Invalid Username and Password password</span>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.authState.currentUser
+const mapStateToProps = (state) => ({
+  currentUser: state.authState.currentUser,
+  isWrongLogin: state.authState.isWrongLogin,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   userLoginFetch: (username, password) =>
-    dispatch(userLoginFetch(username, password))
+    dispatch(userLoginFetch(username, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

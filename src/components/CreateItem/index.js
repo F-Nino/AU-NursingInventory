@@ -21,6 +21,7 @@ class CreateItem extends Component {
       showModal: false,
       item: {},
       width: 1,
+      mobileMessage: "",
     };
   }
 
@@ -69,7 +70,10 @@ class CreateItem extends Component {
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      mobileMessage: "",
+    });
     if (this.state.itemName.length < 8) {
       this.setState({ width: 3 });
     } else if (this.state.itemName.length < 15) {
@@ -141,18 +145,28 @@ class CreateItem extends Component {
           if (res.data.staus === "Failed") {
             console.log(res.data.data);
           } else {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            document.getElementById("modal-bg").style.display = "block";
-            document.body.style.height = "100%";
-            document.body.style.overflowY = "hidden";
-            let item = {};
-            item.name = this.state.itemName;
-            item.count = this.state.initialCount;
-            item.threshold = this.state.itemThreshold;
-            item.cost = this.state.itemCost;
-            item.description = this.state.itemDescription;
-            item.id = res.data.data.id;
-            this.setState({ errorMessage: [], item, showModal: true });
+            if (window.innerWidth < 1000) {
+              this.setState({
+                mobileMessage:
+                  "Item " + this.state.itemName + " Created Successfully",
+                errorMessage: [],
+              });
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              document.documentElement.scrollTop = 0;
+              document.body.scrollTop = 0;
+              document.getElementById("modal-bg").style.display = "block";
+              document.body.style.height = "100%";
+              document.body.style.overflowY = "hidden";
+              let item = {};
+              item.name = this.state.itemName;
+              item.count = this.state.initialCount;
+              item.threshold = this.state.itemThreshold;
+              item.cost = this.state.itemCost;
+              item.description = this.state.itemDescription;
+              item.id = res.data.data.id;
+              this.setState({ errorMessage: [], item, showModal: true });
+            }
           }
         })
         .catch((error) => {
@@ -320,6 +334,12 @@ class CreateItem extends Component {
                 <li key={index}>{message}</li>
               ))}
             </ul>
+          )}
+        </div>
+
+        <div className="mobile-creation-message">
+          {this.state.mobileMessage !== "" && (
+            <span>{this.state.mobileMessage}</span>
           )}
         </div>
       </div>

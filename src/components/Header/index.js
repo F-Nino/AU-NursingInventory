@@ -5,6 +5,7 @@ class header extends Component {
     super(props);
     this.state = {
       open: false,
+      screenSize: 0,
     };
   }
 
@@ -30,6 +31,19 @@ class header extends Component {
       open: !prevState.open,
     }));
     this.props.onCategoryModalClick(name);
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.reportWindowSize);
+    this.setState({ screenSize: window.innerWidth });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.reportWindowSize);
+  }
+
+  reportWindowSize = () => {
+    this.setState({ screenSize: window.innerWidth });
   };
 
   render() {
@@ -76,12 +90,14 @@ class header extends Component {
                       <td>{item.count}</td>
                       <td>{item.threshold}</td>
                       <td className="table-buttons">
-                        <button
-                          className="button edit-button"
-                          onClick={() => this.props.onItemEdit(item)}
-                        >
-                          Edit
-                        </button>
+                        {this.state.screenSize > 1000 && (
+                          <button
+                            className="button edit-button"
+                            onClick={() => this.props.onItemEdit(item)}
+                          >
+                            Edit
+                          </button>
+                        )}
                         <button
                           className="button delete-button"
                           onClick={() => this.props.onItemDelete(item)}

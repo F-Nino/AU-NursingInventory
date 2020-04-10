@@ -157,7 +157,6 @@ class Scan extends Component {
 
   render() {
     const { barcode } = this.state;
-    const isInvalid = barcode === "";
     return (
       <div className="scan-wrapper">
         <h1 className="text-center scan-title">Inventory Scanning</h1>

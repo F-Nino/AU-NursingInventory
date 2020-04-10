@@ -20,9 +20,7 @@ class Report extends Component {
   };
 
   getCurrentReportPage = () => {
-    this.props.reportDataFetch().then(() => {
-      console.log("data", this.props.categoryInfo);
-    });
+    this.props.reportDataFetch();
   };
 
   componentDidMount() {
@@ -45,7 +43,6 @@ class Report extends Component {
     let sortData = this.state.data;
     let newData = [];
     sortData.map((value) => {
-      console.log("map", value);
       delete value.created_at;
       delete value.updated_at;
       delete value.category_id;
@@ -77,6 +74,8 @@ class Report extends Component {
 
   handleItemEdit = (item) => {
     this.setState({ showItemModal: true, modalItem: item });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     window.scrollTo({ top: 0, behavior: "smooth" });
     document.getElementById("modal-bg").style.display = "block";
     document.body.style.height = "100%";

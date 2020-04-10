@@ -55,6 +55,12 @@ tr:nth-child(odd) {
   padding: 10px 0;
 }
 
+.invalid-login {
+  padding-top: 1rem;
+  text-align: center;
+  color: $color-main-light;
+}
+
 @media (max-width: 991.98px) {
   .table {
     display: block;

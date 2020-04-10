@@ -1,9 +1,10 @@
-import { LOGIN_USER, LOGOUT_USER } from "../actions/actionTypes";
+import { LOGIN_USER, LOGOUT_USER, ERROR_LOGIN } from "../actions/actionTypes";
 
 const initialAuth = {
   isSignedIn: false,
   isLoading: false,
-  currentUser: null
+  currentUser: null,
+  isWrongLogin: false,
 };
 
 const loadState = () => {
@@ -14,8 +15,8 @@ const loadState = () => {
       return {
         auth: {
           ...initialAuth,
-          isSignedIn: true
-        }
+          isSignedIn: true,
+        },
       };
     } else {
       return { auth: initialAuth };
@@ -31,9 +32,26 @@ const initialState = loadState();
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:
-      return { ...state, currentUser: action.payload, isSignedIn: true };
+      return {
+        ...state,
+        currentUser: action.payload,
+        isSignedIn: true,
+        isWrongLogin: false,
+      };
     case LOGOUT_USER:
-      return { ...state, currentUser: null, isSignedIn: false };
+      return {
+        ...state,
+        currentUser: null,
+        isSignedIn: false,
+        isWrongLogin: false,
+      };
+    case ERROR_LOGIN:
+      return {
+        ...state,
+        currentUser: null,
+        isSignedIn: false,
+        isWrongLogin: true,
+      };
     default:
       return state;
   }

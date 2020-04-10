@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from "../Header";
 
-
 class category extends Component {
   constructor(props) {
     super(props);
@@ -9,10 +8,13 @@ class category extends Component {
   }
 
   render() {
-    let categoryKeys = Object.keys(this.props.categoryInfo);
+    let categoryKeys = null;
+    try {
+      categoryKeys = Object.keys(this.props.categoryInfo);
+    } catch {}
     return (
       this.props.categoryInfo !== null &&
-      categoryKeys.map(key => (
+      categoryKeys.map((key) => (
         <Header
           key={key}
           name={key}
