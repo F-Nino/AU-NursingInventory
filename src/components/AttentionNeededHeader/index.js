@@ -40,11 +40,11 @@ class header extends Component {
             <table className="table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Last Updated</th>
-                  <th>Stock</th>
-                  <th>Minimum Threshold</th>
+                  <th width="15%">Name</th>
+                  <th width="55%">Description</th>
+                  <th width="10%">Last Updated</th>
+                  <th width="10%">Stock</th>
+                  <th width="10%">Minimum Threshold</th>
                 </tr>
               </thead>
               <tbody>

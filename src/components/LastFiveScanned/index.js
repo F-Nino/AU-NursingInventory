@@ -11,10 +11,10 @@ class LastFiveScanned extends React.Component {
         <table className="table table-bordered table-hover">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Last Updated</th>
-              <th>Count</th>
+              <th width="15%">Name</th>
+              <th width="65%">Description</th>
+              <th width="12%">Last Updated</th>
+              <th width="8%">Count</th>
             </tr>
           </thead>
           <tbody>

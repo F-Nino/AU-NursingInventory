@@ -11,7 +11,6 @@ import TrendReport from "../containers/TrendReport";
 import Navigation from "../components/Navigation";
 import PrivateRoute from "../PrivateRoute.js";
 
-
 const App = () => (
   <Router>
     <div>

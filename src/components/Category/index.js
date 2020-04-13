@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Header from "../Header";
-import { connect } from "react-redux";
 
 class category extends Component {
   constructor(props) {
@@ -9,24 +8,24 @@ class category extends Component {
   }
 
   render() {
-    let categoryKeys = Object.keys(this.props.categoryInfo);
+    let categoryKeys = null;
+    try {
+      categoryKeys = Object.keys(this.props.categoryInfo);
+    } catch {}
     return (
       this.props.categoryInfo !== null &&
-      categoryKeys.map(key => (
+      categoryKeys.map((key) => (
         <Header
           key={key}
           name={key}
           items={this.props.categoryInfo[key]}
           onItemEdit={this.props.onItemEdit}
           onItemDelete={this.props.onItemDelete}
+          onCategoryModalClick={this.props.onCategoryModalClick}
         />
       ))
     );
   }
 }
 
-const mapStateToProps = state => ({
-  categoryInfo: state.reportState.reportData
-});
-
-export default connect(mapStateToProps, null)(category);
+export default category;

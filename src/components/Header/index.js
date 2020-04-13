@@ -4,11 +4,9 @@ class header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      screenSize: 0,
     };
-    /*
-      name: props.name,
-      items: props.header,*/
   }
 
   componentDidUpdate(prevProps) {
@@ -18,40 +16,35 @@ class header extends Component {
   }
 
   handleHeaderClick = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
+    this.setState((prevState) => ({
+      open: !prevState.open,
     }));
   };
 
-  handleDate = lastUpdated => {
+  handleDate = (lastUpdated) => {
     var modifiedDate = new Date(lastUpdated);
     return modifiedDate.toDateString();
   };
 
-  /*
-  handleItemDelete = (item, itemIndex) => {
-    if (window.confirm("Confirm Deletion of " + item.name)) {
-      axios
-        .delete(`http://localhost:3000/api/v1/delete_item`, {
-          headers: {
-            "Access-Control-Allow-Origin": true,
-            crossorigin: true
-          },
-          data: {
-            id: item.id
-          }
-        })
-        .then(res => {
-          console.log(itemIndex);
-          console.log(this.state.items);
-          console.log(this.state.items[itemIndex]);
-          this.props.regetData();
-        })
-        .catch(error => {
-          console.log("error", error);
-        });
-    }
-  };*/
+  handleModalClick = (name) => {
+    this.setState((prevState) => ({
+      open: !prevState.open,
+    }));
+    this.props.onCategoryModalClick(name);
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.reportWindowSize);
+    this.setState({ screenSize: window.innerWidth });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.reportWindowSize);
+  }
+
+  reportWindowSize = () => {
+    this.setState({ screenSize: window.innerWidth });
+  };
 
   render() {
     return (
@@ -60,11 +53,19 @@ class header extends Component {
           className="jumbotron-mini text-center"
           onClick={() => this.handleHeaderClick()}
         >
-          <span>
+          <div className="inventory-report-cat-header">
             <h2 className="white-header">
               <b>{this.props.name}</b>
             </h2>
-          </span>
+            <div className="pencil-div">
+              <button
+                className="button pencil-icon"
+                onClick={() => this.handleModalClick(this.props.name)}
+              >
+                &#9998;
+              </button>
+            </div>
+          </div>
         </div>
         {this.state.open &&
           (this.props.items != null ? (
@@ -81,7 +82,7 @@ class header extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.items.map(item => (
+                  {this.props.items.map((item) => (
                     <tr key={item.id}>
                       <td>{item.name}</td>
                       <td>{item.description}</td>
@@ -89,12 +90,14 @@ class header extends Component {
                       <td>{item.count}</td>
                       <td>{item.threshold}</td>
                       <td className="table-buttons">
-                        <button
-                          className="button edit-button"
-                          onClick={() => this.props.onItemEdit(item)}
-                        >
-                          Edit
-                        </button>
+                        {this.state.screenSize > 1000 && (
+                          <button
+                            className="button edit-button"
+                            onClick={() => this.props.onItemEdit(item)}
+                          >
+                            Edit
+                          </button>
+                        )}
                         <button
                           className="button delete-button"
                           onClick={() => this.props.onItemDelete(item)}

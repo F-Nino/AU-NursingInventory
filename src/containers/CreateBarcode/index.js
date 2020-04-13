@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import CreateItem from "../../components/CreateItem";
 import CreateCategory from "../../components/CreateCategory";
+import axios from "axios";
+import { apiRoute } from "../../constants/routes";
 
 class CreateBarcode extends Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: "itemButton"
+      selectedOption: "itemButton",
+      categories: [],
     };
   }
 
-  handleOptionChange = event => {
+  handleOptionChange = (event) => {
     this.setState({ selectedOption: event.target.value });
     console.log(event.target.value);
   };
 
-  getLabelClassName = value => {
+  getLabelClassName = (value) => {
     let classNameForLabel = "label-for-button ";
     if (value === this.state.selectedOption) {
       classNameForLabel += "active-button";
@@ -23,9 +26,29 @@ class CreateBarcode extends Component {
     return classNameForLabel;
   };
 
+  getCategories = () => {
+    axios
+      .get(apiRoute + "/categories", {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          crossorigin: true,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        try {
+          this.setState({ categories: res.data.data });
+        } catch {}
+      });
+  };
+
+  componentDidMount() {
+    this.getCategories();
+  }
+
   render() {
     return (
-      <div className="create-barcode-wrapper">
+      <div className="page-wrapper">
         <div className="radio-button-wrapper">
           <label className={this.getLabelClassName("itemButton")} for="radio1">
             Item
@@ -54,9 +77,14 @@ class CreateBarcode extends Component {
           />
         </div>
 
-        {this.state.selectedOption === "itemButton" ? <CreateItem /> : null}
+        {this.state.selectedOption === "itemButton" ? (
+          <CreateItem categories={this.state.categories} />
+        ) : null}
         {this.state.selectedOption === "categoryButton" ? (
-          <CreateCategory />
+          <CreateCategory
+            categories={this.state.categories}
+            getCategories={this.getCategories}
+          />
         ) : null}
       </div>
     );

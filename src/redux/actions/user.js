@@ -1,39 +1,41 @@
 import axios from "axios";
-import { LOGIN_USER, LOGOUT_USER } from "./actionTypes";
+import { LOGIN_USER, LOGOUT_USER, ERROR_LOGIN } from "./actionTypes";
+import { apiRoute } from "../../constants/routes";
 
 export const userLoginFetch = (username, password) => {
-  return dispatch => {
+  return (dispatch) => {
     return axios
-      .post("http://localhost:3000/api/v1/login", {
+      .post(apiRoute + "login", {
         id: username,
-        password: password
+        password: password,
       })
-      .then(resp => {
-        console.log("res", resp.data.jwt);
-        console.log("this is also about to set shit");
-
+      .then((resp) => {
         localStorage.setItem("token", resp.data.jwt);
         dispatch(loginUser(resp.data.user));
       })
-      .catch(error => {
-        console.log("error", error);
+      .catch((error) => {
+        dispatch(errorLogin());
       });
   };
 };
 
 export const userLogOut = () => {
-  return dispatch => {
+  return (dispatch) => {
     console.log("loggingOut called");
     localStorage.removeItem("token");
     dispatch(logoutUser());
   };
 };
 
-const loginUser = userObj => ({
+const errorLogin = () => ({
+  type: ERROR_LOGIN,
+});
+
+const loginUser = (userObj) => ({
   type: LOGIN_USER,
-  payload: userObj
+  payload: userObj,
 });
 
 const logoutUser = () => ({
-  type: LOGOUT_USER
+  type: LOGOUT_USER,
 });

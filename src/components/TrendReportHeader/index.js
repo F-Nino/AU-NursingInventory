@@ -6,36 +6,14 @@ class trendReportHeader extends Component {
     super(props);
     this.state = {
       open: false,
-      count: 0
     };
   }
 
   handleHeaderClick = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
+    this.setState((prevState) => ({
+      open: !prevState.open,
     }));
   };
-
-  updateCount() {
-    let count = 0;
-    if (this.props.items !== null) {
-      this.props.items.forEach(item => {
-        count += item.count;
-      });
-    }
-    this.setState({ count });
-  }
-
-  componentDidMount() {
-    this.updateCount();
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log("called");
-    if (prevProps.items !== this.props.items) {
-      this.updateCount();
-    }
-  }
 
   render() {
     return (
@@ -44,13 +22,16 @@ class trendReportHeader extends Component {
           className="jumbotron-mini text-center"
           onClick={() => this.handleHeaderClick()}
         >
-          <span>
-            <h2 className="white-header">
-              <b>{this.props.name}</b>
-              {"   "}
-              {this.state.count}
-            </h2>
-          </span>
+          <div className="inventory-report-cat-header">
+            <div className="cat-header-name">
+              <h2 className="white-header">
+                <b>{this.props.name}</b>
+              </h2>
+            </div>
+            <div className="cat-header-stock">
+              <h2 className="white-header">{this.props.count}</h2>
+            </div>
+          </div>
         </div>
         {this.state.open &&
           (this.props.items != null ? (
@@ -65,7 +46,7 @@ class trendReportHeader extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.items.map(item => (
+                  {this.props.items.map((item) => (
                     <TableItem item={item} key={item.id} />
                   ))}
                 </tbody>

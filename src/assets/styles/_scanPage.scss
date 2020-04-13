@@ -1,7 +1,8 @@
 .scan-wrapper {
   max-width: 500px;
   margin: 0 auto;
-  padding-top: 10vh;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
 
 .scan-input {
@@ -9,8 +10,9 @@
 }
 
 .scan-submit-button {
-  margin-top: 2em;
+  margin-top: 1.5rem;
   width: 50%;
+  font-size: 1rem;
 }
 
 .scan-form {
@@ -35,8 +37,16 @@
 
 .text-center {
   color: $color-main;
+  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 1%;
+}
+
+.text-center-create-item {
+  color: $color-main;
   font-size: 3rem;
   text-align: center;
+  padding-bottom: 1%;
 }
 
 .scan-input-row {
@@ -61,11 +71,29 @@
 }
 
 .response-data {
-  text-align: center;
-  padding: 1rem 0 0 0;
+  text-align: left-;
+  padding: 5% 0 0 15%;
   font-size: 1.75rem;
   color: $color-main;
   li {
-    padding-bottom: .5rem;
+    padding-bottom: 1%;
+  }
+}
+
+.scan-table {
+  margin-top: 3rem;
+
+  th {
+    border: 1px solid black;
+  }
+  tr {
+    border: 1px solid black;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .scan-table {
+    max-width: 95%;
+    margin: 3rem auto 0 auto;
   }
 }

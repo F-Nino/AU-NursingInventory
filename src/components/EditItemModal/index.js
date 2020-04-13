@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Barcode from "react-barcode";
 import html2canvas from "html2canvas";
 import axios from "axios";
+import NumericInput from "react-numeric-input";
+import { apiRoute } from "../../constants/routes";
 
 class EditItemModal extends Component {
   state = {
@@ -11,21 +13,27 @@ class EditItemModal extends Component {
     itemCost: this.props.item.cost,
     itemThreshold: this.props.item.threshold,
     message: "",
-    width: 1
+    width: this.props.width,
+    isSaveDisabled: true,
   };
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value, message: "" });
+  handleChange = (event) => {
+    if (event.target == undefined) {
+      this.setState({ itemCost: event, isSaveDisabled: false });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value,
+        message: "",
+        isSaveDisabled: false,
+      });
+    }
     if (this.state.itemName.length < 8) {
       this.setState({ width: 4 });
-    }
-    else if (this.state.itemName.length < 15) {
+    } else if (this.state.itemName.length < 15) {
       this.setState({ width: 3 });
-    }
-    else if (this.state.itemName.length < 25) {
+    } else if (this.state.itemName.length < 25) {
       this.setState({ width: 2 });
-    }
-    else {
+    } else {
       this.setState({ width: 1 });
     }
   };
@@ -50,10 +58,10 @@ class EditItemModal extends Component {
     }
     if (shouldItemUpdate) {
       axios
-        .patch(`http://localhost:3000/api/v1/update_item`, {
+        .patch(apiRoute + "update_item", {
           headers: {
             "Access-Control-Allow-Origin": true,
-            crossorigin: true
+            crossorigin: true,
           },
           id: this.props.item.id,
           item: {
@@ -62,17 +70,20 @@ class EditItemModal extends Component {
             count: this.state.itemCount,
             cost: this.state.itemCost,
             barcode: this.state.itemName,
-            threshold: this.state.itemThreshold
-          }
+            threshold: this.state.itemThreshold,
+          },
         })
-        .then(res => {
-          message = "Successfully Updated " + this.state.itemName + "NEED TO FIX Please Reprint Barcode If Name Has Changed";
+        .then((res) => {
+          message =
+            "Successfully Updated: " +
+            this.state.itemName +
+            ". Please Reprint Barcode If Name Has Changed";
           try {
             this.props.onEditUpdate();
           } catch {}
           this.setState({ message });
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("error", error);
           message =
             "Item With Name Already Exists, or Data Fields Entered Incorrectly";
@@ -86,7 +97,9 @@ class EditItemModal extends Component {
 
   printBarcode = () => {
     let itemName = this.state.itemName;
-    html2canvas(document.querySelector("#barcode-save")).then(function(canvas) {
+    html2canvas(document.querySelector("#barcode-save")).then(function (
+      canvas
+    ) {
       let fileName = itemName + ".png";
       saveAs(canvas.toDataURL(), fileName);
     });
@@ -104,10 +117,26 @@ class EditItemModal extends Component {
     }
   };
 
+  componentWillMount() {
+    if (this.state.width === undefined) {
+      console.log("init");
+      console.log(this.state.itemName.length);
+      if (this.state.itemName.length < 8) {
+        this.setState({ width: 4 });
+      } else if (this.state.itemName.length < 15) {
+        this.setState({ width: 3 });
+      } else if (this.state.itemName.length < 25) {
+        this.setState({ width: 2 });
+      } else {
+        this.setState({ width: 1 });
+      }
+    }
+  }
+
   render() {
     return (
       <div className="modal-form show fade">
-        <div className="header-wrapper">
+        <div className="header-wrapper-edit-item">
           <h3>{this.props.pageName}</h3>
         </div>
         <div className="modal-flex-parent">
@@ -155,11 +184,14 @@ class EditItemModal extends Component {
                 <label>
                   <b>Cost:</b>
                 </label>
-                <input
+                <NumericInput
+                  className="form-control"
                   name="itemCost"
-                  type="number"
                   value={this.state.itemCost}
                   onChange={this.handleChange}
+                  step={0.01}
+                  precision={2}
+                  min={0.0}
                 />
               </div>
 
@@ -179,6 +211,7 @@ class EditItemModal extends Component {
           <div className="modal-buttons">
             <button
               className="button modal-button save"
+              disabled={this.state.isSaveDisabled}
               onClick={() => this.handleUpdateBarcode()}
             >
               Save Changes

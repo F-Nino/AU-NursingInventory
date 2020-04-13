@@ -25,17 +25,48 @@ h6 {
 }
 
 .logo {
-  letter-spacing: 0.1em;
-  font-size: 1.5em;
+  letter-spacing: 0.3rem;
+  font-size: 3.5rem;
+  font-weight: bold;
   color: white;
   position: relative;
-  top: -3px;
-  .bold {
-    font-weight: 700;
-  }
+  display: flex;
+  align-items: center;
 }
 
 .view-container {
   padding: $container-padding;
 }
 
+.page-wrapper {
+  max-width: 60vw;
+  margin: auto;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  .page-wrapper {
+    max-width: 80%;
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  .page-wrapper {
+    max-width: 85%;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .page-wrapper {
+    max-width: 90%;
+  }
+}
+@media (max-width: 575.98px) {
+  .page-wrapper {
+    max-width: 95%;
+  }
+}

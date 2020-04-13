@@ -1,10 +1,11 @@
 .navigation {
   background-color: $color-main;
-  padding: $container-padding;
   font-family: $font-header;
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   ul {
     display: flex;
@@ -17,13 +18,17 @@
     padding-right: 1rem;
     text-transform: uppercase;
     a {
-      color: white;
       transition: 0.5s;
-      font-size: 1.25em;
-
+      font-size: 1.35em;
+    }
+    .active {
+      color: white;
+    }
+    .not-active {
+      color: #a0a0a0;
     }
     a:hover {
-      color: $color-secondary;
+      color: #e0e0e0;
     }
   }
 }
@@ -36,4 +41,66 @@
 
 .signout:hover {
   color: $color-secondary;
+}
+
+.nav-logo {
+  height: 5rem;
+  width: 5rem;
+}
+
+.menu-sandwich-bar {
+  padding-bottom: 1rem;
+  z-index: 1;
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  background-color: $color-main;
+  li {
+    padding: 0.5rem 0;
+  }
+  a {
+    transition: 0.5s;
+    font-size: 1.35em;
+  }
+  .active {
+    color: white;
+  }
+  .not-active {
+    color: #a0a0a0;
+  }
+  a:hover {
+    color: #e0e0e0;
+  }
+}
+
+.small-screen-nav-bar {
+  display: none;
+}
+
+.sandwich-button {
+  border: 2px solid $color-secondary;
+  color: $color-secondary;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  background-color: $color-main;
+  transition: 0.3s;
+  border-radius: 0.3rem;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.nav-flex-parent {
+  display: flex;
+  width: 100%;
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  .small-screen-nav-bar {
+    display: block;
+  }
+  .big-screen-nav-bar {
+    display: none;
+  }
 }

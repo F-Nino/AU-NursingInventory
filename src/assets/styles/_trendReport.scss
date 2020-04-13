@@ -1,11 +1,6 @@
-.trend-report-wrapper {
-  margin: auto;
-  max-width: 60vw;
-  padding-bottom: 2rem;
-}
-
 .row-trend-report {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   //padding-top: 15px;
@@ -14,17 +9,49 @@
 }
 
 .start-input-wrapper {
-  padding-right: 1rem;
+  padding: 0 1rem;
   display: block;
-  width: 20%;
+  width: 25%;
 }
 
 .end-input-wrapper {
   padding: 0 1rem;
   display: block;
-  width: 20%;
+  width: 25%;
 }
 
 .item-search-button {
   margin-top: 1rem;
+}
+
+.trend-report-title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.cat-header-name {
+  //justify-content: right;
+}
+
+.cat-header-stock {
+  position: absolute;
+  right: 3%;
+}
+
+@media (max-width: 767.98px) {
+  .cat-header-stock {
+    position: static;
+    //padding-left: 1rem;
+  }
+  .start-input-wrapper,
+  .end-input-wrapper {
+    width: 30%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .start-input-wrapper,
+  .end-input-wrapper {
+    width: 50%;
+  }
 }

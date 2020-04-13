@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { apiRoute } from "../../constants/routes";
 
 class Scan extends Component {
   constructor(props) {
@@ -14,11 +15,11 @@ class Scan extends Component {
       showData: false,
       itemData: {},
       itemCount: 1,
-      showCount: true
+      showCount: true,
     };
   }
 
-  onButtonClickHandler = event => {
+  onButtonClickHandler = (event) => {
     event.preventDefault();
     const { barcode, addButton, deleteButton, detailsButton } = this.state;
     this.setState({ showData: false });
@@ -33,7 +34,7 @@ class Scan extends Component {
     if (detailsButton) {
       apiValue = "details";
     }
-    let apiLink = "http://localhost:3000/api/v1/" + apiValue;
+    let apiLink = apiRoute + apiValue;
     if (
       this.state.itemCount > 0 &&
       this.state.itemCount !== "" &&
@@ -43,9 +44,9 @@ class Scan extends Component {
         axios
           .post(apiLink, {
             barcode: barcode,
-            count: this.state.itemCount
+            count: this.state.itemCount,
           })
-          .then(resp => {
+          .then((resp) => {
             console.log(resp);
             if (resp == null) {
               console.log("null data resp");
@@ -53,35 +54,44 @@ class Scan extends Component {
             if (resp.data.status == "ERROR") {
               console.log("Error: Item Not In Database");
               window.alert("Error: Item Not In Database");
+              this.setState({
+                barcode: "",
+              });
+              document.getElementById("barcode-id").focus();
             } else {
               this.setState({
                 itemData: resp.data.data,
                 showData: true,
-                barcode: ""
+                barcode: "",
               });
             }
             //if resp.data.status == SUCCESS
             console.log("the resp", resp);
             document.getElementById("barcode-id").focus();
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("error", error);
+            window.alert("Error: Decrease Exceeds Stock Count");
           });
       } catch {
         console.log("error from axios call in comp did mount");
       }
     } else {
       window.alert("Error: Invalid Fields (Barcode And/Or Count)");
+      this.setState({
+        barcode: "",
+        itemCount: 1,
+      });
     }
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  callAdd = event => {
+  callAdd = (event) => {
     event.preventDefault();
     console.log("add clicked");
     this.setState(
@@ -90,7 +100,7 @@ class Scan extends Component {
         deleteButton: false,
         detailsButton: false,
         showData: false,
-        showCount: true
+        showCount: true,
       },
       () => {
         console.log("add button state", this.state.addButton);
@@ -98,7 +108,7 @@ class Scan extends Component {
     );
   };
 
-  callDelete = event => {
+  callDelete = (event) => {
     event.preventDefault();
     console.log("delete clicked");
     this.setState(
@@ -107,7 +117,7 @@ class Scan extends Component {
         addButton: false,
         detailsButton: false,
         showData: false,
-        showCount: true
+        showCount: true,
       },
       () => {
         console.log("add button state", this.state.deleteButton);
@@ -115,7 +125,7 @@ class Scan extends Component {
     );
   };
 
-  callDetails = event => {
+  callDetails = (event) => {
     event.preventDefault();
     console.log("details clicked");
     this.setState(
@@ -125,7 +135,7 @@ class Scan extends Component {
         deleteButton: false,
         showData: false,
         showCount: false,
-        itemCount: 1
+        itemCount: 1,
       },
       () => {
         console.log("add button state", this.state.detailsButton);
@@ -133,7 +143,7 @@ class Scan extends Component {
     );
   };
 
-  getLabelClassName = value => {
+  getLabelClassName = (value) => {
     let classNameForButton = "scan-button button ";
     if (value === "add-button" && this.state.addButton) {
       classNameForButton += "active-scan-button";
@@ -147,7 +157,6 @@ class Scan extends Component {
 
   render() {
     const { barcode } = this.state;
-    const isInvalid = barcode === "";
     return (
       <div className="scan-wrapper">
         <h1 className="text-center scan-title">Inventory Scanning</h1>
@@ -202,25 +211,31 @@ class Scan extends Component {
           </div>
 
           <div>
-            <button className="button scan-submit-button">Find Barcode</button>
+            <button className="button scan-submit-button">Scan Barcode</button>
           </div>
         </form>
         <div>
           {this.state.showData ? (
-            <ul className="response-data">
-              <li>
-                <b>Barcode ID:</b> {this.state.itemData.name}
-              </li>
-              <li>
-                <b>Stock:</b> {this.state.itemData.count}
-              </li>
-              <li>
-                <b>Threshold:</b> {this.state.itemData.threshold}
-              </li>
-              <li>
-                <b>Description:</b> {this.state.itemData.description}
-              </li>
-            </ul>
+            <table className="scan-table">
+              <thead>
+                <tr>
+                  <th>Barcode ID:</th>
+                  <td>{this.state.itemData.name}</td>
+                </tr>
+                <tr>
+                  <th>In Stock:</th>
+                  <td>{this.state.itemData.count}</td>
+                </tr>
+                <tr>
+                  <th>Threshold:</th>
+                  <td>{this.state.itemData.threshold}</td>
+                </tr>
+                <tr>
+                  <th>Description:</th>
+                  <td>{this.state.itemData.description}</td>
+                </tr>
+              </thead>
+            </table>
           ) : null}
         </div>
       </div>

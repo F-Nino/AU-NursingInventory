@@ -1,16 +1,17 @@
 import axios from "axios";
 import { ADD_SCAN, DELETE_SCAN, DETAIL_SCAN } from "./actionTypes";
+import { apiRoute } from "../../constants/routes";
 
 export const itemFetch = (barcode) => {
   console.log(barcode);
   return axios
-    .post("http://localhost:3000/api/v1/scan_in", {
-      barcode: barcode
+    .post(apiRoute + "scan_in", {
+      barcode: barcode,
     })
-    .then(resp => {
-      console.log(resp)
+    .then((resp) => {
+      console.log(resp);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log("error", error);
-    })
+    });
 };

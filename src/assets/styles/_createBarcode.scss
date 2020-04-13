@@ -1,24 +1,19 @@
-.create-barcode-wrapper {
-  width: 60vw;
-  margin: auto;
-  padding-top: 10vh;
-}
-
 .radio-button-wrapper input[type="radio"] {
   display: none;
 }
 
 .active-button {
-  background-color: #bbb !important;
+  background-color: $color-main !important;
 }
 
 .radio-button-wrapper label {
   display: inline-block;
-  background-color: #ddd;
-  padding: 4px 11px;
+  background-color: $color-main-light;
+  padding: 0.5rem 1rem;
   font-family: Arial;
   font-size: 16px;
   cursor: pointer;
+  color: white;
 }
 
 .radio-button-wrapper {
@@ -26,15 +21,13 @@
   text-align: right;
 }
 
-.home {
-  padding-top: 30px;
-}
 .create-category-input {
   width: 30%;
 }
 
 .create-category-button {
   width: 20%;
+  font-size: 1rem;
 }
 
 .button-row {
@@ -66,6 +59,7 @@
 }
 .create-item-button {
   width: 25%;
+  font-size: 1rem;
 }
 .item-desc-section {
   padding: 20px;
@@ -88,4 +82,91 @@
 
 .section-title {
   display: block;
+}
+
+.create-category-table {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 15rem;
+  width: 50%;
+}
+
+.create-category-header {
+  text-align: center;
+  padding-top: 3rem;
+
+  h2 {
+    color: $color-main;
+    font-size: 1.9rem;
+  }
+}
+
+.category-table-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.error-asterik {
+  color: $error-color;
+}
+
+.mobile-creation-message {
+  text-align: center;
+  font-size: 1.75rem;
+  color: $color-main-light;
+}
+
+@media (max-width: 991.98px) {
+  .create-item-form {
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .rows {
+    flex-wrap: wrap;
+  }
+
+  .form-numbers {
+    width: 100%;
+    padding: 0;
+  }
+
+  .create-item-button {
+    width: 100%;
+  }
+
+  .name-section,
+  .category-section,
+  .form-top-padding,
+  .item-desc-section,
+  .button-wrapper {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
+  .button-wrapper {
+    padding-top: 1rem;
+  }
+
+  .radio-button-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .show-category-table {
+    display: table;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .create-category-input,
+  .create-category-button {
+    width: 100%;
+  }
+  .create-category-table {
+    width: 100%;
+  }
 }

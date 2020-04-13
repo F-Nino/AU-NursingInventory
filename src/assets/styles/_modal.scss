@@ -1,33 +1,69 @@
-.header-wrapper{
-    text-align: center;
-    padding-top: 1rem;
+.header-wrapper {
+  text-align: center;
+  padding-top: 1rem;
 }
 
-.modal-flex-parent{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem;
+.header-wrapper-edit-item {
+  text-align: center;
+  padding-top: 1rem;
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: $color-main;
+  }
 }
 
-.modal-buttons{
-    display: flex;
-    flex-direction: column;
-    width: 15%;
-    justify-content: space-evenly;
-}
-.save{
-    background-color: $color-main-light;
+.modal-flex-parent {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
 }
 
-.print{
-    background-color: #808080;}
-.close{
-    background-color: #ff0000;
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  justify-content: space-evenly;
 }
-.modal-input-wrapper{
-    width: 60%;
+.save {
+  background-color: $color-main-light;
+  transition: 0.5s;
 }
 
-.modal-name{
-    padding-bottom: 1rem;
+.print {
+  background-color: $black;
+}
+
+.close {
+  background-color: #ff0000;
+}
+
+.modal-input-wrapper {
+  width: 60%;
+}
+
+.modal-name {
+  padding-bottom: 1rem;
+}
+
+.modal-category-name {
+  padding: 0 2rem 1rem 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.category-modal-parent {
+  padding: 1rem;
+  width: 100%;
+}
+
+.modal-category-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.category-input-name {
+  margin: 0 1rem;
 }
