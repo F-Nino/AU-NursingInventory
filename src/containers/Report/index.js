@@ -101,7 +101,7 @@ class Report extends Component {
       date.getDate() +
       "/" +
       date.getFullYear() +
-      "_inventory_report";
+      "_inventory_report.csv";
     return finalDate;
   };
 
