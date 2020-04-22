@@ -19,12 +19,8 @@ class Report extends Component {
     data: [],
   };
 
-  getCurrentReportPage = () => {
-    this.props.reportDataFetch();
-  };
-
   componentDidMount() {
-    this.getCurrentReportPage();
+    this.props.reportDataFetch();
     this.getInventoryData();
   }
 
@@ -95,6 +91,20 @@ class Report extends Component {
     document.body.style.overflowY = "hidden";
   };
 
+  grabFileName = () => {
+    let date = new Date();
+
+    let finalDate =
+      date.getMonth() +
+      1 +
+      "/" +
+      date.getDate() +
+      "/" +
+      date.getFullYear() +
+      "_inventory_report";
+    return finalDate;
+  };
+
   render() {
     return (
       <div className="page-wrapper">
@@ -128,7 +138,9 @@ class Report extends Component {
           onClick={this.closeModal}
         ></div>
         <div className="csv-box">
-          <CSVLink data={this.state.data}>Download Inventory Report</CSVLink>
+          <CSVLink data={this.state.data} filename={this.grabFileName()}>
+            Download Inventory Report
+          </CSVLink>
         </div>
       </div>
     );

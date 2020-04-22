@@ -8,7 +8,7 @@ class attentionNeeded extends Component {
     headers: {},
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get(apiRoute + "threshold_items", {
         headers: {

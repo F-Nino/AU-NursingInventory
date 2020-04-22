@@ -117,7 +117,7 @@ class EditItemModal extends Component {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.state.width === undefined) {
       console.log("init");
       console.log(this.state.itemName.length);

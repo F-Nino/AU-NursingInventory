@@ -27,7 +27,8 @@ class CreateBarcode extends Component {
   };
 
   getCategories = () => {
-    axios
+    //localhost:3000/
+    http: axios
       .get(apiRoute + "/categories", {
         headers: {
           "Access-Control-Allow-Origin": true,

@@ -9,7 +9,7 @@ import Report from "../containers/Report";
 import Scan from "../containers/Scan";
 import TrendReport from "../containers/TrendReport";
 import Navigation from "../components/Navigation";
-import PrivateRoute from "../PrivateRoute.js";
+import PrivateRoute from "../components/PrivateRoute";
 
 const App = () => (
   <Router>
