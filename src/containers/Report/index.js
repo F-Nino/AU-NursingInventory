@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { CSVLink } from "react-csv";
 import { apiRoute } from "../../constants/routes";
+import { borderTopRightRadius } from "html2canvas/dist/types/css/property-descriptors/border-radius";
 
 class Report extends Component {
   state = {
@@ -19,8 +20,12 @@ class Report extends Component {
     data: [],
   };
 
-  componentDidMount() {
+  getCurrentReportPage = () => {
     this.props.reportDataFetch();
+  };
+
+  componentDidMount() {
+    this.getCurrentReportPage();
     this.getInventoryData();
   }
 
@@ -115,14 +120,14 @@ class Report extends Component {
             onClose={this.closeModal}
             onPrint={this.printBarcode}
             item={this.state.modalItem}
-            onEditUpdate={this.props.reportDataFetch}
+            onEditUpdate={this.getCurrentReportPage}
           />
         )}
         {this.state.showCategoryModal && (
           <EditCategoryModal
             onClose={this.closeModal}
             category={this.state.modalCategory}
-            onEditUpdate={this.props.reportDataFetch}
+            onEditUpdate={this.getCurrentReportPage}
           />
         )}
         <SearchField />
