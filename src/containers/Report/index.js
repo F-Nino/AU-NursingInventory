@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { CSVLink } from "react-csv";
 import { apiRoute } from "../../constants/routes";
-import { borderTopRightRadius } from "html2canvas/dist/types/css/property-descriptors/border-radius";
 
 class Report extends Component {
   state = {
