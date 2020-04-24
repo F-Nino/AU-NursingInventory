@@ -115,14 +115,14 @@ class Report extends Component {
             onClose={this.closeModal}
             onPrint={this.printBarcode}
             item={this.state.modalItem}
-            onEditUpdate={this.getCurrentReportPage}
+            onEditUpdate={this.props.reportDataFetch}
           />
         )}
         {this.state.showCategoryModal && (
           <EditCategoryModal
             onClose={this.closeModal}
             category={this.state.modalCategory}
-            onEditUpdate={this.getCurrentReportPage}
+            onEditUpdate={this.props.reportDataFetch}
           />
         )}
         <SearchField />
