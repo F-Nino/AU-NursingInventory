@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "html2canvas": "^1.0.0-rc.5",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.12.0",
     "react-barcode": "^1.4.0",
     "react-csv": "^2.0.1",
